@@ -1,0 +1,60 @@
+/* 
+  File.strings
+  iOSYunkuSDK
+
+  Created by Brandon on 15/6/29.
+  Copyright (c) 2015年 goukuai. All rights reserved.
+*/
+
+"Back" = "Back";
+"Empty Folder" = "Empty Folder";
+"Add" = "Add";
+"Loading" = "Loading";
+"OK" = "OK";
+"Cancel" = "Cancel";
+"New Folder" = "New Folder";
+"Gallery" = "Gallery";
+"Gknote" = "Gknote";
+"Files" = "Files";
+"Record" = "Record";
+"Finish" = "Finish";
+"Close" = "Close";
+"Create" = "Create";
+"Save" = "Save";
+"Rename" = "Rename";
+"Delete" = "Delete";
+"Take Photo" = "Take Photo";
+"Add files to ..." = "Add files to ...";
+"Network not available" = "Network not available";
+"Tip" = "Tip";
+"More" = "More";
+"Load More" = "Load More";
+"New Note" = "New Note";
+"Save&Upload" = "Save&Upload";
+"Enter folder name" = "Enter folder name";
+"Name (No extension)" = "Name (No extension)";
+"File has been exit" = "File has been exit";
+"Enter gknote name" = "Enter gknote name";
+"Enter new name" = "Enter new name";
+"Uploading" = "Uploading";
+"Please choose operation type" = "Please choose operation type";
+"Please input content" = "Please input content";
+"Do you want to exit without saving" = "Do you want to exit without saving";
+"Save text failed, please retry" = "Save text failed, please retry";
+"File name contains sepical code" = "File name contains sepical code";
+"File name star with \".\" or end with \".\" is invalid" = "File name star with \".\" or end with \".\" is invalid";
+"Need the prermission of Photos , please access the Setting -> Private -> Photos" = "Need the prermission of Camera , please access the Setting-> Private -> Camera";
+"Need the prermission of Photos , please access the Setting -> Private -> Camera" = "Need the prermission of Photos , please access the Setting-> Private -> Photos";
+"I Know" = "I Know";
+"Are you sure to delete this file?" = "Are you sure to delete this file?";
+"File Oprations..." = "File Oprations...";
+"Download..." = "Download...";
+"The size of this file is too larage to preview" = "The size of this file is too larage to preview";
+"Beginning to preview" = "Beginning to preview";
+"Detail" = "Detail";
+"Print" = "Print";
+"Edit" = "Edit";
+"Unsupport to preview" ＝ "Unsupport to preview";
+"Convert fail" = "Convert fail";
+"Network error" = "Network error";
+"Unzip error" = "Unzip error";

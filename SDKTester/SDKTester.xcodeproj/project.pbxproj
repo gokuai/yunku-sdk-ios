@@ -1,0 +1,555 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		CA7E52271B42725800C5A628 /* iOSYunkuSDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = CA7E52261B42725800C5A628 /* iOSYunkuSDK.bundle */; };
+		CABC05B41B3B8F4300FCD0C3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CABC05B31B3B8F4300FCD0C3 /* AppDelegate.swift */; };
+		CABC05B71B3B8F4300FCD0C3 /* SDKTester.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CABC05B51B3B8F4300FCD0C3 /* SDKTester.xcdatamodeld */; };
+		CABC05B91B3B8F4300FCD0C3 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CABC05B81B3B8F4300FCD0C3 /* ViewController.swift */; };
+		CABC05BC1B3B8F4300FCD0C3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CABC05BA1B3B8F4300FCD0C3 /* Main.storyboard */; };
+		CABC05BE1B3B8F4300FCD0C3 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CABC05BD1B3B8F4300FCD0C3 /* Images.xcassets */; };
+		CABC05C11B3B8F4300FCD0C3 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = CABC05BF1B3B8F4300FCD0C3 /* LaunchScreen.xib */; };
+		CABC05CD1B3B8F4400FCD0C3 /* SDKTesterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CABC05CC1B3B8F4400FCD0C3 /* SDKTesterTests.swift */; };
+		CAF70B5E1B56984900A8BAD7 /* iOSYunkuSDK.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = CABC05DC1B3B8F5E00FCD0C3 /* iOSYunkuSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		CABC05C71B3B8F4400FCD0C3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CABC05A61B3B8F4300FCD0C3 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = CABC05AD1B3B8F4300FCD0C3;
+			remoteInfo = SDKTester;
+		};
+		CABC05DB1B3B8F5E00FCD0C3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CABC05D61B3B8F5D00FCD0C3 /* iOSYunkuSDK.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = CABC05891B3B863A00FCD0C3;
+			remoteInfo = iOSYunkuSDK;
+		};
+		CABC05DD1B3B8F5E00FCD0C3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CABC05D61B3B8F5D00FCD0C3 /* iOSYunkuSDK.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = CABC05941B3B863A00FCD0C3;
+			remoteInfo = iOSYunkuSDKTests;
+		};
+		CB018C2E1B54B106003F73FA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CABC05D61B3B8F5D00FCD0C3 /* iOSYunkuSDK.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = CABC05881B3B863A00FCD0C3;
+			remoteInfo = iOSYunkuSDK;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		CA7E51B81B4048F300C5A628 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				CAF70B5E1B56984900A8BAD7 /* iOSYunkuSDK.framework in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		CA7E52261B42725800C5A628 /* iOSYunkuSDK.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = iOSYunkuSDK.bundle; path = ../iOSYunkuSDK/iOSYunkuSDK/iOSYunkuSDK.bundle; sourceTree = "<group>"; };
+		CABC05AE1B3B8F4300FCD0C3 /* SDKTester.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SDKTester.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		CABC05B21B3B8F4300FCD0C3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CABC05B31B3B8F4300FCD0C3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		CABC05B61B3B8F4300FCD0C3 /* SDKTester.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = SDKTester.xcdatamodel; sourceTree = "<group>"; };
+		CABC05B81B3B8F4300FCD0C3 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		CABC05BB1B3B8F4300FCD0C3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		CABC05BD1B3B8F4300FCD0C3 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		CABC05C01B3B8F4300FCD0C3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		CABC05C61B3B8F4400FCD0C3 /* SDKTesterTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SDKTesterTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		CABC05CB1B3B8F4400FCD0C3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CABC05CC1B3B8F4400FCD0C3 /* SDKTesterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SDKTesterTests.swift; sourceTree = "<group>"; };
+		CABC05D61B3B8F5D00FCD0C3 /* iOSYunkuSDK.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = iOSYunkuSDK.xcodeproj; path = ../iOSYunkuSDK/iOSYunkuSDK.xcodeproj; sourceTree = "<group>"; };
+		CAD77FC01B4CD38C009FE6C4 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
+		CAD77FC11B4CD38C009FE6C4 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		CABC05AB1B3B8F4300FCD0C3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CABC05C31B3B8F4400FCD0C3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		CABC05A51B3B8F4300FCD0C3 = {
+			isa = PBXGroup;
+			children = (
+				CA7E52261B42725800C5A628 /* iOSYunkuSDK.bundle */,
+				CABC05D61B3B8F5D00FCD0C3 /* iOSYunkuSDK.xcodeproj */,
+				CABC05B01B3B8F4300FCD0C3 /* SDKTester */,
+				CABC05C91B3B8F4400FCD0C3 /* SDKTesterTests */,
+				CABC05AF1B3B8F4300FCD0C3 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		CABC05AF1B3B8F4300FCD0C3 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				CABC05AE1B3B8F4300FCD0C3 /* SDKTester.app */,
+				CABC05C61B3B8F4400FCD0C3 /* SDKTesterTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		CABC05B01B3B8F4300FCD0C3 /* SDKTester */ = {
+			isa = PBXGroup;
+			children = (
+				CABC05B31B3B8F4300FCD0C3 /* AppDelegate.swift */,
+				CABC05B81B3B8F4300FCD0C3 /* ViewController.swift */,
+				CABC05BA1B3B8F4300FCD0C3 /* Main.storyboard */,
+				CABC05BD1B3B8F4300FCD0C3 /* Images.xcassets */,
+				CABC05BF1B3B8F4300FCD0C3 /* LaunchScreen.xib */,
+				CABC05B51B3B8F4300FCD0C3 /* SDKTester.xcdatamodeld */,
+				CABC05B11B3B8F4300FCD0C3 /* Supporting Files */,
+			);
+			path = SDKTester;
+			sourceTree = "<group>";
+		};
+		CABC05B11B3B8F4300FCD0C3 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				CABC05B21B3B8F4300FCD0C3 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		CABC05C91B3B8F4400FCD0C3 /* SDKTesterTests */ = {
+			isa = PBXGroup;
+			children = (
+				CABC05CC1B3B8F4400FCD0C3 /* SDKTesterTests.swift */,
+				CABC05CA1B3B8F4400FCD0C3 /* Supporting Files */,
+			);
+			path = SDKTesterTests;
+			sourceTree = "<group>";
+		};
+		CABC05CA1B3B8F4400FCD0C3 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				CABC05CB1B3B8F4400FCD0C3 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		CABC05D71B3B8F5D00FCD0C3 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				CABC05DC1B3B8F5E00FCD0C3 /* iOSYunkuSDK.framework */,
+				CABC05DE1B3B8F5E00FCD0C3 /* iOSYunkuSDKTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		CABC05AD1B3B8F4300FCD0C3 /* SDKTester */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CABC05D01B3B8F4400FCD0C3 /* Build configuration list for PBXNativeTarget "SDKTester" */;
+			buildPhases = (
+				CABC05AA1B3B8F4300FCD0C3 /* Sources */,
+				CABC05AB1B3B8F4300FCD0C3 /* Frameworks */,
+				CABC05AC1B3B8F4300FCD0C3 /* Resources */,
+				CA7E51B81B4048F300C5A628 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				CB018C2F1B54B106003F73FA /* PBXTargetDependency */,
+			);
+			name = SDKTester;
+			productName = SDKTester;
+			productReference = CABC05AE1B3B8F4300FCD0C3 /* SDKTester.app */;
+			productType = "com.apple.product-type.application";
+		};
+		CABC05C51B3B8F4400FCD0C3 /* SDKTesterTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CABC05D31B3B8F4400FCD0C3 /* Build configuration list for PBXNativeTarget "SDKTesterTests" */;
+			buildPhases = (
+				CABC05C21B3B8F4400FCD0C3 /* Sources */,
+				CABC05C31B3B8F4400FCD0C3 /* Frameworks */,
+				CABC05C41B3B8F4400FCD0C3 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				CABC05C81B3B8F4400FCD0C3 /* PBXTargetDependency */,
+			);
+			name = SDKTesterTests;
+			productName = SDKTesterTests;
+			productReference = CABC05C61B3B8F4400FCD0C3 /* SDKTesterTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		CABC05A61B3B8F4300FCD0C3 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0630;
+				ORGANIZATIONNAME = goukuai;
+				TargetAttributes = {
+					CABC05AD1B3B8F4300FCD0C3 = {
+						CreatedOnToolsVersion = 6.3.2;
+						DevelopmentTeam = 24N4P5U529;
+					};
+					CABC05C51B3B8F4400FCD0C3 = {
+						CreatedOnToolsVersion = 6.3.2;
+						TestTargetID = CABC05AD1B3B8F4300FCD0C3;
+					};
+				};
+			};
+			buildConfigurationList = CABC05A91B3B8F4300FCD0C3 /* Build configuration list for PBXProject "SDKTester" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = CABC05A51B3B8F4300FCD0C3;
+			productRefGroup = CABC05AF1B3B8F4300FCD0C3 /* Products */;
+			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = CABC05D71B3B8F5D00FCD0C3 /* Products */;
+					ProjectRef = CABC05D61B3B8F5D00FCD0C3 /* iOSYunkuSDK.xcodeproj */;
+				},
+			);
+			projectRoot = "";
+			targets = (
+				CABC05AD1B3B8F4300FCD0C3 /* SDKTester */,
+				CABC05C51B3B8F4400FCD0C3 /* SDKTesterTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		CABC05DC1B3B8F5E00FCD0C3 /* iOSYunkuSDK.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = iOSYunkuSDK.framework;
+			remoteRef = CABC05DB1B3B8F5E00FCD0C3 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		CABC05DE1B3B8F5E00FCD0C3 /* iOSYunkuSDKTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = iOSYunkuSDKTests.xctest;
+			remoteRef = CABC05DD1B3B8F5E00FCD0C3 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
+
+/* Begin PBXResourcesBuildPhase section */
+		CABC05AC1B3B8F4300FCD0C3 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CA7E52271B42725800C5A628 /* iOSYunkuSDK.bundle in Resources */,
+				CABC05BC1B3B8F4300FCD0C3 /* Main.storyboard in Resources */,
+				CABC05C11B3B8F4300FCD0C3 /* LaunchScreen.xib in Resources */,
+				CABC05BE1B3B8F4300FCD0C3 /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CABC05C41B3B8F4400FCD0C3 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		CABC05AA1B3B8F4300FCD0C3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CABC05B91B3B8F4300FCD0C3 /* ViewController.swift in Sources */,
+				CABC05B41B3B8F4300FCD0C3 /* AppDelegate.swift in Sources */,
+				CABC05B71B3B8F4300FCD0C3 /* SDKTester.xcdatamodeld in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CABC05C21B3B8F4400FCD0C3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CABC05CD1B3B8F4400FCD0C3 /* SDKTesterTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		CABC05C81B3B8F4400FCD0C3 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = CABC05AD1B3B8F4300FCD0C3 /* SDKTester */;
+			targetProxy = CABC05C71B3B8F4400FCD0C3 /* PBXContainerItemProxy */;
+		};
+		CB018C2F1B54B106003F73FA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = iOSYunkuSDK;
+			targetProxy = CB018C2E1B54B106003F73FA /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		CABC05BA1B3B8F4300FCD0C3 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				CABC05BB1B3B8F4300FCD0C3 /* Base */,
+				CAD77FC01B4CD38C009FE6C4 /* zh-Hans */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		CABC05BF1B3B8F4300FCD0C3 /* LaunchScreen.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				CABC05C01B3B8F4300FCD0C3 /* Base */,
+				CAD77FC11B4CD38C009FE6C4 /* zh-Hans */,
+			);
+			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		CABC05CE1B3B8F4400FCD0C3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		CABC05CF1B3B8F4400FCD0C3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				ONLY_ACTIVE_ARCH = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		CABC05D11B3B8F4400FCD0C3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Build/Products/Debug-iphonesimulator",
+				);
+				INFOPLIST_FILE = SDKTester/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SDKROOT)/usr/lib/system",
+				);
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_INCLUDE_PATHS = "/Users/Brandon/Documents/workplace/MacProject/yunku-sdk-ios/iOSYunkuSDK/CommonCrypto";
+			};
+			name = Debug;
+		};
+		CABC05D21B3B8F4400FCD0C3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Build/Products/Debug-iphonesimulator",
+				);
+				INFOPLIST_FILE = SDKTester/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SDKROOT)/usr/lib/system",
+				);
+				ONLY_ACTIVE_ARCH = NO;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_INCLUDE_PATHS = "/Users/Brandon/Documents/workplace/MacProject/yunku-sdk-ios/iOSYunkuSDK/CommonCrypto";
+			};
+			name = Release;
+		};
+		CABC05D41B3B8F4400FCD0C3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = SDKTesterTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SDKTester.app/SDKTester";
+			};
+			name = Debug;
+		};
+		CABC05D51B3B8F4400FCD0C3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = SDKTesterTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SDKTester.app/SDKTester";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		CABC05A91B3B8F4300FCD0C3 /* Build configuration list for PBXProject "SDKTester" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CABC05CE1B3B8F4400FCD0C3 /* Debug */,
+				CABC05CF1B3B8F4400FCD0C3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CABC05D01B3B8F4400FCD0C3 /* Build configuration list for PBXNativeTarget "SDKTester" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CABC05D11B3B8F4400FCD0C3 /* Debug */,
+				CABC05D21B3B8F4400FCD0C3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CABC05D31B3B8F4400FCD0C3 /* Build configuration list for PBXNativeTarget "SDKTesterTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CABC05D41B3B8F4400FCD0C3 /* Debug */,
+				CABC05D51B3B8F4400FCD0C3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		CABC05B51B3B8F4300FCD0C3 /* SDKTester.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				CABC05B61B3B8F4300FCD0C3 /* SDKTester.xcdatamodel */,
+			);
+			currentVersion = CABC05B61B3B8F4300FCD0C3 /* SDKTester.xcdatamodel */;
+			path = SDKTester.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = CABC05A61B3B8F4300FCD0C3 /* Project object */;
+}
