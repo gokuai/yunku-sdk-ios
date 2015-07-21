@@ -315,7 +315,8 @@ public class YKMainViewController: UIViewController, UITableViewDelegate, UITabl
     let actionSheetTagAddFile = 1
     let actionSheetTagFileOpration = 2
     
-    public func actionSheet(actionSheet: UIActionSheet, clickedButtonAtIndex buttonIndex: Int) {
+    public func actionSheet(actionSheet: UIActionSheet, didDismissWithButtonIndex buttonIndex: Int) {
+
         if actionSheet.tag == actionSheetTagAddFile {
             switch buttonIndex {
             case 1://Folder
@@ -342,7 +343,7 @@ public class YKMainViewController: UIViewController, UITableViewDelegate, UITabl
                     picker.delegate = self
                     picker.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
                     self.presentViewController(picker, animated: true, completion: nil)
-
+                    
                 }
                 
             case 3://Photos
@@ -368,14 +369,14 @@ public class YKMainViewController: UIViewController, UITableViewDelegate, UITabl
                 control.requestPath = self.fullPath
                 control.delegate = self
                 var navC = UINavigationController(rootViewController: control)
-               
+                
                 self.presentViewController(navC, animated: true, completion: nil)
-
+                
             default:
                 ()
                 
             }
-
+            
         }else if actionSheet.tag == actionSheetTagFileOpration {
             
             let reNameIndex = option.canRename ? 1 : -1
@@ -402,7 +403,7 @@ public class YKMainViewController: UIViewController, UITableViewDelegate, UITabl
                 ()
                 
             }
-
+            
         }
 
     }
