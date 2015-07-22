@@ -97,7 +97,7 @@ typedef struct _NSZone NSZone;
 
 SWIFT_CLASS("_TtC11iOSYunkuSDK15FileDataManager")
 @interface FileDataManager : NSObject
-- (void)registerHook:(id <HookDelegate> __nonnull)delegate;
+- (void)registerHook:(id <HookDelegate> __nullable)delegate;
 - (void)unRegisterHook;
 @end
 
@@ -436,7 +436,7 @@ SWIFT_CLASS("_TtC11iOSYunkuSDK20YKMainViewController")
 - (CGFloat)tableView:(UITableView * __nonnull)tableView heightForRowAtIndexPath:(NSIndexPath * __nonnull)indexPath;
 - (void)tableView:(UITableView * __nonnull)tableView didSelectRowAtIndexPath:(NSIndexPath * __nonnull)indexPath;
 - (void)didReceiveMemoryWarning;
-- (void)actionSheet:(UIActionSheet * __nonnull)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex;
+- (void)actionSheet:(UIActionSheet * __nonnull)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex;
 - (void)imagePickerController:(UIImagePickerController * __nonnull)picker didFinishPickingMediaWithInfo:(NSDictionary * __nonnull)info;
 - (void)imagePickerControllerDidCancel:(UIImagePickerController * __nonnull)picker;
 - (void)alertView:(UIAlertView * __nonnull)alertView clickedButtonAtIndex:(NSInteger)buttonIndex;

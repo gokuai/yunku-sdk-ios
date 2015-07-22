@@ -4,25 +4,9 @@
 <dict>
 	<key>files</key>
 	<dict>
-		<key>Frameworks/MediaPlayer.framework/MediaPlayer</key>
+		<key>.DS_Store</key>
 		<data>
-		K8NRwDK1/bg/2t0QbbuiORp0Unw=
-		</data>
-		<key>Frameworks/MediaPlayer.framework/_CodeSignature/CodeDirectory</key>
-		<data>
-		/Qhy7PrtxWRLppf0JvipAQfrsrM=
-		</data>
-		<key>Frameworks/MediaPlayer.framework/_CodeSignature/CodeRequirements</key>
-		<data>
-		HTJNEMl6TA/CjyNbAXIaW56K1l4=
-		</data>
-		<key>Frameworks/MediaPlayer.framework/_CodeSignature/CodeResources</key>
-		<data>
-		LTELvaPjaDMDIVMnt3DYNTMnRfI=
-		</data>
-		<key>Frameworks/MediaPlayer.framework/_CodeSignature/CodeSignature</key>
-		<data>
-		U/WliRrLyGZ2TgWXgO4BBr9HKR8=
+		O64lBWCVUlHBGgUVIHniQzB6ODc=
 		</data>
 		<key>Frameworks/YunkuSwiftSDK.framework/Info.plist</key>
 		<data>
@@ -30,7 +14,7 @@
 		</data>
 		<key>Frameworks/YunkuSwiftSDK.framework/YunkuSwiftSDK</key>
 		<data>
-		0kqu9QWpTAjwvd1ztc22FJWNg/s=
+		uxmE+vwRLxsUxPXw8ArxaHM5L0Q=
 		</data>
 		<key>Frameworks/YunkuSwiftSDK.framework/_CodeSignature/CodeResources</key>
 		<data>
@@ -38,51 +22,47 @@
 		</data>
 		<key>Frameworks/libswiftAssetsLibrary.dylib</key>
 		<data>
-		jS1cqjmgnW6kvob7emGcvKR03II=
+		SFKmo/Sqf5nJ/HKOOccQ7V+028Y=
 		</data>
 		<key>Frameworks/libswiftCore.dylib</key>
 		<data>
-		cMaDgaPXo4QLhPAeRVrshUZhffg=
+		m3B0zkI2MePe2//tOM3pkCVeqq0=
 		</data>
 		<key>Frameworks/libswiftCoreAudio.dylib</key>
 		<data>
-		5kAh2y3ubocdPqiBuhZkgWiQ1Vo=
+		sNa0ldCdChxjPQedwN7ZoPm0NnE=
 		</data>
 		<key>Frameworks/libswiftCoreGraphics.dylib</key>
 		<data>
-		jMg/utBZmtijk4O4N3sl0ReHje0=
+		HHuE8FbX9WdPoFWMghtqIhc0Pqw=
 		</data>
 		<key>Frameworks/libswiftCoreImage.dylib</key>
 		<data>
-		wSQA2meCIcZ9XVSnY5DAnSGFD4A=
+		ohMpMaRuQycAWzUl5YBIo6bdvos=
 		</data>
 		<key>Frameworks/libswiftDarwin.dylib</key>
 		<data>
-		CxwL6GQjsX4IezYzNzquYA0Surs=
+		7NJaeHdPK84zv/BTIAdibW1mNHQ=
 		</data>
 		<key>Frameworks/libswiftDispatch.dylib</key>
 		<data>
-		5J7ZQIe0VJtZX8fY2ZKQpr1rDmI=
+		W3A2LHAe16ewhSXOdvaDhTNn7j0=
 		</data>
 		<key>Frameworks/libswiftFoundation.dylib</key>
 		<data>
-		mInyiYFaXxgerJP518/STnBYzxw=
+		H1NoGgJ58LKKwKSidfyGU6CdSxs=
 		</data>
 		<key>Frameworks/libswiftObjectiveC.dylib</key>
 		<data>
-		sfbruDaic+IyYdRc2L4HER4GhRo=
+		rBEqFdaiVL601Ht0Uy5u9XdWDhg=
 		</data>
 		<key>Frameworks/libswiftSecurity.dylib</key>
 		<data>
-		3QZJnoW9UvdtG8HukiPaFabjMeY=
+		aLYN0EWDQL4q/0jayisTKqnxyPQ=
 		</data>
 		<key>Frameworks/libswiftUIKit.dylib</key>
 		<data>
-		e9QCOrby4mOmYD2gaV2eUg/TvWQ=
-		</data>
-		<key>Frameworks/libz.dylib</key>
-		<data>
-		LXa7tkdJHwsJxkt1gYS55YRI+QU=
+		wAfokgFZEJ4MmcEOZU+KlSEzmIw=
 		</data>
 		<key>Headers/AGAlertViewWithProgressbar.h</key>
 		<data>
@@ -134,7 +114,7 @@
 		</data>
 		<key>Headers/iOSYunkuSDK-Swift.h</key>
 		<data>
-		lFTFOV7Fdq1oa/6oGmHbLVv/XOI=
+		kYfRCJu4twWUxBa/fdMd52UhHHw=
 		</data>
 		<key>Headers/iOSYunkuSDK.h</key>
 		<data>
@@ -144,13 +124,21 @@
 		<data>
 		56w1kS3X787SOvEUm8po5vhivE8=
 		</data>
+		<key>Modules/iOSYunkuSDK.swiftmodule/arm.swiftdoc</key>
+		<data>
+		GMFGMQW1yySE6UfIttPeG+mIKWo=
+		</data>
+		<key>Modules/iOSYunkuSDK.swiftmodule/arm.swiftmodule</key>
+		<data>
+		xg8vpewY/y8aQSbDIMAv07mMGIg=
+		</data>
 		<key>Modules/iOSYunkuSDK.swiftmodule/arm64.swiftdoc</key>
 		<data>
-		D1ARKDt1neTrFxj9rENuPysZa30=
+		try4J8EjMRv9Z/83QEauADGQxG0=
 		</data>
 		<key>Modules/iOSYunkuSDK.swiftmodule/arm64.swiftmodule</key>
 		<data>
-		DqRShQkceVWCmkJZzM6YbSwsIko=
+		5I8C9IFw1JyZWtVfG/hKPWEKbGU=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -159,33 +147,13 @@
 	</dict>
 	<key>files2</key>
 	<dict>
-		<key>Frameworks/MediaPlayer.framework/MediaPlayer</key>
-		<data>
-		K8NRwDK1/bg/2t0QbbuiORp0Unw=
-		</data>
-		<key>Frameworks/MediaPlayer.framework/_CodeSignature/CodeDirectory</key>
-		<data>
-		/Qhy7PrtxWRLppf0JvipAQfrsrM=
-		</data>
-		<key>Frameworks/MediaPlayer.framework/_CodeSignature/CodeRequirements</key>
-		<data>
-		HTJNEMl6TA/CjyNbAXIaW56K1l4=
-		</data>
-		<key>Frameworks/MediaPlayer.framework/_CodeSignature/CodeResources</key>
-		<data>
-		LTELvaPjaDMDIVMnt3DYNTMnRfI=
-		</data>
-		<key>Frameworks/MediaPlayer.framework/_CodeSignature/CodeSignature</key>
-		<data>
-		U/WliRrLyGZ2TgWXgO4BBr9HKR8=
-		</data>
 		<key>Frameworks/YunkuSwiftSDK.framework/Info.plist</key>
 		<data>
 		Zee3ST+5150EbuB3MLK0dY22g98=
 		</data>
 		<key>Frameworks/YunkuSwiftSDK.framework/YunkuSwiftSDK</key>
 		<data>
-		0kqu9QWpTAjwvd1ztc22FJWNg/s=
+		uxmE+vwRLxsUxPXw8ArxaHM5L0Q=
 		</data>
 		<key>Frameworks/YunkuSwiftSDK.framework/_CodeSignature/CodeResources</key>
 		<data>
@@ -193,51 +161,47 @@
 		</data>
 		<key>Frameworks/libswiftAssetsLibrary.dylib</key>
 		<data>
-		jS1cqjmgnW6kvob7emGcvKR03II=
+		SFKmo/Sqf5nJ/HKOOccQ7V+028Y=
 		</data>
 		<key>Frameworks/libswiftCore.dylib</key>
 		<data>
-		cMaDgaPXo4QLhPAeRVrshUZhffg=
+		m3B0zkI2MePe2//tOM3pkCVeqq0=
 		</data>
 		<key>Frameworks/libswiftCoreAudio.dylib</key>
 		<data>
-		5kAh2y3ubocdPqiBuhZkgWiQ1Vo=
+		sNa0ldCdChxjPQedwN7ZoPm0NnE=
 		</data>
 		<key>Frameworks/libswiftCoreGraphics.dylib</key>
 		<data>
-		jMg/utBZmtijk4O4N3sl0ReHje0=
+		HHuE8FbX9WdPoFWMghtqIhc0Pqw=
 		</data>
 		<key>Frameworks/libswiftCoreImage.dylib</key>
 		<data>
-		wSQA2meCIcZ9XVSnY5DAnSGFD4A=
+		ohMpMaRuQycAWzUl5YBIo6bdvos=
 		</data>
 		<key>Frameworks/libswiftDarwin.dylib</key>
 		<data>
-		CxwL6GQjsX4IezYzNzquYA0Surs=
+		7NJaeHdPK84zv/BTIAdibW1mNHQ=
 		</data>
 		<key>Frameworks/libswiftDispatch.dylib</key>
 		<data>
-		5J7ZQIe0VJtZX8fY2ZKQpr1rDmI=
+		W3A2LHAe16ewhSXOdvaDhTNn7j0=
 		</data>
 		<key>Frameworks/libswiftFoundation.dylib</key>
 		<data>
-		mInyiYFaXxgerJP518/STnBYzxw=
+		H1NoGgJ58LKKwKSidfyGU6CdSxs=
 		</data>
 		<key>Frameworks/libswiftObjectiveC.dylib</key>
 		<data>
-		sfbruDaic+IyYdRc2L4HER4GhRo=
+		rBEqFdaiVL601Ht0Uy5u9XdWDhg=
 		</data>
 		<key>Frameworks/libswiftSecurity.dylib</key>
 		<data>
-		3QZJnoW9UvdtG8HukiPaFabjMeY=
+		aLYN0EWDQL4q/0jayisTKqnxyPQ=
 		</data>
 		<key>Frameworks/libswiftUIKit.dylib</key>
 		<data>
-		e9QCOrby4mOmYD2gaV2eUg/TvWQ=
-		</data>
-		<key>Frameworks/libz.dylib</key>
-		<data>
-		LXa7tkdJHwsJxkt1gYS55YRI+QU=
+		wAfokgFZEJ4MmcEOZU+KlSEzmIw=
 		</data>
 		<key>Headers/AGAlertViewWithProgressbar.h</key>
 		<data>
@@ -289,19 +253,27 @@
 		</data>
 		<key>Headers/iOSYunkuSDK-Swift.h</key>
 		<data>
-		lFTFOV7Fdq1oa/6oGmHbLVv/XOI=
+		kYfRCJu4twWUxBa/fdMd52UhHHw=
 		</data>
 		<key>Headers/iOSYunkuSDK.h</key>
 		<data>
 		pB20+wDnxdZT7yc4asUJhy2JVdg=
 		</data>
+		<key>Modules/iOSYunkuSDK.swiftmodule/arm.swiftdoc</key>
+		<data>
+		GMFGMQW1yySE6UfIttPeG+mIKWo=
+		</data>
+		<key>Modules/iOSYunkuSDK.swiftmodule/arm.swiftmodule</key>
+		<data>
+		xg8vpewY/y8aQSbDIMAv07mMGIg=
+		</data>
 		<key>Modules/iOSYunkuSDK.swiftmodule/arm64.swiftdoc</key>
 		<data>
-		D1ARKDt1neTrFxj9rENuPysZa30=
+		try4J8EjMRv9Z/83QEauADGQxG0=
 		</data>
 		<key>Modules/iOSYunkuSDK.swiftmodule/arm64.swiftmodule</key>
 		<data>
-		DqRShQkceVWCmkJZzM6YbSwsIko=
+		5I8C9IFw1JyZWtVfG/hKPWEKbGU=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
