@@ -15,6 +15,8 @@ class RenameController: NameController {
     var fileIndex = 0
     var delegate:RenameDelegate!
     
+    var originalName = ""
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -22,9 +24,30 @@ class RenameController: NameController {
         
         self.navigationItem.title = NSBundle.getLocalStringFromBundle("Rename", comment: "")
         self.textField.placeholder = NSBundle.getLocalStringFromBundle("Enter new name", comment: "")
-        
+ 
         self.filePath = self.list[self.fileIndex].fullPath
+        self.originalName = self.filePath.lastPathComponent
+
+        self.textField.text = self.originalName
         
+    }
+    
+    override func textFieldValueChanged(sender: AnyObject) {
+        var name = textField.text.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
+        
+        if name == self.originalName{
+            self.navigationItem.rightBarButtonItem?.enabled = false
+        }else{
+            super.textFieldValueChanged(sender)
+        }
+        
+    }
+    
+    override func textFieldDidBeginEditing(textField: UITextField) {
+        super.textFieldDidBeginEditing(textField)
+        var from = textField.beginningOfDocument
+        var to = textField.positionFromPosition(from, offset: count(self.originalName.stringByDeletingPathExtension))
+        textField.selectedTextRange = textField .textRangeFromPosition(from, toPosition: to)
     }
     
     
@@ -34,24 +57,20 @@ class RenameController: NameController {
     
     //MARK:重命名
     func rename() {
-        var folderName = self.textField.text.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
+        var fileName = self.textField.text.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
         
         for data in self.list{
-            if data.dir != FileData.dirs {
-                continue
-            }else{
-                if data.fileName == folderName {
-                    self.errorLabel.hidden = false
-                    self.errorLabel.text = NSBundle.getLocalStringFromBundle("File has been exit", comment: "")
-                    return
-                }
+            if data.fileName == fileName {
+                self.errorLabel.hidden = false
+                self.errorLabel.text = NSBundle.getLocalStringFromBundle("File has been exit", comment: "")
+                return
             }
         }
         
         DialogUtils.showProgresing(self)
         
-        FileDataManager.sharedInstance?.rename(filePath, newName: folderName, delegate: self)
-        self.highLightName = folderName
+        FileDataManager.sharedInstance?.rename(filePath, newName: fileName, delegate: self)
+        self.highLightName = fileName
     }
     
     override func onHttpRequest(action: Action) {

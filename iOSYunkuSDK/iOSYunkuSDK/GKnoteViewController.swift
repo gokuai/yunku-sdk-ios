@@ -36,6 +36,7 @@ class  GKnoteViewController :UIViewController,UIWebViewDelegate,UIActionSheetDel
         
         self.webView = UIWebView(frame: self.clientRect())
         self.webView.delegate = self
+        self.edgesForExtendedLayout = .None//for toast
         self.view.addSubview(self.webView)
         
         var editorPath = NSBundle.myResourceBundleInstance!.pathForResource("index", ofType: "html", inDirectory: "ueditor")
@@ -45,15 +46,14 @@ class  GKnoteViewController :UIViewController,UIWebViewDelegate,UIActionSheetDel
         
         self.javascriptBridge = WebViewJavascriptBridge(forWebView: self.webView, webViewDelegate: self, handler: {
             [unowned self](data, responseCallback) -> Void in
-
+            
             if let dataObj = data as? String {
                 if  dataObj == "ready"{
                     if !self.noteContent.isEmpty{
                         var content = "setContent('\(self.noteContent)');"
                         self.webView.stringByEvaluatingJavaScriptFromString(content)
-                        self.webView.stringByEvaluatingJavaScriptFromString("setFocus();")
-
                     }
+                    self.webView.stringByEvaluatingJavaScriptFromString("setFocus();")
                     
                 }
                 
@@ -93,7 +93,7 @@ class  GKnoteViewController :UIViewController,UIWebViewDelegate,UIActionSheetDel
             self.noteContent = html!
         
         }else{
-            self.view.makeToast(message: NSBundle.getLocalStringFromBundle("Please input content", comment: ""))
+            self.view.makeToast(message: NSBundle.getLocalStringFromBundle("Please input content", comment: ""), duration: HRToastDefaultDuration, position: HRToastPositionTop)
         }
     
     }
@@ -201,13 +201,14 @@ class  GKnoteViewController :UIViewController,UIWebViewDelegate,UIActionSheetDel
                     FileUploadManager.sharedInstance?.delegate = self
                         
                         }, fail: {
-                            self.view.makeToast(message: NSBundle.getLocalStringFromBundle("Save text failed, please retry", comment: ""))
+                            
+                            self.view.makeToast(message: NSBundle.getLocalStringFromBundle("Save text failed, please retry", comment: ""), duration: HRToastDefaultDuration, position: HRToastPositionTop)
     
                     })
                     
                     
                 }else{
-                     self.view.makeToast(message: NSBundle.getLocalStringFromBundle("Save text failed, please retry", comment: ""))
+                     self.view.makeToast(message: NSBundle.getLocalStringFromBundle("Save text failed, please retry", comment: ""), duration: HRToastDefaultDuration, position: HRToastPositionTop)
                     
                 }
 

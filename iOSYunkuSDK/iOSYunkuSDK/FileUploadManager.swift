@@ -44,7 +44,7 @@ import YunkuSwiftSDK
     }
     
      public func onProgress(percent: Float) {
-        self.uploadController.setProgress(percent)
+        self.uploadController.setProgress(percent,animated:true)
     }
     
     public func onSuccess(fileHash: String, fullPath: String) {

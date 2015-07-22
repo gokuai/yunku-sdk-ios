@@ -83,15 +83,15 @@ class  ProgressDialogViewController :UIViewController {
         self.fileImg.image = UIImage.imageNameFromMyBundle(Utils.getImageIcon(fileName, dir: 0))
         self.messageLabel.text = message
         self.fileNameLabel.text = fileName
-        self.setProgress(0)
+        self.setProgress(0,animated:false)
         
         if animated{
             self.showAnimate()
         }
     }
     
-    func setProgress(percent:Float){
-        self.progressBar.setProgress(percent, animated: true)
+    func setProgress(percent:Float, animated:Bool){
+        self.progressBar.setProgress(percent, animated: animated)
         self.percentLabel.text = "\(Int(percent * 100))%"
     }
     

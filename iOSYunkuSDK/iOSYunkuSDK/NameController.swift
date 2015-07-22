@@ -44,6 +44,7 @@ class NameController: UIViewController , UITextFieldDelegate,RequestDelegate {
         self.errorLabel = UILabel(frame: CGRectMake(10, 150, frame.width - 20, 32))
         self.errorLabel.font = UIFont.systemFontOfSize(14)
         self.errorLabel.textColor = UIColor.redColor()
+        self.edgesForExtendedLayout = .None//for toast
         
         self.view.addSubview(self.textField)
         self.view.addSubview(self.errorLabel)
@@ -69,6 +70,10 @@ class NameController: UIViewController , UITextFieldDelegate,RequestDelegate {
         }
     }
     
+    func textFieldDidBeginEditing(textField: UITextField) {
+
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         
@@ -86,7 +91,7 @@ class NameController: UIViewController , UITextFieldDelegate,RequestDelegate {
     
     func onError(errorMsg:String){
         DialogUtils.hideProgresing(self)
-        self.view.makeToast(message: errorMsg)
+        self.view.makeToast(message: errorMsg, duration: HRToastDefaultDuration, position: HRToastPositionTop)
     }
     
     func onHookError(type:HookType){

@@ -19,7 +19,7 @@ import Foundation
     }
     
     public class func makeToast(message:String,view:UIView){
-        view.makeToast(message: message)
+        view.makeToast(message: message, duration: HRToastDefaultDuration, position: HRToastPositionCenter)
     }
     
     public class func showProgress(control:UIViewController){
