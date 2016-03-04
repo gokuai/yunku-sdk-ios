@@ -30,7 +30,7 @@ extension NSBundle{
     
     private class func getBundle() ->NSBundle{
         
-        var language = NSLocale.preferredLanguages()[0].description
+        let language = NSLocale.preferredLanguages()[0]
         
         var bundle = NSBundle(path: (NSBundle.myResourceBundleInstance?.pathForResource(language, ofType:"lproj"))!)
         

@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CA1EE1F41C893B1F00BA944F /* CommonCrypto.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = CA1EE1F31C893B1F00BA944F /* CommonCrypto.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		CA1EE1F61C893B3A00BA944F /* YunkuSwiftSDK.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = CA1EE1F51C893B3A00BA944F /* YunkuSwiftSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		CA7E52271B42725800C5A628 /* iOSYunkuSDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = CA7E52261B42725800C5A628 /* iOSYunkuSDK.bundle */; };
 		CABC05B41B3B8F4300FCD0C3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CABC05B31B3B8F4300FCD0C3 /* AppDelegate.swift */; };
 		CABC05B71B3B8F4300FCD0C3 /* SDKTester.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CABC05B51B3B8F4300FCD0C3 /* SDKTester.xcdatamodeld */; };
@@ -57,12 +59,16 @@
 			dstSubfolderSpec = 10;
 			files = (
 				CAF70B5E1B56984900A8BAD7 /* iOSYunkuSDK.framework in CopyFiles */,
+				CA1EE1F41C893B1F00BA944F /* CommonCrypto.framework in CopyFiles */,
+				CA1EE1F61C893B3A00BA944F /* YunkuSwiftSDK.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		CA1EE1F31C893B1F00BA944F /* CommonCrypto.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CommonCrypto.framework; sourceTree = "<group>"; };
+		CA1EE1F51C893B3A00BA944F /* YunkuSwiftSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = YunkuSwiftSDK.framework; sourceTree = "<group>"; };
 		CA7E52261B42725800C5A628 /* iOSYunkuSDK.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = iOSYunkuSDK.bundle; path = ../iOSYunkuSDK/iOSYunkuSDK/iOSYunkuSDK.bundle; sourceTree = "<group>"; };
 		CABC05AE1B3B8F4300FCD0C3 /* SDKTester.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SDKTester.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CABC05B21B3B8F4300FCD0C3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -101,6 +107,8 @@
 		CABC05A51B3B8F4300FCD0C3 = {
 			isa = PBXGroup;
 			children = (
+				CA1EE1F51C893B3A00BA944F /* YunkuSwiftSDK.framework */,
+				CA1EE1F31C893B1F00BA944F /* CommonCrypto.framework */,
 				CA7E52261B42725800C5A628 /* iOSYunkuSDK.bundle */,
 				CABC05D61B3B8F5D00FCD0C3 /* iOSYunkuSDK.xcodeproj */,
 				CABC05B01B3B8F4300FCD0C3 /* SDKTester */,
@@ -212,6 +220,7 @@
 		CABC05A61B3B8F4300FCD0C3 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftUpdateCheck = 0700;
 				LastUpgradeCheck = 0630;
 				ORGANIZATIONNAME = goukuai;
 				TargetAttributes = {
@@ -364,6 +373,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -409,6 +419,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = NO;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -433,7 +444,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				EMBEDDED_CONTENT_CONTAINS_SWIFT = NO;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Build/Products/Debug-iphonesimulator",
@@ -446,7 +457,7 @@
 				);
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_INCLUDE_PATHS = "/Users/Brandon/Documents/workplace/MacProject/yunku-sdk-ios/iOSYunkuSDK/CommonCrypto";
+				SWIFT_INCLUDE_PATHS = "";
 			};
 			name = Debug;
 		};
@@ -455,7 +466,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
-				EMBEDDED_CONTENT_CONTAINS_SWIFT = NO;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Build/Products/Debug-iphonesimulator",
@@ -468,7 +479,7 @@
 				);
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_INCLUDE_PATHS = "/Users/Brandon/Documents/workplace/MacProject/yunku-sdk-ios/iOSYunkuSDK/CommonCrypto";
+				SWIFT_INCLUDE_PATHS = "";
 			};
 			name = Release;
 		};

@@ -11,7 +11,7 @@ import Foundation
 extension UIImage{
 
     class func imageNameFromMyBundle(imgName:String) ->UIImage{
-        var imgPath = NSBundle.myResourceBundleInstance?.pathForResource(imgName, ofType: "png", inDirectory: "Resources/Icons")
+        let imgPath = NSBundle.myResourceBundleInstance?.pathForResource(imgName, ofType: "png", inDirectory: "Resources/Icons")
         return UIImage(contentsOfFile: imgPath!)!
     }
 

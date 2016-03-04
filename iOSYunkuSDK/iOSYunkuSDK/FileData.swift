@@ -59,7 +59,7 @@ class FileData:BaseData{
     }
     
     class func createFooter() -> FileData {
-        var data = FileData()
+        let data = FileData()
         data.isFoot = true
         return data
     }
@@ -73,13 +73,13 @@ class FileData:BaseData{
     }
     
     override class func create(dic:Dictionary<String,AnyObject>)->FileData {
-        var data = FileData()
+        let data = FileData()
 
         data.uuidHash = dic[keyHash] as? String
         data.fileName = dic[keyFilename] as? String
         data.fileHash = dic[keyFilehash] as? String
         
-        var fileSize = dic[keyFilesize] as? Double //直接转 UInt64会失败
+        let fileSize = dic[keyFilesize] as? Double //直接转 UInt64会失败
         if fileSize != nil {
            data.fileSize = UInt64(fileSize!)
         }

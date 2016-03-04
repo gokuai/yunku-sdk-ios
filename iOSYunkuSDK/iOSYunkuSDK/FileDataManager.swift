@@ -19,7 +19,7 @@ import YunkuSwiftSDK
     
      override init(){
         if SDKConfig.orgClientId.isEmpty&&SDKConfig.orgClientSecret.isEmpty{
-            println("You need set orgClientId and orgClientSecret in AppDelegate.swift")
+            print("You need set orgClientId and orgClientSecret in AppDelegate.swift")
             return
         }
         
@@ -59,13 +59,13 @@ import YunkuSwiftSDK
         
         let block = dispatch_block_create(DISPATCH_BLOCK_INHERIT_QOS_CLASS){
             
-            var parentPath = fullPath.stringByDeletingLastPathComponent
-            var appendingString = parentPath.isEmpty ? "":"/"
-            var newPath = "\(parentPath)\(appendingString)\(newName)"
+            let parentPath = fullPath.stringByDeletingLastPathComponent
+            let appendingString = parentPath.isEmpty ? "":"/"
+            let newPath = "\(parentPath)\(appendingString)\(newName)"
             
             let result = self.fileManager?.move(fullPath, destFullPath: newPath, opName: self.opName)
             
-            var data = BaseData.create(result!)
+            let data = BaseData.create(result!)
             dispatch_async(dispatch_get_main_queue()) {
                 
                 if data.code == HTTPStatusCode.OK.rawValue {
@@ -97,7 +97,7 @@ import YunkuSwiftSDK
         let block = dispatch_block_create(DISPATCH_BLOCK_INHERIT_QOS_CLASS){
             let result = self.fileManager?.del(fullPath, opName: self.opName)
             
-            var data = BaseData.create(result!)
+            let data = BaseData.create(result!)
             dispatch_async(dispatch_get_main_queue()) {
                 
                 if data.code == HTTPStatusCode.OK.rawValue {
@@ -125,9 +125,9 @@ import YunkuSwiftSDK
     
     //MARK:获取文件信息
     func  getFileInfoSync(fullPath:String) ->FileData {
-        var resdic = self.fileManager?.getFileInfo(fullPath,type: NetType.Default)
+        let resdic = self.fileManager?.getFileInfo(fullPath,type: NetType.Default)
         if let dic = resdic {
-            var returnRes = ReturnResult.create(dic)
+            let returnRes = ReturnResult.create(dic)
             return FileData.create(returnRes.result)
         } else {
             return FileData.create(Dictionary<String,AnyObject>())
@@ -164,7 +164,7 @@ import YunkuSwiftSDK
             
             let result = self.fileManager?.createFolder(fullPath,opName:self.opName)
             
-            var data = BaseData.create(result!)
+            let data = BaseData.create(result!)
             dispatch_async(dispatch_get_main_queue()) {
                 
                 if data.code == HTTPStatusCode.OK.rawValue {
@@ -199,7 +199,7 @@ import YunkuSwiftSDK
             
             let result = self.fileManager?.getFileList(start, fullPath: fullPath)
             
-            var fileListData = FileListData.create(result!)
+            let fileListData = FileListData.create(result!)
             
             dispatch_async(dispatch_get_main_queue()) {
                 

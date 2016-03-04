@@ -38,7 +38,7 @@ class FileViewController:UIViewController,UIWebViewDelegate,UIGestureRecognizerD
     init(fullpath: String, filename: String, dir: Int, filehash: String?, localpath: String?, filesize: UInt64?){
         self.fileFullPath = fullpath
         self.fileDir = dir
-        if let path = localpath {
+        if let _ = localpath {
             self.fileLocalPath = localpath
         }
         self.fileName = filename
@@ -53,7 +53,7 @@ class FileViewController:UIViewController,UIWebViewDelegate,UIGestureRecognizerD
     }
     
     required init(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
+        super.init(coder: aDecoder)!
     }
 
     
@@ -69,7 +69,7 @@ class FileViewController:UIViewController,UIWebViewDelegate,UIGestureRecognizerD
         self.navigationItem.rightBarButtonItem = self.moreBarBtn
         
         
-        var newBackButton = UIBarButtonItem(title: NSBundle.getLocalStringFromBundle("Back", comment: ""),
+        let newBackButton = UIBarButtonItem(title: NSBundle.getLocalStringFromBundle("Back", comment: ""),
             style: UIBarButtonItemStyle.Plain, target: self, action: nil)
         self.navigationItem.backBarButtonItem = newBackButton
         self.actBtns.append(self.btnDetail)
@@ -118,18 +118,18 @@ class FileViewController:UIViewController,UIWebViewDelegate,UIGestureRecognizerD
         return false
     }
     
-    override func supportedInterfaceOrientations() -> Int {
-        return  Int(UIInterfaceOrientationMask.All.rawValue)
+    override func supportedInterfaceOrientations() -> UIInterfaceOrientationMask {
+        return  UIInterfaceOrientationMask.All
     }
     
     override func didRotateFromInterfaceOrientation(fromInterfaceOrientation: UIInterfaceOrientation) {
-        var invalidRect = CGRectMake(0, 0, self.view.bounds.width, self.view.bounds.height-self.toolBar.frame.height)
+        let invalidRect = CGRectMake(0, 0, self.view.bounds.width, self.view.bounds.height-self.toolBar.frame.height)
         self.moviePlayerController?.view.frame = invalidRect
     }
     
     
     deinit{
-        println("fileviewcontroller deinit")
+        print("fileviewcontroller deinit")
         UIApplication.sharedApplication().networkActivityIndicatorVisible = false
     }
     
@@ -141,7 +141,7 @@ class FileViewController:UIViewController,UIWebViewDelegate,UIGestureRecognizerD
         self.session?.invalidateAndCancel()
         self.session = nil
         
-        self.socketio?.close(fast: true)
+        self.socketio?.disconnect()
         self.socketio = nil
     }
     
@@ -184,7 +184,7 @@ class FileViewController:UIViewController,UIWebViewDelegate,UIGestureRecognizerD
             controller.requestPath = self.fileFullPath.stringByDeletingLastPathComponent
             controller.zipFolderName = Utils.getFileNameWithoutExt(self.fileName)
             controller.delegate = self
-            var gknoteNc = UINavigationController(rootViewController: controller)
+            let gknoteNc = UINavigationController(rootViewController: controller)
             self.presentViewController(gknoteNc, animated: true, completion: nil)
         }
     }
@@ -196,7 +196,7 @@ class FileViewController:UIViewController,UIWebViewDelegate,UIGestureRecognizerD
         
         let p = UIPrintInteractionController.sharedPrintController()
         
-        if let printInteraction = p {
+        if let printInteraction:UIPrintInteractionController = p {
             // width 和height 按自己定义即可，比如说A4大小
             let pdfWidth: Float = 595.0
             let pdfHeight: Float = 842.0
@@ -210,7 +210,7 @@ class FileViewController:UIViewController,UIWebViewDelegate,UIGestureRecognizerD
             //      [pdfData writeToFile:[[NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) objectAtIndex:0] stringByAppendingPathComponent:@"textpdf.pdf"] atomically:YES];
             if UIPrintInteractionController.canPrintData(pdfData) { // Check first
     
-                var printInfo = UIPrintInfo.printInfo()
+                let printInfo = UIPrintInfo.printInfo()
                 
                 printInfo.duplex = UIPrintInfoDuplex.LongEdge
                 printInfo.outputType = UIPrintInfoOutputType.General
@@ -235,7 +235,7 @@ class FileViewController:UIViewController,UIWebViewDelegate,UIGestureRecognizerD
             self.needAction = true
             if self.failToPreview{
                 self.infoLabel.text = NSBundle.getLocalStringFromBundle("Downloading...", comment: "")
-                self.infoLabel.textColor = RGBA(100, 100, 100)
+                self.infoLabel.textColor = RGBA(100, g: 100, b: 100)
                 self.fetchDownloadURL()
             } else {
                 if self.needConvert{
@@ -284,7 +284,7 @@ class FileViewController:UIViewController,UIWebViewDelegate,UIGestureRecognizerD
         self.loadingPad.hidden = true
         
         if Utils.isImageType(localPath){
-            var htmlStr: String = "<div style=\"width:100%; height:100%; position:absolute; left:0; top:0; text-align:center; font-size:0;\"><span style=\"vertical-align:middle; display:inline-block; height:100%;\"></span><img src=\"\(localPath)\" style=\"width:980px;vertical-align:middle;\"  /></div>"
+            let htmlStr: String = "<div style=\"width:100%; height:100%; position:absolute; left:0; top:0; text-align:center; font-size:0;\"><span style=\"vertical-align:middle; display:inline-block; height:100%;\"></span><img src=\"\(localPath)\" style=\"width:980px;vertical-align:middle;\"  /></div>"
             self.webView.opaque = false
             self.webView.backgroundColor = UIColor.blackColor()
             self.webView.hidden = false
@@ -296,7 +296,7 @@ class FileViewController:UIViewController,UIWebViewDelegate,UIGestureRecognizerD
                 
                 if !localPath.isEmpty && NSFileManager.defaultManager().fileExistsAtPath(localPath){
                     dispatch_async(dispatch_get_main_queue()){[weak self] in
-                        self?.playMovieFile(NSURL(fileURLWithPath: localPath)!)
+                        self?.playMovieFile(NSURL(fileURLWithPath: localPath))
                     }
                 }
             } else if Utils.isAudioType(localPath){
@@ -304,7 +304,7 @@ class FileViewController:UIViewController,UIWebViewDelegate,UIGestureRecognizerD
                 
                 if !localPath.isEmpty && NSFileManager.defaultManager().fileExistsAtPath(localPath){
                     dispatch_async(dispatch_get_main_queue()){[weak self] in
-                        self?.playMovieFile(NSURL(fileURLWithPath: localPath)!)
+                        self?.playMovieFile(NSURL(fileURLWithPath: localPath))
                     }
                 }
                 
@@ -325,7 +325,7 @@ class FileViewController:UIViewController,UIWebViewDelegate,UIGestureRecognizerD
             } else {
                 let url = NSURL(fileURLWithPath: localPath)
                 self.webView.hidden = false
-                self.webView.loadRequest(NSURLRequest(URL: url!))
+                self.webView.loadRequest(NSURLRequest(URL: url))
             }
             
         }
@@ -337,46 +337,74 @@ class FileViewController:UIViewController,UIWebViewDelegate,UIGestureRecognizerD
         self.webView.hidden = false
         let zipPath: String = Utils.getZipCachePath().stringByAppendingPathComponent(self.fileName)
         if NSFileManager.defaultManager().fileExistsAtPath(zipPath){
-            NSFileManager.defaultManager().removeItemAtPath(zipPath, error: nil)
+            do{
+                try NSFileManager.defaultManager().removeItemAtPath(zipPath)
+            }catch let error as NSError{
+                print(error.localizedDescription)
+            }
         }
-        if NSFileManager.defaultManager().copyItemAtPath(self.localFilePath!, toPath: zipPath, error: nil){
-            let dirname = Utils.getFileNameWithoutExt(self.fileName)
-            let zipfolder = Utils.getZipCachePath().stringByAppendingPathComponent(dirname)
-            NSFileManager.defaultManager().createDirectoryAtPath(zipfolder, withIntermediateDirectories: false, attributes: nil, error: nil)
-            Utils.unZipWithSource(zipPath, targetFileName: dirname, success: { () -> Void in
-                let indexPath = zipfolder.stringByAppendingPathComponent("index.html")
-                self.gknoteContent = String(contentsOfFile: indexPath, encoding: NSUTF8StringEncoding, error: nil)
-                let viewerPath = NSBundle.myResourceBundleInstance?.pathForResource("viewer", ofType: "html", inDirectory: "ueditor")
-                let viewString = String(contentsOfFile: viewerPath!, encoding: NSUTF8StringEncoding, error: nil)
-                
-                self.webView.loadHTMLString(Utils.replaceStrBySearchStr(viewString!, search: "${content}", replace: self.gknoteContent!), baseURL: NSURL(fileURLWithPath: zipfolder))
-                
-                }, fail: { () -> Void in
-                    self.showFailedInfo(FailedType.UNZipErr)
-            })
-        } else {
+        do{
+            
+            try NSFileManager.defaultManager().copyItemAtPath(self.localFilePath!, toPath: zipPath)
+                let dirname = Utils.getFileNameWithoutExt(self.fileName)
+                let zipfolder = Utils.getZipCachePath().stringByAppendingPathComponent(dirname)
+                try NSFileManager.defaultManager().createDirectoryAtPath(zipfolder, withIntermediateDirectories: false, attributes: nil)
+                Utils.unZipWithSource(zipPath, targetFileName: dirname, success: { () -> Void in
+                    let indexPath = zipfolder.stringByAppendingPathComponent("index.html")
+                    let viewerPath = NSBundle.myResourceBundleInstance?.pathForResource("viewer", ofType: "html", inDirectory: "ueditor")
+                    var viewString:String? = nil
+                    do {
+                        
+                        self.gknoteContent = try String(contentsOfFile: indexPath, encoding: NSUTF8StringEncoding)
+                        viewString = try String(contentsOfFile: viewerPath!, encoding: NSUTF8StringEncoding)
+                    } catch let error as NSError {
+                        print(error.localizedDescription)
+                    }
+                    
+                    self.webView.loadHTMLString(Utils.replaceStrBySearchStr(viewString!, search: "${content}", replace: self.gknoteContent!), baseURL: NSURL(fileURLWithPath: zipfolder))
+                    
+                    }, fail: { () -> Void in
+                        self.showFailedInfo(FailedType.UNZipErr)
+                })
+            
+        }catch _ as NSError{
             self.showFailedInfo(FailedType.UNZipErr)
         }
+        
     }
     
     func viewTxtFile(path: String){
         var usedEncoding: NSStringEncoding = 0
-        var body = NSString(contentsOfFile: path, usedEncoding: &usedEncoding, error: nil)
+        var body:NSString! = nil
+        do {
+            body = try NSString(contentsOfFile: path, usedEncoding: &usedEncoding)
+        } catch let error as NSError {
+            print(error.localizedDescription)
+        }
+        
         if body == nil {
             usedEncoding = 0x80000632
-            body = NSString(contentsOfFile: path, usedEncoding: &usedEncoding, error: nil)
+            do {
+                body = try NSString(contentsOfFile: path, usedEncoding: &usedEncoding)
+            } catch let error as NSError {
+                print(error.localizedDescription)
+            }
         }
         if body == nil {
             usedEncoding = 0x80000631
-            body = NSString(contentsOfFile: path, usedEncoding: &usedEncoding, error: nil)
+            do {
+                body = try NSString(contentsOfFile: path, usedEncoding: &usedEncoding)
+            } catch let error as NSError {
+                print(error.localizedDescription)
+            }
         }
         
         if body != nil {
-            let tx =  Utils.replaceStrBySearchStr(String(body!), search: "\n", replace: "<br />")
+            let tx =  Utils.replaceStrBySearchStr(String(body), search: "\n", replace: "<br />")
             self.webView.loadHTMLString("<font size=50>\(tx)</font>", baseURL: nil)
         } else {
             let url = NSURL(fileURLWithPath: path)
-            self.webView.loadRequest( NSURLRequest(URL: url!))
+            self.webView.loadRequest( NSURLRequest(URL: url))
         }
     }
     
@@ -433,18 +461,23 @@ class FileViewController:UIViewController,UIWebViewDelegate,UIGestureRecognizerD
     }
     
     func openActMenu(){
-        var newLocalPath = Utils.replaceStrBySearchStr(self.localFilePath!, search: self.localFilePath!.lastPathComponent, replace: self.fileName)
+        let newLocalPath = Utils.replaceStrBySearchStr(self.localFilePath!, search: self.localFilePath!.lastPathComponent, replace: self.fileName)
         if NSFileManager.defaultManager().fileExistsAtPath(newLocalPath){
-            self.docController = UIDocumentInteractionController(URL: NSURL(fileURLWithPath: newLocalPath)!)
+            self.docController = UIDocumentInteractionController(URL: NSURL(fileURLWithPath: newLocalPath))
             self.isCopyFile = true
         } else {
-            if NSFileManager.defaultManager().copyItemAtPath(localFilePath!, toPath: newLocalPath, error: nil){
-                self.docController = UIDocumentInteractionController(URL: NSURL(fileURLWithPath: newLocalPath)!)
+            do{
+                try NSFileManager.defaultManager().copyItemAtPath(localFilePath!, toPath: newLocalPath)
+                self.docController = UIDocumentInteractionController(URL: NSURL(fileURLWithPath: newLocalPath))
                 self.isCopyFile = true
-            } else {
-                self.docController = UIDocumentInteractionController(URL: NSURL(fileURLWithPath: self.localFilePath!)!)
+                
+            }catch _ as NSError{
+                self.docController = UIDocumentInteractionController(URL: NSURL(fileURLWithPath: self.localFilePath!))
                 self.isCopyFile = false
+                
             }
+            
+            
         }
         
         self.docController?.delegate = self
@@ -454,21 +487,21 @@ class FileViewController:UIViewController,UIWebViewDelegate,UIGestureRecognizerD
     }
     
     func connectSocketIO(){
-        var arr: [String : String?] = ["url":self.convertURL,"filehash":self.fileHash,"ext":self.fileFullPath.pathExtension]
+        let arr: [String : String?] = ["url":self.convertURL,"filehash":self.fileHash,"ext":self.fileFullPath.pathExtension]
     
         let sign: String = SignAbility.generateSign(arr, clientSecret: "6c01aefe6ff8f26b51139bf8f808dad582a7a864", encode: false)
         
         let socketurl = "doc.gokuai.com:5030"
         
-        var param = ["url":self.convertURL!,"filehash":self.fileHash!,"ext":self.fileName.pathExtension,"sign":sign]
+        let param = ["url":self.convertURL!,"filehash":self.fileHash!,"ext":self.fileName.pathExtension,"sign":sign]
         
         if self.socketio == nil {
-            self.socketio = SocketIOClient(socketURL: socketurl, options: ["connectParams":param])
+            self.socketio = SocketIOClient(socketURL: NSURL(string: socketurl)!, options: [.ConnectParams(param), .ForcePolling(true)])
         }
         
         self.socketio!.on("progress"){[weak self] data, ack in
             var previewErr = false
-            if let ret = data?[0] as? NSDictionary {
+            if let ret = data[0] as? NSDictionary {
                 if let pro = ret.valueForKey("progress") as? Float {
                     if NSThread.isMainThread(){
                         self?.progressView.setProgress(0.05+(pro/100.00)*0.15, animated: true)
@@ -480,7 +513,7 @@ class FileViewController:UIViewController,UIWebViewDelegate,UIGestureRecognizerD
                     
                     if pro >= 100.0{
                         if let downloadurl = ret.valueForKey("url") as? String {
-                            self?.socketio?.close(fast: true)
+                            self?.socketio?.disconnect()
                             self?.socketio = nil
                             self?.downloadURL = downloadurl
                             self?.nowDownloadType = DOWNLOAD_TYPE.PREVIEW_FILE
@@ -505,7 +538,7 @@ class FileViewController:UIViewController,UIWebViewDelegate,UIGestureRecognizerD
             
             
             if previewErr {
-                self?.socketio?.close(fast: true)
+                self?.socketio?.disconnect()
                 self?.socketio = nil
                 self?.showFailedInfo(FailedType.FailToConvert)
             }
@@ -514,14 +547,14 @@ class FileViewController:UIViewController,UIWebViewDelegate,UIGestureRecognizerD
         
         self.socketio!.on("err"){[weak self] data, ack in
             var notSupport = false
-            if let ret = data?[0] as? NSDictionary {
+            if let ret = data[0] as? NSDictionary {
                 if let code = ret.valueForKey("error_code") as? Int {
                     if code == 403{
                         notSupport = true
                     }
                 }
             }
-            self?.socketio?.close(fast: true)
+            self?.socketio?.disconnect()
             self?.socketio = nil
             self?.showFailedInfo(notSupport ? FailedType.NotSupport : FailedType.FailToConvert )
         }
@@ -531,9 +564,9 @@ class FileViewController:UIViewController,UIWebViewDelegate,UIGestureRecognizerD
     }
     
     func startDownloading(){
-        println("start download the original file")
+        print("start download the original file")
         
-        if let url = self.downloadURL {
+        if let _ = self.downloadURL {
             self.recieveBytes = 0
             self.isLoading = true
             
@@ -543,13 +576,13 @@ class FileViewController:UIViewController,UIWebViewDelegate,UIGestureRecognizerD
                 self.session = NSURLSession(configuration: sessionConfig, delegate: self, delegateQueue: NSOperationQueue.mainQueue())
             }
             
-            var req = NSMutableURLRequest(URL: NSURL(string: self.downloadURL!)!)
+            let req = NSMutableURLRequest(URL: NSURL(string: self.downloadURL!)!)
             req.HTTPMethod = "GET"
             req.HTTPShouldHandleCookies = false
             req.cachePolicy = NSURLRequestCachePolicy.ReloadIgnoringLocalCacheData
             req.addValue("client-gokuai", forHTTPHeaderField: "User-Agent")
             
-            var downTask = self.session?.downloadTaskWithRequest(req)
+            let downTask = self.session?.downloadTaskWithRequest(req)
             downTask?.resume()
         }
     }
@@ -601,7 +634,7 @@ class FileViewController:UIViewController,UIWebViewDelegate,UIGestureRecognizerD
             
             self.applyUserSettingToMoviePlayer()
             
-            var invalidRect = CGRectMake(0, 0, self.view.bounds.width, self.view.bounds.height-self.toolBar.frame.height)
+            let invalidRect = CGRectMake(0, 0, self.view.bounds.width, self.view.bounds.height-self.toolBar.frame.height)
             
             player.view.frame = invalidRect
             
@@ -633,7 +666,7 @@ class FileViewController:UIViewController,UIWebViewDelegate,UIGestureRecognizerD
             player.scalingMode = MPMovieScalingMode.AspectFit
             player.controlStyle = MPMovieControlStyle.Embedded
             player.repeatMode = MPMovieRepeatMode.None
-            player.backgroundView.backgroundColor = RGBA(30, 35, 40)
+            player.backgroundView.backgroundColor = RGBA(30, g: 35, b: 40)
             player.allowsAirPlay = true
         }
     }
@@ -722,7 +755,7 @@ class FileViewController:UIViewController,UIWebViewDelegate,UIGestureRecognizerD
     //MARK: Movie Notification Handlers
     func moviePlayBackDidFinish(notification: NSNotification){
         if let dic = notification.userInfo{
-            var reason: NSNumber? = dic[MPMoviePlayerPlaybackDidFinishReasonUserInfoKey] as? NSNumber
+            let reason: NSNumber? = dic[MPMoviePlayerPlaybackDidFinishReasonUserInfoKey] as? NSNumber
             if reason != nil{
                 if reason!.integerValue == 0 {
                     //MPMovieFinishReason.PlaybackEnded
@@ -740,13 +773,13 @@ class FileViewController:UIViewController,UIWebViewDelegate,UIGestureRecognizerD
     
     func loadStateDidChange(notification: NSNotification){
         let player: MPMoviePlayerController? = notification.object as? MPMoviePlayerController
-        let loadState = player?.loadState
+        _ = player?.loadState
     }
     
     func moviePlayBackStateDidChange(notification: NSNotification){
         let player: MPMoviePlayerController? = notification.object as? MPMoviePlayerController
         if player != nil {
-            let playState = player!.playbackState
+            _ = player!.playbackState
         }
         
     }
@@ -759,7 +792,7 @@ class FileViewController:UIViewController,UIWebViewDelegate,UIGestureRecognizerD
     //MARK: delegate
     
     //MARK: UIWebView Delegate
-    func webView(webView: UIWebView, didFailLoadWithError error: NSError) {
+    func webView(webView: UIWebView, didFailLoadWithError error: NSError?) {
         UIApplication.sharedApplication().networkActivityIndicatorVisible = false
     }
     
@@ -788,17 +821,22 @@ class FileViewController:UIViewController,UIWebViewDelegate,UIGestureRecognizerD
     }
     
     //MARK: UIDocumentInteractionControllerDelegate
-    func documentInteractionController(controller: UIDocumentInteractionController, willBeginSendingToApplication application: String) {
+    func documentInteractionController(controller: UIDocumentInteractionController, willBeginSendingToApplication application: String?) {
         
     }
     
-    func documentInteractionController(controller: UIDocumentInteractionController, didEndSendingToApplication application: String) {
+    func documentInteractionController(controller: UIDocumentInteractionController, didEndSendingToApplication application: String?) {
         
     }
     
     func documentInteractionControllerDidDismissOpenInMenu(controller: UIDocumentInteractionController) {
         if self.isCopyFile{
-            NSFileManager.defaultManager().removeItemAtURL(controller.URL, error: nil)
+            do{
+                try NSFileManager.defaultManager().removeItemAtURL(controller.URL!)
+            }catch let error as NSError{
+                print(error.localizedDescription)
+            }
+            
         }
     }
     
@@ -812,8 +850,20 @@ class FileViewController:UIViewController,UIWebViewDelegate,UIGestureRecognizerD
     }
     
     //MARK: NSURLSessionTaskDelegate
-    func URLSession(session: NSURLSession, task: NSURLSessionTask, willPerformHTTPRedirection response: NSHTTPURLResponse, newRequest request: NSURLRequest, completionHandler: (NSURLRequest!) -> Void) {
+//    func URLSession(session: NSURLSession, task: NSURLSessionTask, willPerformHTTPRedirection response: NSHTTPURLResponse, newRequest request: NSURLRequest, completionHandler: (NSURLRequest!) -> Void) {
+//        completionHandler(request)
+//    }
+    
+    func URLSession(session: NSURLSession, task: NSURLSessionTask, willPerformHTTPRedirection response: NSHTTPURLResponse, newRequest request: NSURLRequest, completionHandler: (NSURLRequest?) -> Void) {
         completionHandler(request)
+    }
+    
+    func URLSession(session: NSURLSession,
+        task: NSURLSessionTask,
+        didReceiveChallenge challenge: NSURLAuthenticationChallenge,
+        completionHandler: (NSURLSessionAuthChallengeDisposition, NSURLCredential?)
+        -> Void) {
+            // your code
     }
     
     func URLSession(session: NSURLSession, task: NSURLSessionTask, didSendBodyData bytesSent: Int64, totalBytesSent: Int64, totalBytesExpectedToSend: Int64) {
@@ -856,8 +906,14 @@ class FileViewController:UIViewController,UIWebViewDelegate,UIGestureRecognizerD
     //MARK: NSURLSessionDownloadDelegate
     func URLSession(session: NSURLSession, downloadTask: NSURLSessionDownloadTask, didFinishDownloadingToURL location: NSURL) {
         let destPos = NSURL(fileURLWithPath: self.localFilePath!)
-        var err: NSError? = nil
-        NSFileManager.defaultManager().copyItemAtURL(location, toURL: destPos!, error: &err)
+        
+        do {
+
+           try NSFileManager.defaultManager().copyItemAtURL(location, toURL: destPos)
+            
+        } catch let error as NSError {
+            print(error.localizedDescription)
+        }
     }
     
     func URLSession(session: NSURLSession, downloadTask: NSURLSessionDownloadTask, didWriteData bytesWritten: Int64, totalBytesWritten: Int64, totalBytesExpectedToWrite: Int64) {
@@ -865,7 +921,7 @@ class FileViewController:UIViewController,UIWebViewDelegate,UIGestureRecognizerD
         self.recieveBytes = totalBytesWritten
         
         if self.nowDownloadType == DOWNLOAD_TYPE.ORIGINAL_AFTER_PREIVEW{
-            var p: Float = Float(totalBytesWritten)*1.0/Float(fileSize)*1.0
+            let p: Float = Float(totalBytesWritten)*1.0/Float(fileSize)*1.0
             self.alertViewWithProgressbar?.progress = UInt(p * 100)
             if (p >= 1.000000) {
                 self.alertViewWithProgressbar?.hide()
@@ -899,7 +955,7 @@ class FileViewController:UIViewController,UIWebViewDelegate,UIGestureRecognizerD
     lazy var webView:UIWebView = {
         let rc = self.view.bounds
        let webv = UIWebView(frame: CGRectMake(0, 0, rc.width, rc.height))
-        webv.autoresizingMask = UIViewAutoresizing.FlexibleWidth | UIViewAutoresizing.FlexibleHeight
+        webv.autoresizingMask = [.FlexibleWidth , .FlexibleHeight]
         webv.hidden = true
         webv.delegate = self
         webv.scalesPageToFit = true
@@ -924,7 +980,7 @@ class FileViewController:UIViewController,UIWebViewDelegate,UIGestureRecognizerD
         let space = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FlexibleSpace, target: nil, action: nil)
         let actbtn = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Action, target: self, action: "onAction")
         bar.items = [space,actbtn,space]
-        bar.autoresizingMask = UIViewAutoresizing.FlexibleWidth | UIViewAutoresizing.FlexibleTopMargin;
+        bar.autoresizingMask = [.FlexibleWidth , .FlexibleTopMargin];
         return bar
     }()
     
@@ -946,7 +1002,7 @@ class FileViewController:UIViewController,UIWebViewDelegate,UIGestureRecognizerD
         let rc: CGRect = self.view.bounds
         let v = UIView(frame: CGRectMake(0, (CGRectGetHeight(rc)-150)/2-40, CGRectGetWidth(rc), 150))
         v.backgroundColor = UIColor.clearColor()
-        v.setTranslatesAutoresizingMaskIntoConstraints(false)
+        v.translatesAutoresizingMaskIntoConstraints = false
         
         let imgv: UIImageView = UIImageView(frame: CGRectMake((CGRectGetWidth(rc)-kIconWidth)/2, 0, kIconWidth, kIconWidth))
         imgv.image = UIImage.imageNameFromMyBundle(Utils.getImageIcon(self.fileName, dir: self.fileDir))
@@ -955,7 +1011,7 @@ class FileViewController:UIViewController,UIWebViewDelegate,UIGestureRecognizerD
         
         let infoText: UILabel = UILabel(frame: CGRectMake(10.0, CGRectGetMaxY(imgv.frame)+6.0, rc.size.width-20.0, 20.0))
         infoText.font = UIFont.systemFontOfSize(12.0)
-        infoText.textColor = RGBA(100, 100, 100)
+        infoText.textColor = RGBA(100, g: 100, b: 100)
         infoText.textAlignment = NSTextAlignment.Center
         infoText.text = NSBundle.getLocalStringFromBundle("Beginning to preview", comment:"")
         self.infoLabel = infoText
@@ -975,7 +1031,7 @@ class FileViewController:UIViewController,UIWebViewDelegate,UIGestureRecognizerD
     var progressView: UIProgressView!
     
     lazy var btnDetail: UIButton = {
-       let btn = UIButton.buttonWithType(UIButtonType.Custom) as! UIButton
+       let btn = UIButton(type: UIButtonType.Custom)
         btn.frame = CGRectMake(0, 0, 100, 20)
         btn.titleLabel?.font = UIFont.systemFontOfSize(13.0)
         btn.setTitle(NSBundle.getLocalStringFromBundle("Detail", comment: ""), forState: UIControlState.Normal)
@@ -984,7 +1040,7 @@ class FileViewController:UIViewController,UIWebViewDelegate,UIGestureRecognizerD
     }()
     
     lazy var btnPrint: UIButton = {
-        let btn = UIButton.buttonWithType(UIButtonType.Custom) as! UIButton
+        let btn = UIButton(type: UIButtonType.Custom)
         btn.frame = CGRectMake(0, 0, 100, 20)
         btn.titleLabel?.font = UIFont.systemFontOfSize(13.0)
         btn.setTitle(NSBundle.getLocalStringFromBundle("Print", comment: ""), forState: UIControlState.Normal)
@@ -993,7 +1049,7 @@ class FileViewController:UIViewController,UIWebViewDelegate,UIGestureRecognizerD
     }()
     
     lazy var btnEdit: UIButton = {
-        let btn = UIButton.buttonWithType(UIButtonType.Custom) as! UIButton
+        let btn = UIButton(type: UIButtonType.Custom)
         btn.frame = CGRectMake(0, 0, 100, 20)
         btn.titleLabel?.font = UIFont.systemFontOfSize(13.0)
         btn.setTitle(NSBundle.getLocalStringFromBundle("Edit", comment: ""), forState: UIControlState.Normal)

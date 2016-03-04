@@ -39,8 +39,14 @@ class  GKnoteViewController :UIViewController,UIWebViewDelegate,UIActionSheetDel
         self.edgesForExtendedLayout = .None//for toast
         self.view.addSubview(self.webView)
         
-        var editorPath = NSBundle.myResourceBundleInstance!.pathForResource("index", ofType: "html", inDirectory: "ueditor")
-        var htmlString = String(contentsOfFile: editorPath!, encoding: NSUTF8StringEncoding, error: nil)
+        let editorPath = NSBundle.myResourceBundleInstance!.pathForResource("index", ofType: "html", inDirectory: "ueditor")
+        
+        var htmlString = ""
+        do {
+             htmlString =  try String(contentsOfFile: editorPath!, encoding: NSUTF8StringEncoding)
+        } catch let error as NSError {
+            print(error.localizedDescription)
+        }
         
         self.webView.loadHTMLString(htmlString, baseURL: NSURL(fileURLWithPath: (editorPath?.stringByDeletingLastPathComponent)!))
         
@@ -50,7 +56,7 @@ class  GKnoteViewController :UIViewController,UIWebViewDelegate,UIActionSheetDel
             if let dataObj = data as? String {
                 if  dataObj == "ready"{
                     if !self.noteContent.isEmpty{
-                        var content = "setContent('\(self.noteContent)');"
+                        let content = "setContent('\(self.noteContent)');"
                         self.webView.stringByEvaluatingJavaScriptFromString(content)
                     }
                     self.webView.stringByEvaluatingJavaScriptFromString("setFocus();")
@@ -76,7 +82,7 @@ class  GKnoteViewController :UIViewController,UIWebViewDelegate,UIActionSheetDel
    
     //MARK:保存内容
     func onSaveGknote(sender:AnyObject){
-        var html = self.webView.stringByEvaluatingJavaScriptFromString("UE.getEditor('editor').getContent()")
+        let html = self.webView.stringByEvaluatingJavaScriptFromString("UE.getEditor('editor').getContent()")
         
         if !html!.isEmpty{
             if !Reachability.isConnectedToNetwork(){
@@ -84,7 +90,7 @@ class  GKnoteViewController :UIViewController,UIWebViewDelegate,UIActionSheetDel
                 return
             }
             
-            var sheet =  UIActionSheet(title: NSBundle.getLocalStringFromBundle("Please choose operation type", comment: ""),
+            let sheet =  UIActionSheet(title: NSBundle.getLocalStringFromBundle("Please choose operation type", comment: ""),
                 delegate: self,
                 cancelButtonTitle: NSBundle.getLocalStringFromBundle("Cancel", comment: ""),
                 destructiveButtonTitle: NSBundle.getLocalStringFromBundle("Save&Upload", comment: ""))
@@ -103,11 +109,11 @@ class  GKnoteViewController :UIViewController,UIWebViewDelegate,UIActionSheetDel
     
     //MARK:关闭页面
     func onClose(sender:AnyObject){
-        var html = self.webView.stringByEvaluatingJavaScriptFromString("UE.getEditor('editor').getContent()")
-        var contentHasChange = html != self.noteContent
+        let html = self.webView.stringByEvaluatingJavaScriptFromString("UE.getEditor('editor').getContent()")
+        let contentHasChange = html != self.noteContent
         if contentHasChange {
             
-            var alert = UIAlertView(title: NSBundle.getLocalStringFromBundle("Tip", comment: ""),
+            let alert = UIAlertView(title: NSBundle.getLocalStringFromBundle("Tip", comment: ""),
                 message: NSBundle.getLocalStringFromBundle("Do you want to exit without saving", comment: ""),
                 delegate: self,
                 cancelButtonTitle: NSBundle.getLocalStringFromBundle("Cancel", comment: ""),
@@ -141,11 +147,11 @@ class  GKnoteViewController :UIViewController,UIWebViewDelegate,UIActionSheetDel
     func actionSheet(actionSheet: UIActionSheet, clickedButtonAtIndex buttonIndex: Int) {
         if buttonIndex == 0 {
             if defaultName.isEmpty{
-                var control = NoteNameViewController()
+                let control = NoteNameViewController()
                 control.delegate = self
-                control.defaultName = Utils.formatGKnoteName(NSDate.new().timeIntervalSince1970)
+                control.defaultName = Utils.formatGKnoteName(NSDate().timeIntervalSince1970)
                 control.list = self.fileList
-                var navC = UINavigationController(rootViewController: control)
+                let navC = UINavigationController(rootViewController: control)
                 self.presentViewController(navC, animated: true, completion: nil)
             }else{
                 self.renameFileName = self.defaultName
@@ -160,23 +166,29 @@ class  GKnoteViewController :UIViewController,UIWebViewDelegate,UIActionSheetDel
     func onSaveText(){
         DialogUtils.showProgresing(self)
 
-        var gkNoteName = self.renameFileName
-        var gkNoteSavePath = Utils.getUploadPath().stringByAppendingPathComponent(gkNoteName)
+        let gkNoteName = self.renameFileName
+        let gkNoteSavePath = Utils.getUploadPath().stringByAppendingPathComponent(gkNoteName)
         
         if zipFolderName.isEmpty{
             zipFolderName = gkNoteName.stringByDeletingPathExtension
         }
         
-        var zipFolderPath = Utils.getZipCachePath().stringByAppendingPathComponent(zipFolderName)
+        let zipFolderPath = Utils.getZipCachePath().stringByAppendingPathComponent(zipFolderName)
         
         if !NSFileManager.defaultManager().fileExistsAtPath(zipFolderPath){
-            NSFileManager.defaultManager().createDirectoryAtPath(zipFolderPath, withIntermediateDirectories: true, attributes: nil, error: nil)
+            
+            do {
+               try  NSFileManager.defaultManager().createDirectoryAtPath(zipFolderPath, withIntermediateDirectories: true, attributes: nil)
+            } catch let error as NSError {
+                print(error.localizedDescription)
+            }
+           
         }
         
-        var indexPath = zipFolderPath.stringByAppendingPathComponent("index.html")
-        var resourcePath = zipFolderPath.stringByAppendingPathComponent("resource")
+        let indexPath = zipFolderPath.stringByAppendingPathComponent("index.html")
+        let resourcePath = zipFolderPath.stringByAppendingPathComponent("resource")
         
-        var contentData = self.noteContent.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)
+        let contentData = self.noteContent.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)
         
         dispatch_async( dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), {
             
@@ -184,10 +196,15 @@ class  GKnoteViewController :UIViewController,UIWebViewDelegate,UIActionSheetDel
                 return
             }
             
-            var writeSuccess = contentData!.writeToFile(indexPath, atomically: true)
+            let writeSuccess = contentData!.writeToFile(indexPath, atomically: true)
             
             if !NSFileManager.defaultManager().fileExistsAtPath(resourcePath){
-                NSFileManager.defaultManager().createDirectoryAtPath(resourcePath, withIntermediateDirectories: false, attributes: nil, error: nil)
+                
+                do {
+                    try  NSFileManager.defaultManager().createDirectoryAtPath(resourcePath, withIntermediateDirectories: false, attributes: nil)
+                } catch let error as NSError {
+                    print(error.localizedDescription)
+                }
             }
             
             dispatch_async(dispatch_get_main_queue(), {

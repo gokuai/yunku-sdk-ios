@@ -36,13 +36,13 @@ class NoteNameViewController:NameController {
     
     override func textFieldDidBeginEditing(textField: UITextField) {
         super.textFieldDidBeginEditing(textField)
-        var from = textField.beginningOfDocument
-        var to = textField.positionFromPosition(from, offset: count(self.defaultName.stringByDeletingPathExtension))
-        textField.selectedTextRange = textField .textRangeFromPosition(from, toPosition: to)
+        let from = textField.beginningOfDocument
+        let to = textField.positionFromPosition(from, offset: self.defaultName.stringByDeletingPathExtension.characters.count)
+        textField.selectedTextRange = textField .textRangeFromPosition(from, toPosition: to!)
     }
     
     func name(){
-        var fileName = self.textField.text.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
+        let fileName = self.textField.text!.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
         if fileName.pathExtension != "gknote"{
             fileName.stringByAppendingPathExtension("gknote")
         }

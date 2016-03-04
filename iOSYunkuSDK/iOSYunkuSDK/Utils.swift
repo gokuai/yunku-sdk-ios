@@ -100,8 +100,8 @@ class Utils{
    
     //MARK:格式化文件时间
     class func formatTime(seconds:NSTimeInterval,format:String) ->String{
-        var date = NSDate(timeIntervalSince1970: seconds)
-        var formater = NSDateFormatter()
+        let date = NSDate(timeIntervalSince1970: seconds)
+        let formater = NSDateFormatter()
         formater.dateFormat = format
         return formater.stringFromDate(date)
     }
@@ -123,25 +123,25 @@ class Utils{
     
     //MARK:判断是否是图片类型的文件
     class func isImageType(fileName:String) ->Bool{
-        var ext = fileName.pathExtension.lowercaseString
-        return contains(Utils.imgType, ext)
+        let ext = fileName.pathExtension.lowercaseString
+        return Utils.imgType.contains(ext)
     
     }
     
     class func isVideoType(fileName:String) ->Bool{
-        var ext = fileName.pathExtension.lowercaseString
-        return contains(Utils.videoType, ext)
+        let ext = fileName.pathExtension.lowercaseString
+        return Utils.videoType.contains(ext)
     }
     
     class func isAudioType(fileName:String) ->Bool{
-        var ext = fileName.pathExtension.lowercaseString
-        return contains(Utils.musicType, ext)
+        let ext = fileName.pathExtension.lowercaseString
+        return Utils.musicType.contains(ext)
     }
     
     //MARK:判断是否是预览类型的文件
     class func isPreviewType(fileName:String) ->Bool {
-        var ext = fileName.pathExtension.lowercaseString
-        return contains(Utils.previewType, ext)
+        let ext = fileName.pathExtension.lowercaseString
+        return Utils.previewType.contains(ext)
     }
     
     class func isGknoteType(fileName:String) ->Bool{
@@ -149,7 +149,7 @@ class Utils{
     }
     
     class func isPrintType(fileName: String) ->Bool{
-        return contains(Utils.printType,fileName.pathExtension.lowercaseString)
+        return Utils.previewType.contains(fileName.pathExtension.lowercaseString)
     }
     
     
@@ -161,37 +161,37 @@ class Utils{
             return String(format: Utils.resourceFormat, "dir")
         }else{
             
-            var ext = fileName.pathExtension.lowercaseString
-            if contains(Utils.imgType, ext) {
+            let ext = fileName.pathExtension.lowercaseString
+            if Utils.imgType.contains(ext) {
                 
                 return String(format: Utils.resourceFormat, "img")
                 
-            }else if contains(Utils.programType, ext){
+            }else if Utils.programType.contains( ext){
                 
                 return String(format: Utils.resourceFormat, "program")
                 
-            }else if contains(Utils.compressType, ext){
+            }else if Utils.compressType.contains( ext){
                 return String(format: Utils.resourceFormat, "compress")
                 
-            }else if contains(Utils.videoType, ext){
+            }else if Utils.videoType.contains(ext){
                 return String(format: Utils.resourceFormat, "video")
                 
-            }else if contains(Utils.musicType, ext){
+            }else if Utils.musicType.contains( ext){
                 return String(format: Utils.resourceFormat, "music")
                 
-            }else if contains(Utils.textType, ext){
+            }else if Utils.textType.contains( ext){
                 return String(format: Utils.resourceFormat, "words_file")
                 
-            }else if let range = ext.rangeOfString(docType) {
+            }else if let _ = ext.rangeOfString(docType) {
                 return String(format: Utils.resourceFormat, "doc")
                 
-            }else if let range =  ext.rangeOfString(xlsType)  {
+            }else if let _ =  ext.rangeOfString(xlsType)  {
                 return String(format: Utils.resourceFormat, "xls")
                 
-            }else if let range =  ext.rangeOfString(pptType) {
+            }else if let _ =  ext.rangeOfString(pptType) {
                 return String(format: Utils.resourceFormat, "ppt")
                 
-            }else if let range =  ext.rangeOfString(pdfType) {
+            }else if let _ =  ext.rangeOfString(pdfType) {
                 return String(format: Utils.resourceFormat, "pdf")
                 
             }else if ext == Utils.gknoteType {
@@ -221,35 +221,35 @@ class Utils{
     //MARK:判断文件名是否合法
     class func isContainSepcial(fileName:String) -> Bool {
         
-        if let range = fileName.rangeOfString("\\"){
+        if let _ = fileName.rangeOfString("\\"){
             return true
         }
         
-        if let range = fileName.rangeOfString(":"){
+        if let _ = fileName.rangeOfString(":"){
             return true
         }
         
-        if let range = fileName.rangeOfString("<"){
+        if let _ = fileName.rangeOfString("<"){
             return true
         }
         
-        if let range = fileName.rangeOfString("|"){
+        if let _ = fileName.rangeOfString("|"){
             return true
         }
         
-        if let range = fileName.rangeOfString("\""){
+        if let _ = fileName.rangeOfString("\""){
             return true
         }
         
-        if let range = fileName.rangeOfString("/"){
+        if let _ = fileName.rangeOfString("/"){
             return true
         }
         
-        if let range = fileName.rangeOfString("*"){
+        if let _ = fileName.rangeOfString("*"){
             return true
         }
         
-        if let range = fileName.rangeOfString("?"){
+        if let _ = fileName.rangeOfString("?"){
             return true
         }
         
@@ -289,7 +289,7 @@ class Utils{
     //MARK:是否能访问相机
     class func canAcessCamera() -> Bool  {
         if Utils.getIOSVersion() >= 7 {
-            var authStatus = AVCaptureDevice.authorizationStatusForMediaType(AVMediaTypeVideo)
+            let authStatus = AVCaptureDevice.authorizationStatusForMediaType(AVMediaTypeVideo)
             if authStatus == AVAuthorizationStatus.Denied || authStatus == AVAuthorizationStatus.Restricted {
                 return false
             }
@@ -300,7 +300,7 @@ class Utils{
     //MARK:是否能访问相册
     class func canAccessPhotos() -> Bool  {
         if Utils.getIOSVersion() >= 6 {
-            var authStatus = AVCaptureDevice.authorizationStatusForMediaType(AVMediaTypeVideo)
+            let authStatus = AVCaptureDevice.authorizationStatusForMediaType(AVMediaTypeVideo)
             if authStatus == AVAuthorizationStatus.Denied || authStatus == AVAuthorizationStatus.Restricted {
                 return false
             }
@@ -310,44 +310,66 @@ class Utils{
     
     //MARK:把图片数据放置缓存目录
     class func saveImageToCache(image:UIImage,fileName:String) ->String{
-        let cachePath = NSSearchPathForDirectoriesInDomains(.CachesDirectory, .UserDomainMask, true)[0] as! String
+        let cachePath = NSSearchPathForDirectoriesInDomains(.CachesDirectory, .UserDomainMask, true)[0] 
         let imageCachePath = cachePath.stringByAppendingPathComponent(SDKConfig.imageCachePath)
         let destinationPath = imageCachePath.stringByAppendingPathComponent(fileName)
         
         if !NSFileManager.defaultManager().fileExistsAtPath(imageCachePath) {
-            NSFileManager.defaultManager().createDirectoryAtPath(imageCachePath, withIntermediateDirectories: false, attributes: nil, error: nil)
+            
+            do{
+                try  NSFileManager.defaultManager().createDirectoryAtPath(imageCachePath, withIntermediateDirectories: false, attributes: nil)
+            }catch let error as NSError{
+                print(error.localizedDescription)
+            }
+            
+           
         }
         
-        UIImageJPEGRepresentation(image,1.0).writeToFile(destinationPath, atomically: true)
+        UIImageJPEGRepresentation(image,1.0)!.writeToFile(destinationPath, atomically: true)
         return destinationPath
     }
     
     //MARK:获取文件上传的路径
     class func getUploadPath() ->String {
-        let cachePath = NSSearchPathForDirectoriesInDomains(.CachesDirectory, .UserDomainMask, true)[0] as! String
+        let cachePath = NSSearchPathForDirectoriesInDomains(.CachesDirectory, .UserDomainMask, true)[0] 
         let destinationPath = cachePath.stringByAppendingPathComponent("UploadCache")
         if !NSFileManager.defaultManager().fileExistsAtPath(destinationPath) {
-            NSFileManager.defaultManager().createDirectoryAtPath(destinationPath, withIntermediateDirectories: false, attributes: nil, error: nil)
+            
+            do{
+                try  NSFileManager.defaultManager().createDirectoryAtPath(destinationPath, withIntermediateDirectories: false, attributes: nil)
+            }catch let error as NSError{
+                print(error.localizedDescription)
+            }
         }
         return destinationPath
     }
     
     //MARK:获取zipCache 路径
     class func getZipCachePath() -> String {
-        let cachePath = NSSearchPathForDirectoriesInDomains(.CachesDirectory, .UserDomainMask, true)[0] as! String
+        let cachePath = NSSearchPathForDirectoriesInDomains(.CachesDirectory, .UserDomainMask, true)[0] 
         let destinationPath = cachePath.stringByAppendingPathComponent("Zips")
         if !NSFileManager.defaultManager().fileExistsAtPath(destinationPath) {
-            NSFileManager.defaultManager().createDirectoryAtPath(destinationPath, withIntermediateDirectories: false, attributes: nil, error: nil)
+            
+            do{
+                try  NSFileManager.defaultManager().createDirectoryAtPath(destinationPath, withIntermediateDirectories: false, attributes: nil)
+            }catch let error as NSError{
+                print(error.localizedDescription)
+            }
+            
         }
         return destinationPath
     }
     
     //MARK:获取FileCache 路径
     class func getFileCachePath() -> String{
-        let cachePath = NSSearchPathForDirectoriesInDomains(.CachesDirectory, .UserDomainMask, true)[0] as! String
+        let cachePath = NSSearchPathForDirectoriesInDomains(.CachesDirectory, .UserDomainMask, true)[0] 
         let destinationPath = cachePath.stringByAppendingPathComponent("FileCache")
         if !NSFileManager.defaultManager().fileExistsAtPath(destinationPath) {
-            NSFileManager.defaultManager().createDirectoryAtPath(destinationPath, withIntermediateDirectories: false, attributes: nil, error: nil)
+            do{
+                try  NSFileManager.defaultManager().createDirectoryAtPath(destinationPath, withIntermediateDirectories: false, attributes: nil)
+            }catch let error as NSError{
+                print(error.localizedDescription)
+            }
         }
         return destinationPath
     }
@@ -357,7 +379,11 @@ class Utils{
         let cachePath = Utils.getFileCachePath()
         let destinationPath = cachePath.stringByAppendingPathComponent("Thumbnail")
         if !NSFileManager.defaultManager().fileExistsAtPath(destinationPath) {
-            NSFileManager.defaultManager().createDirectoryAtPath(destinationPath, withIntermediateDirectories: false, attributes: nil, error: nil)
+            do{
+                try  NSFileManager.defaultManager().createDirectoryAtPath(destinationPath, withIntermediateDirectories: false, attributes: nil)
+            }catch let error as NSError{
+                print(error.localizedDescription)
+            }
         }
         return destinationPath
     }
@@ -386,17 +412,23 @@ class Utils{
     //MARK:压缩文件
     class func compressToZipWithZipPath(zipPath:String,sourcePaths:Array<String>,success:(() -> Void),fail:(() -> Void)){
         
-        var err: NSError? = NSError()
-        var path = NSURL.fileURLWithPath(zipPath)
-        var archive = ZZArchive(URL: path, options: [ ZZOpenOptionsCreateIfMissingKey : true ], error: &err)
+        let path = NSURL.fileURLWithPath(zipPath)
+        
  
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), {
             
-            var list = Array<ZZArchiveEntry> ()
+            var archive:ZZArchive!
             var isSuccess = true
+            do{
+                archive = try ZZArchive(URL: path, options: [ ZZOpenOptionsCreateIfMissingKey : true ])
+            }catch _ as NSError{
+                isSuccess = false
+            }
+            
+            var list = Array<ZZArchiveEntry> ()
             
             for pathString in sourcePaths {
-                var fileName = pathString.lastPathComponent
+                let fileName = pathString.lastPathComponent
                 var isDir : ObjCBool = false
                 if NSFileManager.defaultManager().fileExistsAtPath(pathString, isDirectory:&isDir) {
                     if isDir {
@@ -411,18 +443,19 @@ class Utils{
                     }
                 }
                 
-                if err?.code > 0{
-                    isSuccess = false
+                if !isSuccess{
                     break
                 }
             }
             
             if isSuccess{
-                archive.updateEntries(list, error: &err)
-            }
-            
-            if err?.code > 0{
-                isSuccess = false
+                
+                do {
+                
+                    try archive.updateEntries(list)
+                }catch _ as NSError{
+                    isSuccess = false
+                }
             }
             
             if isSuccess{
@@ -437,31 +470,35 @@ class Utils{
     //MARK:解压zip
     class func unZipWithSource(sourcePath:String,targetFileName:String,success:(() -> Void),fail:(() -> Void)) {
         
-        var err: NSError? = NSError()
-        var path = NSURL.fileURLWithPath(sourcePath)
-        var archive: ZZArchive = ZZArchive(URL:(fileURLWithPath:path), error: &err)
-        
-        
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), {
-            
-            var zipPath = sourcePath
-            var unzipTo = Utils.getZipCachePath().stringByAppendingPathComponent(targetFileName)
-            
-            var list = archive.entries
-            var isSuccess = true
-            for entry  in list{
+//        var err: NSError? = NSError()
+        let path = NSURL.fileURLWithPath(sourcePath)
 
-                var zzArchive = entry as! ZZArchiveEntry
-                err = nil
-                var data = zzArchive.newDataWithError(&err)
-                let destpath = "\(unzipTo)/\(zzArchive.fileName)"
-                data.writeToFile(destpath, atomically: false)
+ 
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), {
+            var isSuccess = true
+            do {
                 
-                if err != nil{
-                    println("\(err?.userInfo); \(err?.localizedDescription)")
-                    isSuccess = false
-                    break
+                _ = sourcePath
+                let unzipTo = Utils.getZipCachePath().stringByAppendingPathComponent(targetFileName)
+                let archive = try ZZArchive(URL:(fileURLWithPath:path))
+                let list = archive.entries
+                
+                for entry  in list{
+                    
+                    let zzArchive = entry as! ZZArchiveEntry
+                    var data:NSData
+                    
+                    data = try zzArchive.newData()
+                    let destpath = "\(unzipTo)/\(zzArchive.fileName)"
+                    data.writeToFile(destpath, atomically: false)
+                    
+                    
                 }
+                
+            }catch let error as NSError{
+                print("\(error.userInfo); \(error.localizedDescription)")
+                isSuccess = false
+
             }
             
             if isSuccess {
@@ -475,8 +512,8 @@ class Utils{
     
     //MARK:获取文件大小
     class func getFileSizeWithPath(path:String) -> UInt64! {
-        var handler =  NSFileHandle(forReadingAtPath: path)
-        var length = handler?.seekToEndOfFile()
+        let handler =  NSFileHandle(forReadingAtPath: path)
+        let length = handler?.seekToEndOfFile()
         handler?.closeFile()
         return length
     }
@@ -485,7 +522,7 @@ class Utils{
         var substr = (body as NSString).rangeOfString(search)
         
         
-        var bodyMutable = NSMutableString(string: body)
+        let bodyMutable = NSMutableString(string: body)
         var location = -1
         while (substr.location != NSNotFound) {
             if (location == substr.location) {

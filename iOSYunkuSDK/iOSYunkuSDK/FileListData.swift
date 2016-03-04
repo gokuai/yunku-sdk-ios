@@ -22,16 +22,16 @@ class FileListData:BaseData {
     
      override class func create(dic:Dictionary<String,AnyObject>) ->FileListData{
         
-        var filelistData = FileListData()
+        let filelistData = FileListData()
         
-       var returnResult =  ReturnResult.create(dic)
+       let returnResult =  ReturnResult.create(dic)
         var resultDic = returnResult.result
         filelistData.code = returnResult.code
         if returnResult.code == HTTPStatusCode.OK.rawValue{
-            var list = resultDic[keyList] as? NSArray
+            let list = resultDic[keyList] as? NSArray
             filelistData.fileList = Array<FileData>()
             for  obj:AnyObject in list! {
-                var fileData = FileData.create(obj as! Dictionary<String, AnyObject>)
+                let fileData = FileData.create(obj as! Dictionary<String, AnyObject>)
                 filelistData.fileList.append(fileData)
             }
 

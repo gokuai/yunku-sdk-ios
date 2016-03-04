@@ -28,7 +28,7 @@ class NameController: UIViewController , UITextFieldDelegate,RequestDelegate {
         
         self.navigationItem.rightBarButtonItem?.enabled = false
         
-        var frame = self.clientRect()
+        let frame = self.clientRect()
         self.textField = UITextField(frame: CGRectMake(10, 100.0, frame.width - 20, 48))
         self.textField.leftViewMode = UITextFieldViewMode.Always
         self.textField.leftView = UILabel(frame: CGRectMake(0, 0, 10, 25))
@@ -53,9 +53,9 @@ class NameController: UIViewController , UITextFieldDelegate,RequestDelegate {
     
     //MARK:文字发生改变
     func textFieldValueChanged(sender:AnyObject){
-        var name = textField.text.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
-        var isContainSepcial = Utils.isContainSepcial(name)
-        var isValid = Utils.isVaildName(name)
+        let name = textField.text!.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
+        let isContainSepcial = Utils.isContainSepcial(name)
+        let isValid = Utils.isVaildName(name)
         
         self.navigationItem.rightBarButtonItem?.enabled = !name.isEmpty && !isContainSepcial && isValid
         

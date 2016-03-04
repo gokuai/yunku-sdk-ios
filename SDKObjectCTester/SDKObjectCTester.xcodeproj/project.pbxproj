@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CA1EE1F91C893CD900BA944F /* CommonCrypto.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA1EE1F71C893CD900BA944F /* CommonCrypto.framework */; };
+		CA1EE1FA1C893CD900BA944F /* YunkuSwiftSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA1EE1F81C893CD900BA944F /* YunkuSwiftSDK.framework */; };
+		CA1EE1FB1C893CE500BA944F /* CommonCrypto.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = CA1EE1F71C893CD900BA944F /* CommonCrypto.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		CA1EE1FC1C893CE500BA944F /* YunkuSwiftSDK.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = CA1EE1F81C893CD900BA944F /* YunkuSwiftSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		CAA6191C1B5CD3B700671DBE /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA6191B1B5CD3B700671DBE /* main.m */; };
 		CAA6191F1B5CD3B700671DBE /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA6191E1B5CD3B700671DBE /* AppDelegate.m */; };
 		CAA619221B5CD3B700671DBE /* SDKObjectCTester.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CAA619201B5CD3B700671DBE /* SDKObjectCTester.xcdatamodeld */; };
@@ -37,6 +41,8 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				CA1EE1FB1C893CE500BA944F /* CommonCrypto.framework in CopyFiles */,
+				CA1EE1FC1C893CE500BA944F /* YunkuSwiftSDK.framework in CopyFiles */,
 				CAA6194A1B5CDDF400671DBE /* iOSYunkuSDK.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -44,6 +50,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		CA1EE1F71C893CD900BA944F /* CommonCrypto.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CommonCrypto.framework; sourceTree = "<group>"; };
+		CA1EE1F81C893CD900BA944F /* YunkuSwiftSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = YunkuSwiftSDK.framework; sourceTree = "<group>"; };
 		CAA619161B5CD3B700671DBE /* SDKObjectCTester.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SDKObjectCTester.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CAA6191A1B5CD3B700671DBE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CAA6191B1B5CD3B700671DBE /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -69,6 +77,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CA1EE1FA1C893CD900BA944F /* YunkuSwiftSDK.framework in Frameworks */,
+				CA1EE1F91C893CD900BA944F /* CommonCrypto.framework in Frameworks */,
 				CAA619461B5CD4A400671DBE /* iOSYunkuSDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -86,6 +96,8 @@
 		CAA6190D1B5CD3B700671DBE = {
 			isa = PBXGroup;
 			children = (
+				CA1EE1F71C893CD900BA944F /* CommonCrypto.framework */,
+				CA1EE1F81C893CD900BA944F /* YunkuSwiftSDK.framework */,
 				CAA619471B5CD4BF00671DBE /* iOSYunkuSDK.bundle */,
 				CAA619451B5CD4A400671DBE /* iOSYunkuSDK.framework */,
 				CAA619181B5CD3B700671DBE /* SDKObjectCTester */,
@@ -190,7 +202,7 @@
 		CAA6190E1B5CD3B700671DBE /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0640;
+				LastUpgradeCheck = 0720;
 				ORGANIZATIONNAME = goukuai;
 				TargetAttributes = {
 					CAA619151B5CD3B700671DBE = {
@@ -315,6 +327,7 @@
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -380,7 +393,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				EMBEDDED_CONTENT_CONTAINS_SWIFT = NO;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -389,6 +403,7 @@
 				);
 				INFOPLIST_FILE = SDKObjectCTester/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.gokuai.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -397,7 +412,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				EMBEDDED_CONTENT_CONTAINS_SWIFT = NO;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -406,6 +422,7 @@
 				);
 				INFOPLIST_FILE = SDKObjectCTester/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.gokuai.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
@@ -424,6 +441,7 @@
 				);
 				INFOPLIST_FILE = SDKObjectCTesterTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.gokuai.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SDKObjectCTester.app/SDKObjectCTester";
 			};
@@ -439,6 +457,7 @@
 				);
 				INFOPLIST_FILE = SDKObjectCTesterTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.gokuai.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SDKObjectCTester.app/SDKObjectCTester";
 			};

@@ -4,65 +4,85 @@
 <dict>
 	<key>files</key>
 	<dict>
-		<key>.DS_Store</key>
+		<key>Frameworks/CommonCrypto.framework/CommonCrypto</key>
 		<data>
-		O64lBWCVUlHBGgUVIHniQzB6ODc=
+		oNt9gJb+pb8upfiQvFAf98vewUQ=
+		</data>
+		<key>Frameworks/CommonCrypto.framework/CommonCrypto.xcconfig</key>
+		<data>
+		ofl5Cdb+WYCtOz9q5x/kIqY6oE0=
+		</data>
+		<key>Frameworks/CommonCrypto.framework/Info.plist</key>
+		<data>
+		EW1wAlj16Qvm0tbecdJbW+cSpiU=
+		</data>
+		<key>Frameworks/CommonCrypto.framework/_CodeSignature/CodeResources</key>
+		<data>
+		MUELQbhF6Y106HdC2iydY0urL5M=
 		</data>
 		<key>Frameworks/YunkuSwiftSDK.framework/Info.plist</key>
 		<data>
-		Zee3ST+5150EbuB3MLK0dY22g98=
+		/LoJgAsw2IDgFqeFF0AehkMBin0=
 		</data>
 		<key>Frameworks/YunkuSwiftSDK.framework/YunkuSwiftSDK</key>
 		<data>
-		uxmE+vwRLxsUxPXw8ArxaHM5L0Q=
+		4/utF88IopKaGfjIXnIWRIdzLDQ=
 		</data>
 		<key>Frameworks/YunkuSwiftSDK.framework/_CodeSignature/CodeResources</key>
 		<data>
-		+MPu50c3Gal9Sh6b65pszNSVrMY=
+		aQIuuYRuhcVXA5P6G22zm5aIF+A=
+		</data>
+		<key>Frameworks/libswiftAVFoundation.dylib</key>
+		<data>
+		8OGeyni4F50KHTCvVfvwN2xpoK4=
 		</data>
 		<key>Frameworks/libswiftAssetsLibrary.dylib</key>
 		<data>
-		SFKmo/Sqf5nJ/HKOOccQ7V+028Y=
+		wblBh9wVtHuoTZXyVCgPn8CeMmA=
+		</data>
+		<key>Frameworks/libswiftContacts.dylib</key>
+		<data>
+		xSVHS4qxbHP6e+Gkie0IsrKk8VQ=
 		</data>
 		<key>Frameworks/libswiftCore.dylib</key>
 		<data>
-		m3B0zkI2MePe2//tOM3pkCVeqq0=
+		fh5sfA7u7oB4nZtQbec/qrdtZec=
 		</data>
 		<key>Frameworks/libswiftCoreAudio.dylib</key>
 		<data>
-		sNa0ldCdChxjPQedwN7ZoPm0NnE=
+		c47uSgWaxuYhmSkow++JChHvPSg=
 		</data>
 		<key>Frameworks/libswiftCoreGraphics.dylib</key>
 		<data>
-		HHuE8FbX9WdPoFWMghtqIhc0Pqw=
+		7vymQtPFZWhSh6MpU3TUijcYRso=
 		</data>
 		<key>Frameworks/libswiftCoreImage.dylib</key>
 		<data>
-		ohMpMaRuQycAWzUl5YBIo6bdvos=
+		HTYbNf9N5fu7chT982R+kBcG3Ds=
+		</data>
+		<key>Frameworks/libswiftCoreMedia.dylib</key>
+		<data>
+		BpayiaVLfmt6YBxOK0EccjRNpWg=
 		</data>
 		<key>Frameworks/libswiftDarwin.dylib</key>
 		<data>
-		7NJaeHdPK84zv/BTIAdibW1mNHQ=
+		5xEYb6h618VOxFeclU1f8f3kB5k=
 		</data>
 		<key>Frameworks/libswiftDispatch.dylib</key>
 		<data>
-		W3A2LHAe16ewhSXOdvaDhTNn7j0=
+		51bmAyvdTt/7BSo6DvAYV0lYrKk=
 		</data>
 		<key>Frameworks/libswiftFoundation.dylib</key>
 		<data>
-		H1NoGgJ58LKKwKSidfyGU6CdSxs=
+		qtBUPakmSFeDUnyc6w5IbD3podA=
 		</data>
 		<key>Frameworks/libswiftObjectiveC.dylib</key>
 		<data>
-		rBEqFdaiVL601Ht0Uy5u9XdWDhg=
-		</data>
-		<key>Frameworks/libswiftSecurity.dylib</key>
-		<data>
-		aLYN0EWDQL4q/0jayisTKqnxyPQ=
+		8sSZC7pSWg3YvjSlo9P/63JC5cs=
 		</data>
 		<key>Frameworks/libswiftUIKit.dylib</key>
 		<data>
-		wAfokgFZEJ4MmcEOZU+KlSEzmIw=
+		KVoDnsRyhcWDFz7ZLh2M9iGCYE0=
 		</data>
 		<key>Headers/AGAlertViewWithProgressbar.h</key>
 		<data>
@@ -114,7 +134,7 @@
 		</data>
 		<key>Headers/iOSYunkuSDK-Swift.h</key>
 		<data>
-		kYfRCJu4twWUxBa/fdMd52UhHHw=
+		MZTynbdTT5lqXIGV5LkzVQ/bj94=
 		</data>
 		<key>Headers/iOSYunkuSDK.h</key>
 		<data>
@@ -122,23 +142,15 @@
 		</data>
 		<key>Info.plist</key>
 		<data>
-		56w1kS3X787SOvEUm8po5vhivE8=
-		</data>
-		<key>Modules/iOSYunkuSDK.swiftmodule/arm.swiftdoc</key>
-		<data>
-		GMFGMQW1yySE6UfIttPeG+mIKWo=
-		</data>
-		<key>Modules/iOSYunkuSDK.swiftmodule/arm.swiftmodule</key>
-		<data>
-		xg8vpewY/y8aQSbDIMAv07mMGIg=
+		r+fQk8VqIqObBfUK/YdfnfdZE9w=
 		</data>
 		<key>Modules/iOSYunkuSDK.swiftmodule/arm64.swiftdoc</key>
 		<data>
-		try4J8EjMRv9Z/83QEauADGQxG0=
+		Bx+uQ0Vghjxya1p9fOwnMRsjQm0=
 		</data>
 		<key>Modules/iOSYunkuSDK.swiftmodule/arm64.swiftmodule</key>
 		<data>
-		5I8C9IFw1JyZWtVfG/hKPWEKbGU=
+		ytFIju4WkGSVexODaBOPGveuKRg=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -147,61 +159,85 @@
 	</dict>
 	<key>files2</key>
 	<dict>
+		<key>Frameworks/CommonCrypto.framework/CommonCrypto</key>
+		<data>
+		oNt9gJb+pb8upfiQvFAf98vewUQ=
+		</data>
+		<key>Frameworks/CommonCrypto.framework/CommonCrypto.xcconfig</key>
+		<data>
+		ofl5Cdb+WYCtOz9q5x/kIqY6oE0=
+		</data>
+		<key>Frameworks/CommonCrypto.framework/Info.plist</key>
+		<data>
+		EW1wAlj16Qvm0tbecdJbW+cSpiU=
+		</data>
+		<key>Frameworks/CommonCrypto.framework/_CodeSignature/CodeResources</key>
+		<data>
+		MUELQbhF6Y106HdC2iydY0urL5M=
+		</data>
 		<key>Frameworks/YunkuSwiftSDK.framework/Info.plist</key>
 		<data>
-		Zee3ST+5150EbuB3MLK0dY22g98=
+		/LoJgAsw2IDgFqeFF0AehkMBin0=
 		</data>
 		<key>Frameworks/YunkuSwiftSDK.framework/YunkuSwiftSDK</key>
 		<data>
-		uxmE+vwRLxsUxPXw8ArxaHM5L0Q=
+		4/utF88IopKaGfjIXnIWRIdzLDQ=
 		</data>
 		<key>Frameworks/YunkuSwiftSDK.framework/_CodeSignature/CodeResources</key>
 		<data>
-		+MPu50c3Gal9Sh6b65pszNSVrMY=
+		aQIuuYRuhcVXA5P6G22zm5aIF+A=
+		</data>
+		<key>Frameworks/libswiftAVFoundation.dylib</key>
+		<data>
+		8OGeyni4F50KHTCvVfvwN2xpoK4=
 		</data>
 		<key>Frameworks/libswiftAssetsLibrary.dylib</key>
 		<data>
-		SFKmo/Sqf5nJ/HKOOccQ7V+028Y=
+		wblBh9wVtHuoTZXyVCgPn8CeMmA=
+		</data>
+		<key>Frameworks/libswiftContacts.dylib</key>
+		<data>
+		xSVHS4qxbHP6e+Gkie0IsrKk8VQ=
 		</data>
 		<key>Frameworks/libswiftCore.dylib</key>
 		<data>
-		m3B0zkI2MePe2//tOM3pkCVeqq0=
+		fh5sfA7u7oB4nZtQbec/qrdtZec=
 		</data>
 		<key>Frameworks/libswiftCoreAudio.dylib</key>
 		<data>
-		sNa0ldCdChxjPQedwN7ZoPm0NnE=
+		c47uSgWaxuYhmSkow++JChHvPSg=
 		</data>
 		<key>Frameworks/libswiftCoreGraphics.dylib</key>
 		<data>
-		HHuE8FbX9WdPoFWMghtqIhc0Pqw=
+		7vymQtPFZWhSh6MpU3TUijcYRso=
 		</data>
 		<key>Frameworks/libswiftCoreImage.dylib</key>
 		<data>
-		ohMpMaRuQycAWzUl5YBIo6bdvos=
+		HTYbNf9N5fu7chT982R+kBcG3Ds=
+		</data>
+		<key>Frameworks/libswiftCoreMedia.dylib</key>
+		<data>
+		BpayiaVLfmt6YBxOK0EccjRNpWg=
 		</data>
 		<key>Frameworks/libswiftDarwin.dylib</key>
 		<data>
-		7NJaeHdPK84zv/BTIAdibW1mNHQ=
+		5xEYb6h618VOxFeclU1f8f3kB5k=
 		</data>
 		<key>Frameworks/libswiftDispatch.dylib</key>
 		<data>
-		W3A2LHAe16ewhSXOdvaDhTNn7j0=
+		51bmAyvdTt/7BSo6DvAYV0lYrKk=
 		</data>
 		<key>Frameworks/libswiftFoundation.dylib</key>
 		<data>
-		H1NoGgJ58LKKwKSidfyGU6CdSxs=
+		qtBUPakmSFeDUnyc6w5IbD3podA=
 		</data>
 		<key>Frameworks/libswiftObjectiveC.dylib</key>
 		<data>
-		rBEqFdaiVL601Ht0Uy5u9XdWDhg=
-		</data>
-		<key>Frameworks/libswiftSecurity.dylib</key>
-		<data>
-		aLYN0EWDQL4q/0jayisTKqnxyPQ=
+		8sSZC7pSWg3YvjSlo9P/63JC5cs=
 		</data>
 		<key>Frameworks/libswiftUIKit.dylib</key>
 		<data>
-		wAfokgFZEJ4MmcEOZU+KlSEzmIw=
+		KVoDnsRyhcWDFz7ZLh2M9iGCYE0=
 		</data>
 		<key>Headers/AGAlertViewWithProgressbar.h</key>
 		<data>
@@ -253,27 +289,19 @@
 		</data>
 		<key>Headers/iOSYunkuSDK-Swift.h</key>
 		<data>
-		kYfRCJu4twWUxBa/fdMd52UhHHw=
+		MZTynbdTT5lqXIGV5LkzVQ/bj94=
 		</data>
 		<key>Headers/iOSYunkuSDK.h</key>
 		<data>
 		pB20+wDnxdZT7yc4asUJhy2JVdg=
 		</data>
-		<key>Modules/iOSYunkuSDK.swiftmodule/arm.swiftdoc</key>
-		<data>
-		GMFGMQW1yySE6UfIttPeG+mIKWo=
-		</data>
-		<key>Modules/iOSYunkuSDK.swiftmodule/arm.swiftmodule</key>
-		<data>
-		xg8vpewY/y8aQSbDIMAv07mMGIg=
-		</data>
 		<key>Modules/iOSYunkuSDK.swiftmodule/arm64.swiftdoc</key>
 		<data>
-		try4J8EjMRv9Z/83QEauADGQxG0=
+		Bx+uQ0Vghjxya1p9fOwnMRsjQm0=
 		</data>
 		<key>Modules/iOSYunkuSDK.swiftmodule/arm64.swiftmodule</key>
 		<data>
-		5I8C9IFw1JyZWtVfG/hKPWEKbGU=
+		ytFIju4WkGSVexODaBOPGveuKRg=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>

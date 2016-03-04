@@ -44,6 +44,7 @@ import YunkuSwiftSDK
     public static var orgClientSecret = ""
     public static var orgRootPath = ""
     public static var orgRootTitle = ""
+
     public static var orgOptName = ""
 
     //===========================================

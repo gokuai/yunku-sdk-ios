@@ -10,14 +10,14 @@
 	<string>iOSYunkuSDK</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>738CBB7DA4F561AB77341DD6D633ACA919CA151C</key>
+		<key>A91E61A2BCF0005C60F0F4AADB5D17A07DEA5AC5</key>
 		<string>github.com:gokuai/yunku-sdk-ios.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>iOSYunkuSDK/iOSYunkuSDK.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>738CBB7DA4F561AB77341DD6D633ACA919CA151C</key>
+		<key>A91E61A2BCF0005C60F0F4AADB5D17A07DEA5AC5</key>
 		<string>../../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
@@ -25,14 +25,14 @@
 	<key>IDESourceControlProjectVersion</key>
 	<integer>111</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>738CBB7DA4F561AB77341DD6D633ACA919CA151C</string>
+	<string>A91E61A2BCF0005C60F0F4AADB5D17A07DEA5AC5</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>738CBB7DA4F561AB77341DD6D633ACA919CA151C</string>
+			<string>A91E61A2BCF0005C60F0F4AADB5D17A07DEA5AC5</string>
 			<key>IDESourceControlWCCName</key>
 			<string>yunku-sdk-ios</string>
 		</dict>

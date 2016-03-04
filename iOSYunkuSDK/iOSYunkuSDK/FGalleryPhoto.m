@@ -143,7 +143,7 @@
 
 
 #pragma mark -
-#pragma mark NSURLConnection Delegate Methods
+#pragma mark NSURL Delegate Methods
 
 
 - (void)connection:(NSURLConnection *)conn didReceiveResponse:(NSURLResponse *)response {

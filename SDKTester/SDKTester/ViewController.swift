@@ -21,10 +21,10 @@ class ViewController: UIViewController,HookDelegate {
         //设置是否开启日志
         SDKConfig.logPrint = true
         
-        var ykVC = YKMainViewController()
+        let ykVC = YKMainViewController()
         
         //设置显需要的功能
-        var option = Option()
+        let option = Option()
         option.canRename = true
         option.canUpload = true
         option.canDel = true
@@ -32,7 +32,7 @@ class ViewController: UIViewController,HookDelegate {
         
         ykVC.delegate = self
         
-        var navC =  UINavigationController(rootViewController: ykVC)
+        let navC =  UINavigationController(rootViewController: ykVC)
         
         self.presentViewController(navC, animated: true, completion: nil)
         
@@ -60,7 +60,7 @@ class ViewController: UIViewController,HookDelegate {
     }
     
     func hookInvoke(type: HookType, fullPath: String) -> Bool {
-        println("fullPath:\(fullPath)")
+        print("fullPath:\(fullPath)")
         
         if self.forbiddenPath == fullPath{
             var access = true

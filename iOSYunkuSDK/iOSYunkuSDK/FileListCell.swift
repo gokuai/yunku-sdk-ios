@@ -53,7 +53,7 @@ public class FileListCell : UITableViewCell {
     }
 
     required public init(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
+        super.init(coder: aDecoder)!
        
     }
     
@@ -77,11 +77,11 @@ public class FileListCell : UITableViewCell {
         fileImgView.image = UIImage.imageNameFromMyBundle(data.icons)
         fileNameLabel.text = data.fileName
         
-        var timeStr = Utils.formatFileTime(Double(data.lastDateline))
+        let timeStr = Utils.formatFileTime(Double(data.lastDateline))
         if data.dir == FileData.dirs {
             infoLabel.text = timeStr
         }else{
-            var fileSizeStr = Utils.formatSize(data.fileSize)
+            let fileSizeStr = Utils.formatSize(data.fileSize)
             infoLabel.text = "\(fileSizeStr),\(timeStr)"
             
             if Utils.isImageType(data.fileName){

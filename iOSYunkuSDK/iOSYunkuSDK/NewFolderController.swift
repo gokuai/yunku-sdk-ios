@@ -28,7 +28,7 @@ class NewFolderController: NameController{
     }
     
     func newFolder() {
-        var folderName = self.textField.text.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
+        let folderName = self.textField.text!.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
         
         //检验文件是否存在
         for data in self.list{
@@ -44,7 +44,7 @@ class NewFolderController: NameController{
         }
         
         DialogUtils.showProgresing(self)
-        var appendingString = self.upFullPath.isEmpty ? "":"/"
+        let appendingString = self.upFullPath.isEmpty ? "":"/"
         FileDataManager.sharedInstance?.addDir("\(self.upFullPath)\(appendingString)\(folderName)", delegate: self)
         self.highLightName = folderName
     }

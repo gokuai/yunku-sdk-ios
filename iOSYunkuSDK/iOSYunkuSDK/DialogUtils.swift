@@ -17,7 +17,7 @@ class DialogUtils {
     
     class func showTipDialog(message:String,okBtnString:String,delegate:UIAlertViewDelegate,tag:Int) {
         
-        var alert = UIAlertView(title: NSBundle.getLocalStringFromBundle("Tip", comment: ""), message: message, delegate: delegate,
+        let alert = UIAlertView(title: NSBundle.getLocalStringFromBundle("Tip", comment: ""), message: message, delegate: delegate,
             cancelButtonTitle: NSBundle.getLocalStringFromBundle("Cancel", comment: ""), otherButtonTitles: okBtnString )
         
         alert.show()

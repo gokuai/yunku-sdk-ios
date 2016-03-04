@@ -33,7 +33,7 @@ class RenameController: NameController {
     }
     
     override func textFieldValueChanged(sender: AnyObject) {
-        var name = textField.text.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
+        let name = textField.text!.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
         
         if name == self.originalName{
             self.navigationItem.rightBarButtonItem?.enabled = false
@@ -45,9 +45,9 @@ class RenameController: NameController {
     
     override func textFieldDidBeginEditing(textField: UITextField) {
         super.textFieldDidBeginEditing(textField)
-        var from = textField.beginningOfDocument
-        var to = textField.positionFromPosition(from, offset: count(self.originalName.stringByDeletingPathExtension))
-        textField.selectedTextRange = textField .textRangeFromPosition(from, toPosition: to)
+        let from = textField.beginningOfDocument
+        let to = textField.positionFromPosition(from, offset: self.originalName.stringByDeletingPathExtension.characters.count)
+        textField.selectedTextRange = textField .textRangeFromPosition(from, toPosition: to!)
     }
     
     
@@ -57,7 +57,7 @@ class RenameController: NameController {
     
     //MARK:重命名
     func rename() {
-        var fileName = self.textField.text.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
+        let fileName = self.textField.text!.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
         
         for data in self.list{
             if data.fileName == fileName {

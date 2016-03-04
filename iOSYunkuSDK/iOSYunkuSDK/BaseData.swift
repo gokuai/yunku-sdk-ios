@@ -20,9 +20,9 @@ class BaseData:NSObject {
     static let keyCode = "code"
     
     class func create(dic:Dictionary<String,AnyObject>) ->BaseData {
-        var data = BaseData()
+        let data = BaseData()
 
-        var returnResult = ReturnResult.create(dic)
+        let returnResult = ReturnResult.create(dic)
         var returnDic = returnResult.result
         data.code = returnResult.code
         if data.code == HTTPStatusCode.OK.rawValue {

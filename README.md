@@ -8,9 +8,10 @@ Robots: noindex,nofollow
 
 # 够快云库iOS SDK使用说明
 
-版本：1.0.0
+版本：1.0.1
 
 创建：2015-07-20
+修改时间:2016－03－04
 
 ##兼容性声明
 
@@ -21,17 +22,14 @@ Robots: noindex,nofollow
 
 
 ##项目引用
-将iOSYunkuSDK.framework、YunkuSwiftSDK.framewords、iOSYUnkuSDK.bundle拖曳引用至项目。
+将iOSYunkuSDK.framework、YunkuSwiftSDK.framework、CommonCrypto.framework、iOSYUnkuSDK.bundle拖曳引用至项目。
 
-**swift**
-
-1.Build Setting => Swift Complier - Search Paths => Import Paths,将yunku-sdk-ios/iOSYunkuSDK/CommonCrypto 拖曳至选项
-
-2.Build Phases => 在顶部添加一项 Copy Files，Destination 选择 Frameworks，将iOSYunkuSDK从项目中拖曳进去
-
-**objc**
+**swift&objc**
 
 Build Phases => 在顶部添加一项 Copy Files，Destination 选择 Frameworks，将iOSYunkuSDK从项目中拖曳进去
+
+
+##Example项目声明
 
 ##项目必需设置
 
@@ -129,3 +127,4 @@ Build Phases => 在顶部添加一项 Copy Files，Destination 选择 Frameworks
 
 ##相关SDK
 https://github.com/gokuai/yunku-sdk-swift
+

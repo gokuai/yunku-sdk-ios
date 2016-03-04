@@ -51,7 +51,7 @@ import UIKit
     public func getFileUri(resopnse:((success:Bool,uri:String) -> Void)){
         let block = dispatch_block_create(DISPATCH_BLOCK_INHERIT_QOS_CLASS){
             
-            var data = FileDataManager.sharedInstance?.getFileInfoSync(self.fullPath)
+            let data = FileDataManager.sharedInstance?.getFileInfoSync(self.fullPath)
             dispatch_async(dispatch_get_main_queue()) {
                 if data != nil{
                     resopnse(success:true,uri: data!.uri)
