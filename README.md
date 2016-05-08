@@ -15,14 +15,14 @@ Robots: noindex,nofollow
 修改时间:2016-05-08
 
 ##Demo
-![Demo](/Screenshot/1.PNG)	
+<img src="/Screenshot/1.PNG" alt="文件列表" title="文件列表" width="50%" height="50%" />
 
-![Demo](/Screenshot/2.PNG)	
+<img src="/Screenshot/2.PNG" alt="重命名、删除" title="重命名、删除" width="50%" height="50%" />
 
-![Demo](/Screenshot/3.PNG)
+<img src="/Screenshot/3.PNG" alt="上传文件" title="上传文件" width="50%" height="50%" />
 
 ##场景使用声明
-此SDK包含界面交互，适用客户端快入内嵌使用，包含文件列表、文件下载、预览、上传、文件删除和重命名功能，如果是基于文件管理的接口开发，请查看 https://github.com/gokuai/yunku-sdk-java
+此SDK包含界面交互，适用客户端快入内嵌使用，包含文件列表、文件下载、预览、上传、文件删除和重命名功能，如果是基于文件管理的接口开发，请查看 https://github.com/gokuai/yunku-sdk-swift
 
 ##兼容性声明
 
