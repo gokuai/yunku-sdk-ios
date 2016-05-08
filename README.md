@@ -15,11 +15,11 @@ Robots: noindex,nofollow
 修改时间:2016-05-08
 
 ##Demo
-![Demo](/Screenshot/1.png)	
+![Demo](/Screenshot/1.PNG)	
 
-![Demo](/Screenshot/2.png)	
+![Demo](/Screenshot/2.PNG)	
 
-![Demo](/Screenshot/3.png)
+![Demo](/Screenshot/3.PNG)
 
 ##场景使用声明
 此SDK包含界面交互，适用客户端快入内嵌使用，包含文件列表、文件下载、预览、上传、文件删除和重命名功能，如果是基于文件管理的接口开发，请查看 https://github.com/gokuai/yunku-sdk-java
