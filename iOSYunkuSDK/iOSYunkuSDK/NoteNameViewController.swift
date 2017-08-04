@@ -17,11 +17,11 @@ class NoteNameViewController:NameController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.navigationItem.rightBarButtonItem?.title = NSBundle.getLocalStringFromBundle("Save", comment: "")
-        self.navigationItem.rightBarButtonItem?.enabled = true
+        self.navigationItem.rightBarButtonItem?.title = Bundle.getLocalStringFromBundle("Save", comment: "")
+        self.navigationItem.rightBarButtonItem?.isEnabled = true
         
-        self.navigationItem.title = NSBundle.getLocalStringFromBundle("Name (No extension)", comment: "")
-        self.textField.placeholder = NSBundle.getLocalStringFromBundle("Enter gknote name", comment: "")
+        self.navigationItem.title = Bundle.getLocalStringFromBundle("Name (No extension)", comment: "")
+        self.textField.placeholder = Bundle.getLocalStringFromBundle("Enter gknote name", comment: "")
         self.textField.text = defaultName
     }
     
@@ -29,22 +29,22 @@ class NoteNameViewController:NameController {
         super.didReceiveMemoryWarning()
     }
     
-    override func onFinish(sender: AnyObject?) {
+    override func onFinish(_ sender: AnyObject?) {
         self.name()
     }
     
     
-    override func textFieldDidBeginEditing(textField: UITextField) {
+    override func textFieldDidBeginEditing(_ textField: UITextField) {
         super.textFieldDidBeginEditing(textField)
         let from = textField.beginningOfDocument
-        let to = textField.positionFromPosition(from, offset: self.defaultName.stringByDeletingPathExtension.characters.count)
-        textField.selectedTextRange = textField .textRangeFromPosition(from, toPosition: to!)
+        let to = textField.position(from: from, offset: self.defaultName.stringByDeletingPathExtension.characters.count)
+        textField.selectedTextRange = textField .textRange(from: from, to: to!)
     }
     
     func name(){
-        let fileName = self.textField.text!.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
+        let fileName = self.textField.text!.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
         if fileName.pathExtension != "gknote"{
-            fileName.stringByAppendingPathExtension("gknote")
+            fileName.stringByAppendingPathExtension(ext: "gknote")
         }
 
         for data in self.list{
@@ -52,14 +52,14 @@ class NoteNameViewController:NameController {
                 continue
             }else{
                 if data.fileName == fileName {
-                    self.errorLabel.hidden = false
-                    self.errorLabel.text = NSBundle.getLocalStringFromBundle("File has been exit", comment: "")
+                    self.errorLabel.isHidden = false
+                    self.errorLabel.text = Bundle.getLocalStringFromBundle("File has been exit", comment: "")
                     return
                 }
             }
         }
         
-        self.dismissViewControllerAnimated(true, completion: {() -> Void in
+        self.dismiss(animated: true, completion: {() -> Void in
            self.delegate.onNoteNamed(fileName)
         })
         
@@ -68,6 +68,6 @@ class NoteNameViewController:NameController {
     
 }
 protocol NoteNameDelegate{
-    func onNoteNamed(fileName:String)
+    func onNoteNamed(_ fileName:String)
 
 }

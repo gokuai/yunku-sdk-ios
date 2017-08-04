@@ -8,27 +8,27 @@
 
 import Foundation
 
-@objc public class OBJCMethodBridge: NSObject {
+@objc open class OBJCMethodBridge: NSObject {
     
-    public class func getLocalString(key:String,comment:String) -> String{
-        return NSBundle.getLocalStringFromBundle(key, comment: comment)
+    open class func getLocalString(_ key:String,comment:String) -> String{
+        return Bundle.getLocalStringFromBundle(key, comment: comment)
     }
     
-    public class func getLocalImage(imageName:String)->UIImage{
+    open class func getLocalImage(_ imageName:String)->UIImage{
         return UIImage.imageNameFromMyBundle(imageName)
     }
     
-    public class func makeToast(message:String,view:UIView){
-        view.makeToast(message: message, duration: HRToastDefaultDuration, position: HRToastPositionCenter)
+    open class func makeToast(_ message:String,view:UIView){
+        view.makeToast(message: message, duration: HRToastDefaultDuration, position: HRToastPositionCenter as AnyObject)
     }
     
-    public class func showProgress(control:UIViewController){
+    open class func showProgress(_ control:UIViewController){
         
         DialogUtils.showProgresing(control)
     
     }
     
-    public class func hideProgress(control:UIViewController){
+    open class func hideProgress(_ control:UIViewController){
         DialogUtils.hideProgresing(control)
     
     }

@@ -8,9 +8,9 @@
 
 import Foundation
 
-@objc public class Option: NSObject {
-    public var canUpload = false
-    public var canDel = false
-    public var canRename = false
+@objc open class Option: NSObject {
+    open var canUpload = false
+    open var canDel = false
+    open var canRename = false
     
 }

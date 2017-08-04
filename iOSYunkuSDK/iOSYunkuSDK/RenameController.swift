@@ -9,7 +9,7 @@
 import Foundation
 
 
-class RenameController: NameController {
+class RenameController: NameController{
     
     var filePath = ""
     var fileIndex = 0
@@ -20,10 +20,10 @@ class RenameController: NameController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.navigationItem.rightBarButtonItem?.title = NSBundle.getLocalStringFromBundle("Rename", comment: "")
+        self.navigationItem.rightBarButtonItem?.title = Bundle.getLocalStringFromBundle("Rename", comment: "")
         
-        self.navigationItem.title = NSBundle.getLocalStringFromBundle("Rename", comment: "")
-        self.textField.placeholder = NSBundle.getLocalStringFromBundle("Enter new name", comment: "")
+        self.navigationItem.title = Bundle.getLocalStringFromBundle("Rename", comment: "")
+        self.textField.placeholder = Bundle.getLocalStringFromBundle("Enter new name", comment: "")
  
         self.filePath = self.list[self.fileIndex].fullPath
         self.originalName = self.filePath.lastPathComponent
@@ -32,37 +32,37 @@ class RenameController: NameController {
         
     }
     
-    override func textFieldValueChanged(sender: AnyObject) {
-        let name = textField.text!.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
+    override func textFieldValueChanged(_ sender: AnyObject) {
+        let name = textField.text!.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
         
         if name == self.originalName{
-            self.navigationItem.rightBarButtonItem?.enabled = false
+            self.navigationItem.rightBarButtonItem?.isEnabled = false
         }else{
             super.textFieldValueChanged(sender)
         }
         
     }
     
-    override func textFieldDidBeginEditing(textField: UITextField) {
+    override func textFieldDidBeginEditing(_ textField: UITextField) {
         super.textFieldDidBeginEditing(textField)
         let from = textField.beginningOfDocument
-        let to = textField.positionFromPosition(from, offset: self.originalName.stringByDeletingPathExtension.characters.count)
-        textField.selectedTextRange = textField .textRangeFromPosition(from, toPosition: to!)
+        let to = textField.position(from: from, offset: self.originalName.stringByDeletingPathExtension.characters.count)
+        textField.selectedTextRange = textField .textRange(from: from, to: to!)
     }
     
     
-    override func onFinish(sender:AnyObject?){
+    override func onFinish(_ sender:AnyObject?){
         self.rename()
     }
     
     //MARK:重命名
     func rename() {
-        let fileName = self.textField.text!.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
+        let fileName = self.textField.text!.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
         
         for data in self.list{
             if data.fileName == fileName {
-                self.errorLabel.hidden = false
-                self.errorLabel.text = NSBundle.getLocalStringFromBundle("File has been exit", comment: "")
+                self.errorLabel.isHidden = false
+                self.errorLabel.text = Bundle.getLocalStringFromBundle("File has been exit", comment: "")
                 return
             }
         }
@@ -73,16 +73,18 @@ class RenameController: NameController {
         self.highLightName = fileName
     }
     
-    override func onHttpRequest(action: Action) {
+    override func onHttpRequest(_ action: Action) {
   
         self.delegate.didRenamed(self.highLightName, index: self.fileIndex)
     
         super.onHttpRequest(action)
     }
+    
+
  
 }
 
 
 protocol RenameDelegate{
-    func didRenamed(newName:String,index:Int)
+    func didRenamed(_ newName:String,index:Int)
 }

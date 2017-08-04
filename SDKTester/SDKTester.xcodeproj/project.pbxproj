@@ -8,8 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		CA1EE1F41C893B1F00BA944F /* CommonCrypto.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = CA1EE1F31C893B1F00BA944F /* CommonCrypto.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		CA1EE1F61C893B3A00BA944F /* YunkuSwiftSDK.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = CA1EE1F51C893B3A00BA944F /* YunkuSwiftSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		CA7E52271B42725800C5A628 /* iOSYunkuSDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = CA7E52261B42725800C5A628 /* iOSYunkuSDK.bundle */; };
+		CA80F1D71F34682A00139634 /* YunkuSwiftSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA1EE1F51C893B3A00BA944F /* YunkuSwiftSDK.framework */; };
+		CA80F1D81F34682A00139634 /* YunkuSwiftSDK.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = CA1EE1F51C893B3A00BA944F /* YunkuSwiftSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		CABC05B41B3B8F4300FCD0C3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CABC05B31B3B8F4300FCD0C3 /* AppDelegate.swift */; };
 		CABC05B71B3B8F4300FCD0C3 /* SDKTester.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CABC05B51B3B8F4300FCD0C3 /* SDKTester.xcdatamodeld */; };
 		CABC05B91B3B8F4300FCD0C3 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CABC05B81B3B8F4300FCD0C3 /* ViewController.swift */; };
@@ -58,9 +59,9 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				CA80F1D81F34682A00139634 /* YunkuSwiftSDK.framework in CopyFiles */,
 				CAF70B5E1B56984900A8BAD7 /* iOSYunkuSDK.framework in CopyFiles */,
 				CA1EE1F41C893B1F00BA944F /* CommonCrypto.framework in CopyFiles */,
-				CA1EE1F61C893B3A00BA944F /* YunkuSwiftSDK.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -91,6 +92,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CA80F1D71F34682A00139634 /* YunkuSwiftSDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -227,9 +229,11 @@
 					CABC05AD1B3B8F4300FCD0C3 = {
 						CreatedOnToolsVersion = 6.3.2;
 						DevelopmentTeam = 24N4P5U529;
+						LastSwiftMigration = 0830;
 					};
 					CABC05C51B3B8F4400FCD0C3 = {
 						CreatedOnToolsVersion = 6.3.2;
+						LastSwiftMigration = 0830;
 						TestTargetID = CABC05AD1B3B8F4300FCD0C3;
 					};
 				};
@@ -448,6 +452,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Build/Products/Debug-iphonesimulator",
+					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = SDKTester/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -458,6 +463,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_INCLUDE_PATHS = "";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -470,6 +476,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Build/Products/Debug-iphonesimulator",
+					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = SDKTester/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -480,6 +487,7 @@
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_INCLUDE_PATHS = "";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -498,6 +506,7 @@
 				INFOPLIST_FILE = SDKTesterTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SDKTester.app/SDKTester";
 			};
 			name = Debug;
@@ -513,6 +522,7 @@
 				INFOPLIST_FILE = SDKTesterTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SDKTester.app/SDKTester";
 			};
 			name = Release;

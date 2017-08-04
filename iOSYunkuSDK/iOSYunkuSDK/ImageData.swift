@@ -8,35 +8,35 @@
 
 import UIKit
 
-@objc public class ImageData: NSObject {
+@objc open class ImageData: NSObject {
     
-    public var fileName:String
-    public var fullPath:String
-    public var thumbBig:String
-    public var fileHash:String
-    public var thumbNail:String
-    public var fileSize:UInt64
+    open var fileName:String
+    open var fullPath:String
+    open var thumbBig:String
+    open var fileHash:String
+    open var thumbNail:String
+    open var fileSize:UInt64
     
-    public var thumbBigCachePath:String{
-        return Utils.getThumbCachePath().stringByAppendingPathComponent("\(self.fileHash)_thumbbig")
+    open var thumbBigCachePath:String{
+        return Utils.getThumbCachePath().stringByAppendingPathComponent(path: "\(self.fileHash)_thumbbig")
     }
     
-    public var localPath:String{
-        return Utils.getFileCachePath().stringByAppendingPathComponent(self.fileHash)
+    open var localPath:String{
+        return Utils.getFileCachePath().stringByAppendingPathComponent(path: self.fileHash)
     
     }
     
-    public var localFileSize:UInt64{
+    open var localFileSize:UInt64{
         return Utils.getFileSizeWithPath(self.localPath)
     
     }
     
-    public var thumbBigCacheSize:UInt64{
+    open var thumbBigCacheSize:UInt64{
         return Utils.getFileSizeWithPath(self.thumbBigCachePath)
     }
     
-    public var thumbNailCachePath:String{
-        return Utils.getFileCachePath().stringByAppendingPathComponent(self.fileHash)
+    open var thumbNailCachePath:String{
+        return Utils.getFileCachePath().stringByAppendingPathComponent(path: self.fileHash)
     }
     
     init (data:FileData){
@@ -48,29 +48,27 @@ import UIKit
         self.fileSize = data.fileSize!
     }
     
-    public func getFileUri(resopnse:((success:Bool,uri:String) -> Void)){
-        let block = dispatch_block_create(DISPATCH_BLOCK_INHERIT_QOS_CLASS){
-            
+    open func getFileUri(_ resopnse:@escaping ((_ success:Bool,_ uri:String) -> Void)){
+
+        // Add block to queue
+        DispatchQueue.global(qos: DispatchQoS.QoSClass.background).async{
             let data = FileDataManager.sharedInstance?.getFileInfoSync(self.fullPath)
-            dispatch_async(dispatch_get_main_queue()) {
+            DispatchQueue.main.async {
                 if data != nil{
-                    resopnse(success:true,uri: data!.uri)
+                    resopnse(true,data!.uri)
                 }else{
                     
-                    resopnse(success: false, uri: "")
+                    resopnse(false, "")
                 }
                 
             }
-            
         }
-        // Add block to queue
-        dispatch_async( dispatch_get_global_queue(QOS_CLASS_BACKGROUND, 0), block)
     }
 
 }
 
 @objc public protocol FileInfoDelegate{
-    func onGetFileUrl(url:String)
+    func onGetFileUrl(_ url:String)
     
     func onFail();
 }

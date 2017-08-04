@@ -9,10 +9,12 @@
 import Foundation
 import YunkuSwiftSDK
 
-@objc public class FileUploadManager: NSObject,UIAlertViewDelegate,UploadCallBack,ProgressDialogDelegate{
+@objc open class FileUploadManager: NSObject,UIAlertViewDelegate,UploadCallBack,ProgressDialogDelegate{
     
-    private var uploadController:ProgressDialogViewController!
-    private var manger:UploadManager!
+
+    
+    fileprivate var uploadController:ProgressDialogViewController!
+    fileprivate var manger:UploadManager!
     var delegate:FileUploadManagerDelegate!
     
     class var sharedInstance : FileUploadManager? {
@@ -32,27 +34,29 @@ import YunkuSwiftSDK
     }
     
     //上传文件
-    func upload(fullPath:String,data:LocalFileData,view:UIView){
+    func upload(_ fullPath:String,data:LocalFileData,view:UIView){
        
         self.manger = FileDataManager.sharedInstance?.addFile(fullPath, localPath: data.localPath, callBack: self)
-        self.uploadController.showInView(view, fileName: data.fileName,message:NSBundle.getLocalStringFromBundle("Uploading", comment: ""), animated: true)
+        self.uploadController.showInView(view, fileName: data.fileName,message:Bundle.getLocalStringFromBundle("Uploading", comment: ""), animated: true)
 
     }
     
-     public func onFail(errorMsg: String) {
-        self.uploadController.setMessage(errorMsg)
-    }
-    
-     public func onProgress(percent: Float) {
-        self.uploadController.setProgress(percent,animated:true)
-    }
-    
-    public func onSuccess(fileHash: String, fullPath: String) {
+    public func onSuccess(_ fileHash: String, fullPath: String, localPath: String) {
         self.uploadController.removeAnimate()
         if self.delegate != nil {
             self.delegate.onFileDidCreate(fullPath.lastPathComponent)
         }
     }
+    
+    public func onProgress(_ percent: Float, fullPath: String) {
+        self.uploadController.setProgress(percent,animated:true)
+    }
+    
+    public func onFail(_ errorMsg: String?, errorCode: Int, fullPath: String, localPath: String) {
+        self.uploadController.setMessage(errorMsg!)
+    }
+
+    
     
 //    public func onSuccess(fileHash: String) {
 //        self.uploadController.removeAnimate()
@@ -71,6 +75,6 @@ import YunkuSwiftSDK
 }
 
  protocol FileUploadManagerDelegate{
-    func onFileDidCreate(fileName:String)
+    func onFileDidCreate(_ fileName:String)
 }
 

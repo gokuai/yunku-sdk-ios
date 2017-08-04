@@ -11,8 +11,8 @@ import Foundation
 extension UIViewController{
 
     func clientRect() -> CGRect{
-        var rect = UIScreen.mainScreen().bounds
-        if((self.navigationController?.navigationBarHidden) != nil){
+        var rect = UIScreen.main.bounds
+        if((self.navigationController?.isNavigationBarHidden) != nil){
             rect.origin.y = 0
             
             if( Utils.getIOSVersion()>=7&&Utils.getIOSVersion() < 8){

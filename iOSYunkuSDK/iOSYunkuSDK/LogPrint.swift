@@ -7,7 +7,7 @@ import Foundation
 
 @objc class LogPrint: NSObject {
 
-    private class func printLog<T>(log: T, logLevel: SDKLogLevel) {
+    fileprivate class func printLog<T>(_ log: T, logLevel: SDKLogLevel) {
 
         if SDKConfig.logPrint {
 
@@ -20,17 +20,17 @@ import Foundation
     }
 
 
-    class func error<T>(msg: T) {
-        printLog(msg, logLevel: SDKLogLevel.Error)
+    class func error<T>(_ msg: T) {
+        printLog(msg, logLevel: SDKLogLevel.error)
     }
 
-    class func warning<T>(msg: T) {
-        printLog(msg, logLevel: SDKLogLevel.Warning)
+    class func warning<T>(_ msg: T) {
+        printLog(msg, logLevel: SDKLogLevel.warning)
 
     }
 
-    class func info<T>(msg: T) {
-        printLog(msg, logLevel: SDKLogLevel.Info)
+    class func info<T>(_ msg: T) {
+        printLog(msg, logLevel: SDKLogLevel.info)
     }
 
 }

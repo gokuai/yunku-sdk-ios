@@ -16,19 +16,19 @@ class NewFolderController: NameController{
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.navigationItem.rightBarButtonItem?.title = NSBundle.getLocalStringFromBundle("Create", comment: "")
+        self.navigationItem.rightBarButtonItem?.title = Bundle.getLocalStringFromBundle("Create", comment: "")
         
-        self.navigationItem.title = NSBundle.getLocalStringFromBundle("New Folder", comment: "")
-        self.textField.placeholder = NSBundle.getLocalStringFromBundle("Enter folder name", comment: "")
+        self.navigationItem.title = Bundle.getLocalStringFromBundle("New Folder", comment: "")
+        self.textField.placeholder = Bundle.getLocalStringFromBundle("Enter folder name", comment: "")
 
     }
 
-    override func onFinish(sender:AnyObject?){
+    override func onFinish(_ sender:AnyObject?){
         self.newFolder()
     }
     
     func newFolder() {
-        let folderName = self.textField.text!.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
+        let folderName = self.textField.text!.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
         
         //检验文件是否存在
         for data in self.list{
@@ -36,8 +36,8 @@ class NewFolderController: NameController{
                 continue
             }else{
                 if data.fileName == folderName {
-                    self.errorLabel.hidden = false
-                    self.errorLabel.text = NSBundle.getLocalStringFromBundle("File has been exit", comment: "")
+                    self.errorLabel.isHidden = false
+                    self.errorLabel.text = Bundle.getLocalStringFromBundle("File has been exit", comment: "")
                     return
                 }
             }
@@ -49,7 +49,7 @@ class NewFolderController: NameController{
         self.highLightName = folderName
     }
     
-    override func onHttpRequest(action: Action) {
+    override func onHttpRequest(_ action: Action) {
      
         self.delegate.didCreateFolder(self.highLightName)
         
@@ -61,7 +61,7 @@ class NewFolderController: NameController{
 
 
 protocol NewFolderDelegate{
-    func didCreateFolder(fileName:String)
+    func didCreateFolder(_ fileName:String)
 }
 
 

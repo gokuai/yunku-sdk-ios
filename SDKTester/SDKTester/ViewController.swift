@@ -13,10 +13,10 @@ class ViewController: UIViewController,HookDelegate {
 
     @IBOutlet weak var TestBtn: UIButton!
     
-    @IBAction func btnOnClick(sender: AnyObject) {
+    @IBAction func btnOnClick(_ sender: AnyObject) {
         
         //设置是否开启日志的等级
-        SDKConfig.logLevel = SDKLogLevel.Info
+        SDKConfig.logLevel = SDKLogLevel.info
         
         //设置是否开启日志
         SDKConfig.logPrint = true
@@ -34,7 +34,7 @@ class ViewController: UIViewController,HookDelegate {
         
         let navC =  UINavigationController(rootViewController: ykVC)
         
-        self.presentViewController(navC, animated: true, completion: nil)
+        self.present(navC, animated: true, completion: nil)
         
         //navigation control push
 //      self.navigationController?.pushViewController(YKMainViewController(), animated: true)
@@ -59,24 +59,24 @@ class ViewController: UIViewController,HookDelegate {
         // Dispose of any resources that can be recreated.
     }
     
-    func hookInvoke(type: HookType, fullPath: String) -> Bool {
+    func hookInvoke(_ type: HookType, fullPath: String) -> Bool {
         print("fullPath:\(fullPath)")
         
         if self.forbiddenPath == fullPath{
             var access = true
             
             switch(type){
-            case .FileList:
+            case .fileList:
                 access = fileListAccess
-            case .Download:
+            case .download:
                 access = downloadAccess
-            case .Upload:
+            case .upload:
                 access = uploadAccess
-            case .CreateDir:
+            case .createDir:
                 access = createDirAccess
-            case .Rename:
+            case .rename:
                 access = renameAccess
-            case .Delete:
+            case .delete:
                 access = deleteAccess
             default:
                 ()

@@ -9,27 +9,27 @@
 import Foundation
 import YunkuSwiftSDK
 
-@objc public class SDKConfig :NSObject{
+@objc open class SDKConfig :NSObject{
     
     //如果想打印日志，则在外部调用设置为true
-    public static var logPrint = false {
+    open static var logPrint = false {
         didSet{
             YunkuSwiftSDK.Config.logPrint = logPrint
         }
     
     }
     //设定输入日志的等级
-    public static var logLevel = SDKLogLevel.Error {
+    open static var logLevel = SDKLogLevel.error {
         didSet{
             switch logLevel {
-            case SDKLogLevel.Error:
-                YunkuSwiftSDK.Config.logLevel = YunkuSwiftSDK.LogLevel.Error
+            case SDKLogLevel.error:
+                YunkuSwiftSDK.Config.logLevel = YunkuSwiftSDK.LogLevel.error
                 
-            case SDKLogLevel.Info:
-                YunkuSwiftSDK.Config.logLevel = YunkuSwiftSDK.LogLevel.Info
+            case SDKLogLevel.info:
+                YunkuSwiftSDK.Config.logLevel = YunkuSwiftSDK.LogLevel.info
                 
-            case SDKLogLevel.Warning:
-                YunkuSwiftSDK.Config.logLevel = YunkuSwiftSDK.LogLevel.Warning
+            case SDKLogLevel.warning:
+                YunkuSwiftSDK.Config.logLevel = YunkuSwiftSDK.LogLevel.warning
                 
             }
         }
@@ -40,12 +40,12 @@ import YunkuSwiftSDK
     //===========================================
     //MARK:以下参数需要开发者赋值
 
-    public static var orgClientId = ""
-    public static var orgClientSecret = ""
-    public static var orgRootPath = ""
-    public static var orgRootTitle = ""
+    open static var orgClientId = ""
+    open static var orgClientSecret = ""
+    open static var orgRootPath = ""
+    open static var orgRootTitle = ""
 
-    public static var orgOptName = ""
+    open static var orgOptName = ""
 
     //===========================================
 
@@ -61,13 +61,13 @@ import YunkuSwiftSDK
 //MARK:日志等级
 
 @objc public enum SDKLogLevel: Int {
-    case Info = 0, Warning, Error
+    case info = 0, warning, error
     
     var description: String {
         switch self {
-        case .Info: return "info";
-        case .Warning: return "warning";
-        case .Error: return "error";
+        case .info: return "info";
+        case .warning: return "warning";
+        case .error: return "error";
         }
     }
     

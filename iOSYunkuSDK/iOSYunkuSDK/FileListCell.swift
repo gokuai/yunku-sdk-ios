@@ -8,7 +8,7 @@
 
 import UIKit
 
-public class FileListCell : UITableViewCell {
+open class FileListCell : UITableViewCell {
   
     var fileNameLabel:UILabel!
     var fileImgView:UIImageView!
@@ -19,31 +19,31 @@ public class FileListCell : UITableViewCell {
     var moreLabel:UILabel!
     
     init(){
-        super.init(style: UITableViewCellStyle.Default, reuseIdentifier: FileListCell.description())
+        super.init(style: UITableViewCellStyle.default, reuseIdentifier: FileListCell.description())
        
-        fileImgView = UIImageView(frame: CGRectMake(20,  10, 34, 34))
+        fileImgView = UIImageView(frame: CGRect(x: 20,  y: 10, width: 34, height: 34))
         
-        fileNameLabel = UILabel(frame: CGRectMake(62, 4, 210, 24))
+        fileNameLabel = UILabel(frame: CGRect(x: 62, y: 4, width: 210, height: 24))
         fileNameLabel.numberOfLines = 1
-        fileNameLabel.font = UIFont.systemFontOfSize(14)
+        fileNameLabel.font = UIFont.systemFont(ofSize: 14)
         
-        infoLabel = UILabel(frame: CGRectMake(62, 28, 210, 24))
+        infoLabel = UILabel(frame: CGRect(x: 62, y: 28, width: 210, height: 24))
         infoLabel.numberOfLines = 1
-        infoLabel.font = UIFont.systemFontOfSize(12)
-        infoLabel.textColor = UIColor.grayColor()
+        infoLabel.font = UIFont.systemFont(ofSize: 12)
+        infoLabel.textColor = UIColor.gray
         
-        imageBtn = UIButton(frame: CGRectMake(UIScreen.mainScreen().bounds.width - 54, 0, 54, 54))
-        imageBtn.setImage(UIImage.imageNameFromMyBundle("ic_dropdown_flag_down_normal"), forState: UIControlState.Normal)
-        imageBtn.setImage(UIImage.imageNameFromMyBundle("ic_dropdown_flag_down_pressed"), forState: UIControlState.Highlighted)
+        imageBtn = UIButton(frame: CGRect(x: UIScreen.main.bounds.width - 54, y: 0, width: 54, height: 54))
+        imageBtn.setImage(UIImage.imageNameFromMyBundle("ic_dropdown_flag_down_normal"), for: UIControlState())
+        imageBtn.setImage(UIImage.imageNameFromMyBundle("ic_dropdown_flag_down_pressed"), for: UIControlState.highlighted)
         imageBtn.imageEdgeInsets = UIEdgeInsetsMake(16, 16, 16, 16)
-        imageBtn.contentMode = UIViewContentMode.ScaleAspectFit
-        imageBtn.addTarget(self, action: "onItemOperate:", forControlEvents: UIControlEvents.TouchUpInside)
+        imageBtn.contentMode = UIViewContentMode.scaleAspectFit
+        imageBtn.addTarget(self, action: #selector(FileListCell.onItemOperate(_:)), for: UIControlEvents.touchUpInside)
         
-        moreLabel = UILabel(frame: CGRectMake( (self.frame.width - 210)/2 , 15, 210, 24))
+        moreLabel = UILabel(frame: CGRect( x: (self.frame.width - 210)/2 , y: 15, width: 210, height: 24))
         moreLabel.numberOfLines = 1
-        moreLabel.font = UIFont.systemFontOfSize(14)
-        moreLabel.text = NSBundle.getLocalStringFromBundle("Load More", comment: "")
-        moreLabel.textAlignment = NSTextAlignment.Center
+        moreLabel.font = UIFont.systemFont(ofSize: 14)
+        moreLabel.text = Bundle.getLocalStringFromBundle("Load More", comment: "")
+        moreLabel.textAlignment = NSTextAlignment.center
        
         self.addSubview(self.fileNameLabel)
         self.addSubview(self.fileImgView)
@@ -58,16 +58,16 @@ public class FileListCell : UITableViewCell {
     }
     
     //MARK:绑定FileData数据
-    func bindView(data:FileData,delegate:FileItemOperateDelegate,option:Option?){
+    func bindView(_ data:FileData,delegate:FileItemOperateDelegate,option:Option?){
         self.data = data
         self.delegate = delegate
         
-        self.fileImgView.hidden = data.isFoot
+        self.fileImgView.isHidden = data.isFoot
         
-        self.infoLabel.hidden = data.isFoot
-        self.imageBtn.hidden = data.isFoot
-        self.fileNameLabel.hidden = data.isFoot
-        self.moreLabel.hidden = !data.isFoot
+        self.infoLabel.isHidden = data.isFoot
+        self.imageBtn.isHidden = data.isFoot
+        self.fileNameLabel.isHidden = data.isFoot
+        self.moreLabel.isHidden = !data.isFoot
         
         if data.isFoot{
             return
@@ -85,7 +85,7 @@ public class FileListCell : UITableViewCell {
             infoLabel.text = "\(fileSizeStr),\(timeStr)"
             
             if Utils.isImageType(data.fileName){
-                let url = NSURL(string: data.thumbNail)
+                let url = URL(string: data.thumbNail)
                 
                 self.fileImgView.hnk_setImageFromURL(url!)
 
@@ -93,17 +93,17 @@ public class FileListCell : UITableViewCell {
         }
         
         if option == nil || (!option!.canRename && !option!.canDel){
-            self.imageBtn.hidden = true
+            self.imageBtn.isHidden = true
         }
     }
     
-    func onItemOperate(sender:AnyObject){
+    func onItemOperate(_ sender:AnyObject){
         delegate.onItemOperte(self.tag)
     }
     
 }
 
 protocol FileItemOperateDelegate {
-    func onItemOperte(index:Int)
+    func onItemOperte(_ index:Int)
 }
 

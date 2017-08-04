@@ -8,31 +8,31 @@
 
 import Foundation
 
-extension NSBundle{
+extension Bundle{
     
-    class var myResourceBundleInstance : NSBundle? {
+    class var myResourceBundleInstance : Bundle? {
         struct Static {
-            static let instance : NSBundle = NSBundle(URL: NSBundle.mainBundle().URLForResource("iOSYunkuSDK", withExtension: "bundle")!)!
+            static let instance : Bundle = Bundle(url: Bundle.main.url(forResource: "iOSYunkuSDK", withExtension: "bundle")!)!
         }
         
         return Static.instance
     }
    
 
-    class var myLanguageInstance : NSBundle? {
+    class var myLanguageInstance : Bundle? {
  
         struct Static {
-            static let instance : NSBundle =  NSBundle.getBundle()
+            static let instance : Bundle =  Bundle.getBundle()
         }
         return Static.instance
        
     }
     
-    private class func getBundle() ->NSBundle{
+    fileprivate class func getBundle() ->Bundle{
         
-        let language = NSLocale.preferredLanguages()[0]
+        let language = Locale.preferredLanguages[0]
         
-        var bundle = NSBundle(path: (NSBundle.myResourceBundleInstance?.pathForResource(language, ofType:"lproj"))!)
+        var bundle = Bundle(path: (Bundle.myResourceBundleInstance?.path(forResource: language, ofType:"lproj"))!)
         
         if bundle == nil {
             bundle = myResourceBundleInstance
@@ -41,8 +41,8 @@ extension NSBundle{
     
     }
     
-    public class func getLocalStringFromBundle(key:String,comment:String) ->String{
-        return NSLocalizedString(key, tableName: nil, bundle: NSBundle.myResourceBundleInstance!, value: "", comment: comment)
+    public class func getLocalStringFromBundle(_ key:String,comment:String) ->String{
+        return NSLocalizedString(key, tableName: nil, bundle: Bundle.myResourceBundleInstance!, value: "", comment: comment)
     
     }
 

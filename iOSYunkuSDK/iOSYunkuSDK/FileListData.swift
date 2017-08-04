@@ -20,24 +20,24 @@ class FileListData:BaseData {
     var parentPath = ""
     var mountId = 0
     
-     override class func create(dic:Dictionary<String,AnyObject>) ->FileListData{
+     override class func create(_ dic:Dictionary<String,AnyObject>) ->FileListData{
         
         let filelistData = FileListData()
         
        let returnResult =  ReturnResult.create(dic)
         var resultDic = returnResult.result
         filelistData.code = returnResult.code
-        if returnResult.code == HTTPStatusCode.OK.rawValue{
-            let list = resultDic[keyList] as? NSArray
+        if returnResult.code == HTTPStatusCode.ok.rawValue{
+            let list = resultDic?[keyList] as? NSArray
             filelistData.fileList = Array<FileData>()
-            for  obj:AnyObject in list! {
-                let fileData = FileData.create(obj as! Dictionary<String, AnyObject>)
-                filelistData.fileList.append(fileData)
-            }
+//            for  obj:AnyObject in list! {
+//                let fileData = FileData.create(obj as! Dictionary<String, AnyObject>)
+//                filelistData.fileList.append(fileData)
+//            }
 
         }else{
-            filelistData.errorCode = resultDic[keyErrorcode] as? Int
-            filelistData.errorMsg = resultDic[keyErrormsg] as? String
+            filelistData.errorCode = resultDic?[keyErrorcode] as? Int
+            filelistData.errorMsg = resultDic?[keyErrormsg] as? String
         
         }
         return filelistData

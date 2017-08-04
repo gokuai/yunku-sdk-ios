@@ -10,10 +10,10 @@ import Foundation
 
 @objc public protocol HookDelegate{
     
-     func hookInvoke(type:HookType,fullPath:String) -> Bool
+     func hookInvoke(_ type:HookType,fullPath:String) -> Bool
 
 }
 
 @objc public enum HookType:Int {
-    case FileList = 0 ,Download, Upload,CreateDir,Rename,Delete
+    case fileList = 0 ,download, upload,createDir,rename,delete
 }

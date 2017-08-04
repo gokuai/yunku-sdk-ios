@@ -72,7 +72,7 @@ class FileData:BaseData{
         }
     }
     
-    override class func create(dic:Dictionary<String,AnyObject>)->FileData {
+    override class func create(_ dic:Dictionary<String,AnyObject>)->FileData {
         let data = FileData()
 
         data.uuidHash = dic[keyHash] as? String

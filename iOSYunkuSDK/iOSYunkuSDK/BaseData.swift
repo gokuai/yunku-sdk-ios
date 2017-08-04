@@ -19,18 +19,18 @@ class BaseData:NSObject {
     static let keyErrormsg = "error_msg"
     static let keyCode = "code"
     
-    class func create(dic:Dictionary<String,AnyObject>) ->BaseData {
+    class func create(_ dic:Dictionary<String,AnyObject>) ->BaseData {
         let data = BaseData()
 
         let returnResult = ReturnResult.create(dic)
         var returnDic = returnResult.result
         data.code = returnResult.code
-        if data.code == HTTPStatusCode.OK.rawValue {
+        if data.code == HTTPStatusCode.ok.rawValue {
 
         }else {
             
-            data.errorCode = returnDic[keyErrorcode] as? Int
-            data.errorMsg = returnDic[keyErrormsg] as? String
+            data.errorCode = returnDic?[keyErrorcode] as? Int
+            data.errorMsg = returnDic?[keyErrormsg] as? String
         }
         
         return data

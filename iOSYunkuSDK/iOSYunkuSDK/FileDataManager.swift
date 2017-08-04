@@ -9,7 +9,7 @@
 import Foundation
 import YunkuSwiftSDK
 
-@objc public class FileDataManager: NSObject {
+@objc open class FileDataManager: NSObject {
 
     var rootPath = SDKConfig.orgRootPath
     var opName = SDKConfig.orgOptName
@@ -35,30 +35,29 @@ import YunkuSwiftSDK
     }
 
     //MARK:注册hook
-    public func registerHook (delegate:HookDelegate?){
+    open func registerHook (_ delegate:HookDelegate?){
         self.hooKDelegate = delegate
     }
     
     //MARK:撤销Hook注册
-    public func unRegisterHook(){
+    open func unRegisterHook(){
         self.hooKDelegate = nil
     }
     
     //MARK:重命名
-    func rename(fullPath:String,newName:String,delegate:RequestDelegate) -> dispatch_block_t?{
-        if(!Reachability.isConnectedToNetwork()){
+    func rename(_ fullPath:String,newName:String,delegate:RequestDelegate) {
+        if(!(Reachability()?.isReachable)!){
             delegate.onNetUnable()
-            return nil
+            return
         }
         
-        if isHookRegisted() && !self.hooKDelegate!.hookInvoke(HookType.Rename, fullPath: fullPath) {
-            delegate.onHookError(HookType.Rename)
-            return nil
+        if isHookRegisted() && !self.hooKDelegate!.hookInvoke(HookType.rename, fullPath: fullPath) {
+            delegate.onHookError(HookType.rename)
+            return
         }
         
-        
-        let block = dispatch_block_create(DISPATCH_BLOCK_INHERIT_QOS_CLASS){
-            
+        // Add block to queue
+        DispatchQueue.global(qos: DispatchQoS.QoSClass.background).async{
             let parentPath = fullPath.stringByDeletingLastPathComponent
             let appendingString = parentPath.isEmpty ? "":"/"
             let newPath = "\(parentPath)\(appendingString)\(newName)"
@@ -66,52 +65,46 @@ import YunkuSwiftSDK
             let result = self.fileManager?.move(fullPath, destFullPath: newPath, opName: self.opName)
             
             let data = BaseData.create(result!)
-            dispatch_async(dispatch_get_main_queue()) {
+            DispatchQueue.main.async {
                 
-                if data.code == HTTPStatusCode.OK.rawValue {
-                    delegate.onHttpRequest(Action.Rename)
+                if data.code == HTTPStatusCode.ok.rawValue {
+                    delegate.onHttpRequest(Action.rename)
                 }else{
                     delegate.onError(data.errorMsg)
                 }
             }
-            
         }
-        // Add block to queue
-        dispatch_async( dispatch_get_global_queue(QOS_CLASS_BACKGROUND, 0), block)
         
-        return block
+        
     }
     
     //MARK:文件删除
-    func del(fullPath:String,delegate:RequestDelegate) -> dispatch_block_t? {
-        if(!Reachability.isConnectedToNetwork()){
+    func del(_ fullPath:String,delegate:RequestDelegate)  {
+        if(!(Reachability()?.isReachable)!){
             delegate.onNetUnable()
-            return nil
+            return
         }
         
-        if isHookRegisted() && !self.hooKDelegate!.hookInvoke(HookType.Delete, fullPath: fullPath) {
-            delegate.onHookError(HookType.Delete)
-            return nil
+        if isHookRegisted() && !self.hooKDelegate!.hookInvoke(HookType.delete, fullPath: fullPath) {
+            delegate.onHookError(HookType.delete)
+            return
         }
         
-        let block = dispatch_block_create(DISPATCH_BLOCK_INHERIT_QOS_CLASS){
+        // Add block to queue
+        DispatchQueue.global(qos: DispatchQoS.QoSClass.background).async{
             let result = self.fileManager?.del(fullPath, opName: self.opName)
             
             let data = BaseData.create(result!)
-            dispatch_async(dispatch_get_main_queue()) {
+            DispatchQueue.main.async {
                 
-                if data.code == HTTPStatusCode.OK.rawValue {
-                    delegate.onHttpRequest(Action.Delete)
+                if data.code == HTTPStatusCode.ok.rawValue {
+                    delegate.onHttpRequest(Action.delete)
                 }else{
                     delegate.onError(data.errorMsg)
                 }
             }
-            
         }
-        // Add block to queue
-        dispatch_async( dispatch_get_global_queue(QOS_CLASS_BACKGROUND, 0), block)
-        
-        return block
+
     }
     
     func moveTo(){
@@ -124,8 +117,8 @@ import YunkuSwiftSDK
     
     
     //MARK:获取文件信息
-    func  getFileInfoSync(fullPath:String) ->FileData {
-        let resdic = self.fileManager?.getFileInfo(fullPath,type: NetType.Default)
+    func  getFileInfoSync(_ fullPath:String) ->FileData {
+        let resdic = self.fileManager?.getFileInfo(fullPath,type: NetType.default)
         if let dic = resdic {
             let returnRes = ReturnResult.create(dic)
             return FileData.create(returnRes.result)
@@ -135,13 +128,13 @@ import YunkuSwiftSDK
     }
     
     //MARK:上传文件
-    func addFile(fullPath:String,localPath:String,callBack:UploadCallBack) -> UploadManager? {
-        if(!Reachability.isConnectedToNetwork()){
+    func addFile(_ fullPath:String,localPath:String,callBack:UploadCallBack) -> UploadManager? {
+        if(!(Reachability()?.isReachable)!){
             return nil
         }
         
-        if isHookRegisted() && !self.hooKDelegate!.hookInvoke(HookType.Upload, fullPath: fullPath) {
-            callBack.onFail("")
+        if isHookRegisted() && !self.hooKDelegate!.hookInvoke(HookType.upload, fullPath: fullPath) {
+            callBack.onFail("", errorCode: 0, fullPath: fullPath, localPath: localPath)
             return nil
         }
         
@@ -149,77 +142,69 @@ import YunkuSwiftSDK
     }
     
     //MARK:添加文件夹
-    func addDir(fullPath:String,delegate:RequestDelegate) -> dispatch_block_t?{
-        if(!Reachability.isConnectedToNetwork()){
+    func addDir(_ fullPath:String,delegate:RequestDelegate) {
+        if(!(Reachability()?.isReachable)!){
             delegate.onNetUnable()
-            return nil
+            return
         }
         
-        if isHookRegisted() && !self.hooKDelegate!.hookInvoke(HookType.CreateDir, fullPath: fullPath) {
-            delegate.onHookError(HookType.CreateDir)
-            return nil
+        if isHookRegisted() && !self.hooKDelegate!.hookInvoke(HookType.createDir, fullPath: fullPath) {
+            delegate.onHookError(HookType.createDir)
+            return
         }
-        
-        let block = dispatch_block_create(DISPATCH_BLOCK_INHERIT_QOS_CLASS){
-            
+        // Add block to queue
+        DispatchQueue.global(qos: DispatchQoS.QoSClass.background).async{
             let result = self.fileManager?.createFolder(fullPath,opName:self.opName)
             
             let data = BaseData.create(result!)
-            dispatch_async(dispatch_get_main_queue()) {
+            DispatchQueue.main.async {
                 
-                if data.code == HTTPStatusCode.OK.rawValue {
-                    delegate.onHttpRequest(Action.CreateFolder)
+                if data.code == HTTPStatusCode.ok.rawValue {
+                    delegate.onHttpRequest(Action.createFolder)
                 }else{
                     delegate.onError(data.errorMsg)
                 }
             }
-            
         }
-        // Add block to queue
-        dispatch_async( dispatch_get_global_queue(QOS_CLASS_BACKGROUND, 0), block)
-
-        return block
+        
         
     }
     
     //MARK:获取文件列表
-    func getFileList(start:Int,fullPath:String,delegate:FileListDataDelegate) -> dispatch_block_t? {
+    func getFileList(_ start:Int,fullPath:String,delegate:FileListDataDelegate) {
         
-        if(!Reachability.isConnectedToNetwork()){
+        if(!(Reachability()?.isReachable)!){
             delegate.onNetUnable()
-            return nil
+            return
         }
         
-        if isHookRegisted() && !self.hooKDelegate!.hookInvoke(HookType.FileList, fullPath: fullPath) {
-            delegate.onHookError(HookType.FileList)
-            return nil
+        if isHookRegisted() && !self.hooKDelegate!.hookInvoke(HookType.fileList, fullPath: fullPath) {
+            delegate.onHookError(HookType.fileList)
+            return
         }
         
-        let block = dispatch_block_create(DISPATCH_BLOCK_INHERIT_QOS_CLASS){
-            
+        // Add block to queue
+        DispatchQueue.global(qos: DispatchQoS.QoSClass.background).async{
             let result = self.fileManager?.getFileList(start, fullPath: fullPath)
             
             let fileListData = FileListData.create(result!)
             
-            dispatch_async(dispatch_get_main_queue()) {
+            DispatchQueue.main.async {
                 
-                if fileListData.code == HTTPStatusCode.OK.rawValue {
+                if fileListData.code == HTTPStatusCode.ok.rawValue {
                     delegate.onHttpRequest(start,fullPath: fullPath,list: fileListData.fileList)
                     self.fullPath = fullPath
                     self.start = start
                 }else {
                     delegate.onError(fileListData.errorMsg)
                 }
-      
+                
             }
-            
         }
-        // Add block to queue
-         dispatch_async( dispatch_get_global_queue(QOS_CLASS_BACKGROUND, 0), block)
         
 //        dispatch_block_cancel(_block)
         
-        return block
+        
     }
     
     var fullPath = ""
@@ -227,15 +212,15 @@ import YunkuSwiftSDK
     static let pageSize = 100
     
     //MARK:获取更多的文件列表
-    func getMoreList(delegate:FileListDataDelegate) -> dispatch_block_t? {
+    func getMoreList(_ delegate:FileListDataDelegate) {
         start += FileDataManager.pageSize
         
-        return getFileList(self.start, fullPath: self.fullPath, delegate: delegate)
+         getFileList(self.start, fullPath: self.fullPath, delegate: delegate)
         
     }
     
     //MARK:是否是当前根目录
-    func isRootPath(fullPath:String) -> Bool{
+    func isRootPath(_ fullPath:String) -> Bool{
         return fullPath == rootPath
     }
     
@@ -247,23 +232,23 @@ import YunkuSwiftSDK
 }
 
 @objc enum Action:Int {
-        case CreateFolder = 1, Delete, Move, Copy, Rename
+        case createFolder = 1, delete, move, copy, rename
 }
 
 protocol FileListDataDelegate:BaseDelegate{
-    func onHttpRequest(start:Int,fullPath:String,list:Array<FileData>)
+    func onHttpRequest(_ start:Int,fullPath:String,list:Array<FileData>)
 }
 
 
 protocol RequestDelegate:BaseDelegate{
-    func onHttpRequest(action:Action)
+    func onHttpRequest(_ action:Action)
 }
 
 @objc protocol BaseDelegate{
     
-    func onError(errorMsg:String)
+    func onError(_ errorMsg:String)
     
-    func onHookError(type:HookType)
+    func onHookError(_ type:HookType)
     
     func onNetUnable()
 

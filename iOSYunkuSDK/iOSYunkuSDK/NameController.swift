@@ -22,29 +22,29 @@ class NameController: UIViewController , UITextFieldDelegate,RequestDelegate {
         
         self.view.backgroundColor = UIColor(red: 202.0/225.0, green: 202.0/225.0, blue: 202.0/225.0, alpha: 1.0)
   
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem(title:  NSBundle.getLocalStringFromBundle("Close", comment: ""), style: UIBarButtonItemStyle.Plain, target: self, action: "onClose:")
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(title:  Bundle.getLocalStringFromBundle("Close", comment: ""), style: UIBarButtonItemStyle.plain, target: self, action: "onClose:")
         
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: NSBundle.getLocalStringFromBundle("Finish", comment: ""), style: UIBarButtonItemStyle.Plain, target: self, action: "onFinish:")
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: Bundle.getLocalStringFromBundle("Finish", comment: ""), style: UIBarButtonItemStyle.plain, target: self, action: "onFinish:")
         
-        self.navigationItem.rightBarButtonItem?.enabled = false
+        self.navigationItem.rightBarButtonItem?.isEnabled = false
         
         let frame = self.clientRect()
-        self.textField = UITextField(frame: CGRectMake(10, 100.0, frame.width - 20, 48))
-        self.textField.leftViewMode = UITextFieldViewMode.Always
-        self.textField.leftView = UILabel(frame: CGRectMake(0, 0, 10, 25))
-        self.textField.clearButtonMode = UITextFieldViewMode.WhileEditing
-        self.textField.autocapitalizationType = UITextAutocapitalizationType.None
+        self.textField = UITextField(frame: CGRect(x: 10, y: 100.0, width: frame.width - 20, height: 48))
+        self.textField.leftViewMode = UITextFieldViewMode.always
+        self.textField.leftView = UILabel(frame: CGRect(x: 0, y: 0, width: 10, height: 25))
+        self.textField.clearButtonMode = UITextFieldViewMode.whileEditing
+        self.textField.autocapitalizationType = UITextAutocapitalizationType.none
         self.textField.becomeFirstResponder()
-        self.textField.borderStyle = UITextBorderStyle.RoundedRect
-        self.textField.backgroundColor = UIColor.whiteColor()
+        self.textField.borderStyle = UITextBorderStyle.roundedRect
+        self.textField.backgroundColor = UIColor.white
         self.textField.delegate = self
-        self.textField.font = UIFont.systemFontOfSize(14)
-        self.textField.addTarget(self, action: "textFieldValueChanged:", forControlEvents: UIControlEvents.EditingChanged)
+        self.textField.font = UIFont.systemFont(ofSize: 14)
+        self.textField.addTarget(self, action: #selector(NameController.textFieldValueChanged(_:)), for: UIControlEvents.editingChanged)
         
-        self.errorLabel = UILabel(frame: CGRectMake(10, 150, frame.width - 20, 32))
-        self.errorLabel.font = UIFont.systemFontOfSize(14)
-        self.errorLabel.textColor = UIColor.redColor()
-        self.edgesForExtendedLayout = .None//for toast
+        self.errorLabel = UILabel(frame: CGRect(x: 10, y: 150, width: frame.width - 20, height: 32))
+        self.errorLabel.font = UIFont.systemFont(ofSize: 14)
+        self.errorLabel.textColor = UIColor.red
+        self.edgesForExtendedLayout = UIRectEdge()//for toast
         
         self.view.addSubview(self.textField)
         self.view.addSubview(self.errorLabel)
@@ -52,25 +52,25 @@ class NameController: UIViewController , UITextFieldDelegate,RequestDelegate {
     }
     
     //MARK:文字发生改变
-    func textFieldValueChanged(sender:AnyObject){
-        let name = textField.text!.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
+    func textFieldValueChanged(_ sender:AnyObject){
+        let name = textField.text!.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
         let isContainSepcial = Utils.isContainSepcial(name)
         let isValid = Utils.isVaildName(name)
         
-        self.navigationItem.rightBarButtonItem?.enabled = !name.isEmpty && !isContainSepcial && isValid
+        self.navigationItem.rightBarButtonItem?.isEnabled = !name.isEmpty && !isContainSepcial && isValid
         
-        self.errorLabel.hidden = !isContainSepcial && isValid
+        self.errorLabel.isHidden = !isContainSepcial && isValid
         
         if isContainSepcial {
-            errorLabel.text = NSBundle.getLocalStringFromBundle("File name contains sepical code", comment: "")
+            errorLabel.text = Bundle.getLocalStringFromBundle("File name contains sepical code", comment: "")
         }
         
         if !isValid{
-            errorLabel.text = NSBundle.getLocalStringFromBundle("File name star with \".\" or end with \".\" is invalid ", comment: "")
+            errorLabel.text = Bundle.getLocalStringFromBundle("File name star with \".\" or end with \".\" is invalid ", comment: "")
         }
     }
     
-    func textFieldDidBeginEditing(textField: UITextField) {
+    func textFieldDidBeginEditing(_ textField: UITextField) {
 
     }
     
@@ -81,20 +81,18 @@ class NameController: UIViewController , UITextFieldDelegate,RequestDelegate {
         self.list = nil
     }
     
-    
-    func onHttpRequest(action: Action) {
+    func onHttpRequest(_ action: Action) {
         DialogUtils.hideProgresing(self)
-//        self.delegate.hightLightName(highLightName)
-        self.dismissViewControllerAnimated(true, completion: nil)
-        
+        //        self.delegate.hightLightName(highLightName)
+        self.dismiss(animated: true, completion: nil)
     }
     
-    func onError(errorMsg:String){
+    func onError(_ errorMsg:String){
         DialogUtils.hideProgresing(self)
-        self.view.makeToast(message: errorMsg, duration: HRToastDefaultDuration, position: HRToastPositionTop)
+        self.view.makeToast(message: errorMsg, duration: HRToastDefaultDuration, position: HRToastPositionTop as AnyObject)
     }
     
-    func onHookError(type:HookType){
+    func onHookError(_ type:HookType){
         DialogUtils.hideProgresing(self)
     }
     
@@ -104,16 +102,16 @@ class NameController: UIViewController , UITextFieldDelegate,RequestDelegate {
     }
     
     
-    func onClose(sender:AnyObject){
-        self.dismissViewControllerAnimated(true, completion: nil)
+    func onClose(_ sender:AnyObject){
+        self.dismiss(animated: true, completion: nil)
     }
     
-    func onFinish(sender:AnyObject?){
+    func onFinish(_ sender:AnyObject?){
 
     }
     
 }
 
 protocol NeedHighLightNameDelegate{
-    func hightLightName(fileName:String)
+    func hightLightName(_ fileName:String)
 }

@@ -10,29 +10,29 @@ import Foundation
 
 class DialogUtils {
     
-    class func showNetWorkNotAvailable (view:UIView){
+    class func showNetWorkNotAvailable (_ view:UIView){
         
-        view.makeToast(message: NSBundle.getLocalStringFromBundle("Network not available", comment: ""))
+        view.makeToast(message: Bundle.getLocalStringFromBundle("Network not available", comment: ""))
     }
     
-    class func showTipDialog(message:String,okBtnString:String,delegate:UIAlertViewDelegate,tag:Int) {
+    class func showTipDialog(_ message:String,okBtnString:String,delegate:UIAlertViewDelegate,tag:Int) {
         
-        let alert = UIAlertView(title: NSBundle.getLocalStringFromBundle("Tip", comment: ""), message: message, delegate: delegate,
-            cancelButtonTitle: NSBundle.getLocalStringFromBundle("Cancel", comment: ""), otherButtonTitles: okBtnString )
+        let alert = UIAlertView(title: Bundle.getLocalStringFromBundle("Tip", comment: ""), message: message, delegate: delegate,
+            cancelButtonTitle: Bundle.getLocalStringFromBundle("Cancel", comment: ""), otherButtonTitles: okBtnString )
         
         alert.show()
     }
     
-    class func showProgresing(controller:UIViewController) {
-        controller.view.userInteractionEnabled = false
-        controller.navigationController?.navigationBar.userInteractionEnabled = false
+    class func showProgresing(_ controller:UIViewController) {
+        controller.view.isUserInteractionEnabled = false
+        controller.navigationController?.navigationBar.isUserInteractionEnabled = false
         controller.view.makeToastActivity()
     
     }
     
-    class func hideProgresing(controller:UIViewController) {
-        controller.view.userInteractionEnabled = true
-        controller.navigationController?.navigationBar.userInteractionEnabled = true
+    class func hideProgresing(_ controller:UIViewController) {
+        controller.view.isUserInteractionEnabled = true
+        controller.navigationController?.navigationBar.isUserInteractionEnabled = true
         controller.view.hideToastActivity()
 
     }

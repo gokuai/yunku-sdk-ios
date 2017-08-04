@@ -10,7 +10,7 @@ import UIKit
 import YunkuSwiftSDK
 import AssetsLibrary
 
-public class YKMainViewController: UIViewController, UITableViewDelegate, UITableViewDataSource,FileListDataDelegate,UIActionSheetDelegate,UIImagePickerControllerDelegate, UINavigationControllerDelegate,RenameDelegate,NewFolderDelegate,FileItemOperateDelegate,RequestDelegate,UIAlertViewDelegate,FileUploadManagerDelegate{
+open class YKMainViewController: UIViewController, UITableViewDelegate, UITableViewDataSource,FileListDataDelegate,UIActionSheetDelegate,UIImagePickerControllerDelegate, UINavigationControllerDelegate,RenameDelegate,NewFolderDelegate,FileItemOperateDelegate,RequestDelegate,UIAlertViewDelegate,FileUploadManagerDelegate{
     
     //=================view=================
     var tableView:UITableView!
@@ -32,41 +32,41 @@ public class YKMainViewController: UIViewController, UITableViewDelegate, UITabl
     
     var isLoading = false
     
-    public var option:Option!
+    open var option:Option!
     
-    public var delegate:HookDelegate!
+    open var delegate:HookDelegate!
 
     //======================================
   
-    override public func viewDidLoad() {
+    override open func viewDidLoad() {
         super.viewDidLoad()
         
-        self.view.backgroundColor = UIColor.whiteColor()
+        self.view.backgroundColor = UIColor.white
         
         if self == self.navigationController?.viewControllers[0] {//is root
-            self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: NSBundle.getLocalStringFromBundle("Close", comment: ""),
-                style: UIBarButtonItemStyle.Plain, target: self, action:"onClose:")
+            self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: Bundle.getLocalStringFromBundle("Close", comment: ""),
+                style: UIBarButtonItemStyle.plain, target: self, action:"onClose:")
         }
         
         //设置返回按钮的文字
-        let backButton = UIBarButtonItem(title: NSBundle.getLocalStringFromBundle("Back", comment: ""),
-                        style: UIBarButtonItemStyle.Plain, target: self, action:"onBack:")
+        let backButton = UIBarButtonItem(title: Bundle.getLocalStringFromBundle("Back", comment: ""),
+                        style: UIBarButtonItemStyle.plain, target: self, action:"onBack:")
         
         self.navigationItem.backBarButtonItem = backButton
         
         
         if !(option == nil || !option.canUpload){
             //设置添加按钮
-            let addButton = UIBarButtonItem(title: NSBundle.getLocalStringFromBundle("Add", comment: ""),
-                style: UIBarButtonItemStyle.Plain, target: self, action:"onAdd:")
+            let addButton = UIBarButtonItem(title: Bundle.getLocalStringFromBundle("Add", comment: ""),
+                style: UIBarButtonItemStyle.plain, target: self, action:"onAdd:")
             self.navigationItem.rightBarButtonItem = addButton
         }
         
         //设置标题
         self.navigationItem.title = FileDataManager.sharedInstance!.isRootPath(self.fullPath) ? SDKConfig.orgRootTitle : self.fullPath.lastPathComponent
         
-        self.tableView = UITableView(frame: self.clientRect(), style: UITableViewStyle.Plain)
-        self.tableView.backgroundColor = UIColor.clearColor()
+        self.tableView = UITableView(frame: self.clientRect(), style: UITableViewStyle.plain)
+        self.tableView.backgroundColor = UIColor.clear
         self.tableView.delegate = self
         self.tableView.dataSource = self
         
@@ -75,16 +75,16 @@ public class YKMainViewController: UIViewController, UITableViewDelegate, UITabl
         //添加下拉刷新的控件
         self.refreshControl = UIRefreshControl()
         self.refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
-        self.refreshControl.addTarget(self, action: "onRefresh:", forControlEvents: UIControlEvents.ValueChanged)
+        self.refreshControl.addTarget(self, action: #selector(YKMainViewController.onRefresh(_:)), for: UIControlEvents.valueChanged)
         self.tableView.addSubview(refreshControl)
       
         //设置emptyView
-        self.emptyLabel = UILabel(frame: CGRectMake(0, 0, self.tableView.frame.width, 300))
-        self.emptyLabel.text = NSBundle.getLocalStringFromBundle("Empty Folder", comment: "")
-        self.emptyLabel.textAlignment = NSTextAlignment.Center
-        self.emptyLabel.textColor = UIColor.grayColor()
-        self.emptyLabel.font = UIFont.systemFontOfSize(14)
-        self.emptyLabel.hidden = false
+        self.emptyLabel = UILabel(frame: CGRect(x: 0, y: 0, width: self.tableView.frame.width, height: 300))
+        self.emptyLabel.text = Bundle.getLocalStringFromBundle("Empty Folder", comment: "")
+        self.emptyLabel.textAlignment = NSTextAlignment.center
+        self.emptyLabel.textColor = UIColor.gray
+        self.emptyLabel.font = UIFont.systemFont(ofSize: 14)
+        self.emptyLabel.isHidden = false
         
         self.tableView.addSubview(self.emptyLabel)
         
@@ -95,30 +95,30 @@ public class YKMainViewController: UIViewController, UITableViewDelegate, UITabl
     }
     
     //MARK:文件列表返回和文件
-    func onBack(sender:AnyObject?){
+    func onBack(_ sender:AnyObject?){
         if FileDataManager.sharedInstance!.isRootPath(self.fullPath) {
-            self.dismissViewControllerAnimated(true, completion: nil)
+            self.dismiss(animated: true, completion: nil)
             
         }else{
-            self.navigationController?.popToRootViewControllerAnimated(true)
+            self.navigationController?.popToRootViewController(animated: true)
         }
     
     }
     
     //MARK:列表刷新
-    func onRefresh(sender:AnyObject?){
+    func onRefresh(_ sender:AnyObject?){
         self.initData()
     }
     
     //MARK:文件添加
-    func onAdd(sender:AnyObject?){
+    func onAdd(_ sender:AnyObject?){
         
-        let sheet = UIActionSheet(title: NSBundle.getLocalStringFromBundle("Add files to ...", comment: ""), delegate: self, cancelButtonTitle: NSBundle.getLocalStringFromBundle("Cancel", comment: ""),
-            destructiveButtonTitle: nil, otherButtonTitles:  NSBundle.getLocalStringFromBundle("New Folder", comment: ""),
-            NSBundle.getLocalStringFromBundle("Gallery", comment: ""), NSBundle.getLocalStringFromBundle("Take Photo", comment: ""),
-            NSBundle.getLocalStringFromBundle("Gknote", comment: ""))
+        let sheet = UIActionSheet(title: Bundle.getLocalStringFromBundle("Add files to ...", comment: ""), delegate: self, cancelButtonTitle: Bundle.getLocalStringFromBundle("Cancel", comment: ""),
+            destructiveButtonTitle: nil, otherButtonTitles:  Bundle.getLocalStringFromBundle("New Folder", comment: ""),
+            Bundle.getLocalStringFromBundle("Gallery", comment: ""), Bundle.getLocalStringFromBundle("Take Photo", comment: ""),
+            Bundle.getLocalStringFromBundle("Gknote", comment: ""))
         sheet.tag = actionSheetTagAddFile
-        sheet.showInView(self.view)
+        sheet.show(in: self.view)
         
        
     }
@@ -126,33 +126,33 @@ public class YKMainViewController: UIViewController, UITableViewDelegate, UITabl
     
     //MARK:初始化列表数据
     func initData(){
-        self.emptyLabel.text = NSBundle.getLocalStringFromBundle("Loading", comment: "")
+        self.emptyLabel.text = Bundle.getLocalStringFromBundle("Loading", comment: "")
         
         FileDataManager.sharedInstance?.getFileList(0, fullPath: fullPath, delegate: self)
     }
     
     
-    public func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    open func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if self.fileList == nil || self.fileList.count == 0 {
-            self.emptyLabel.hidden = false
+            self.emptyLabel.isHidden = false
             return 0
         }
-        self.emptyLabel.hidden = true
+        self.emptyLabel.isHidden = true
         return self.fileList.count
     }
     
-    public func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    open func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell =  FileListCell()
         cell.tag = indexPath.row
         cell.bindView( fileList[indexPath.row], delegate:self, option: self.option)
         return cell
     }
     
-    public func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    open func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 54
     }
     
-    public func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    open func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
    
         let data = fileList[indexPath.row]
         
@@ -167,8 +167,8 @@ public class YKMainViewController: UIViewController, UITableViewDelegate, UITabl
         
         }else if data.isFoot{
             if !self.isLoading{
-                let cell: FileListCell = tableView.cellForRowAtIndexPath(indexPath) as! FileListCell
-                cell.moreLabel.text = NSBundle.getLocalStringFromBundle("Loading", comment: "")
+                let cell: FileListCell = tableView.cellForRow(at: indexPath) as! FileListCell
+                cell.moreLabel.text = Bundle.getLocalStringFromBundle("Loading", comment: "")
                 self.isLoading = true
                 FileDataManager.sharedInstance?.getMoreList(self)
             }
@@ -188,14 +188,14 @@ public class YKMainViewController: UIViewController, UITableViewDelegate, UITabl
                             startIndex = index
                         }
                         
-                        index++
+                        index += 1
                     }
                 }
                 
                 self.photoArray = imageList
                 photoControl.startingIndex = startIndex
                 photoControl.photoArray = NSMutableArray(array: self.photoArray)
-                self.presentViewController(UINavigationController(rootViewController: photoControl), animated: true, completion: nil)
+                self.present(UINavigationController(rootViewController: photoControl), animated: true, completion: nil)
 
             } else {
                 
@@ -208,7 +208,7 @@ public class YKMainViewController: UIViewController, UITableViewDelegate, UITabl
         
     }
     
-    override public func didReceiveMemoryWarning() {
+    override open func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
 
@@ -219,12 +219,12 @@ public class YKMainViewController: UIViewController, UITableViewDelegate, UITabl
     
     
     //MARK:接收到文件请求数据
-    func onHttpRequest(start: Int, fullPath: String, list: Array<FileData>) {
+    func onHttpRequest(_ start: Int, fullPath: String, list: Array<FileData>) {
         self.refreshControl.endRefreshing()
         
         self.isLoading = false
         
-        self.emptyLabel.text = NSBundle.getLocalStringFromBundle("Empty Folder", comment: "")
+        self.emptyLabel.text = Bundle.getLocalStringFromBundle("Empty Folder", comment: "")
         
         //防止多次点击，返回错位的列表
         if self.fullPath == fullPath{
@@ -239,7 +239,7 @@ public class YKMainViewController: UIViewController, UITableViewDelegate, UITabl
                 }
                 //===================================
             
-                self.fileList.appendContentsOf(list)
+                self.fileList.append(contentsOf: list)
             }
             
             if list.count >= FileDataManager.pageSize {//大于是防止服务端错误
@@ -262,13 +262,13 @@ public class YKMainViewController: UIViewController, UITableViewDelegate, UITabl
   
     }
     
-    func onHttpRequest(action: Action) {
+    func onHttpRequest(_ action: Action) {
         
         switch action {
-        case Action.Delete:
+        case Action.delete:
             DialogUtils.hideProgresing(self)
             
-            self.fileList.removeAtIndex(self.operatingIndex)
+            self.fileList.remove(at: self.operatingIndex)
             self.tableView.reloadData()
             
         default:
@@ -278,9 +278,9 @@ public class YKMainViewController: UIViewController, UITableViewDelegate, UITabl
     }
     
     //MARK:返回请求错误信息
-    func onError(errorMsg:String){
+    func onError(_ errorMsg:String){
         self.isLoading = false
-        if self.refreshControl.refreshing {
+        if self.refreshControl.isRefreshing {
             self.refreshControl.endRefreshing()
         }
         
@@ -290,9 +290,9 @@ public class YKMainViewController: UIViewController, UITableViewDelegate, UITabl
     }
     
     //MARK:返回Hook错误
-    func onHookError(type:HookType){
+    func onHookError(_ type:HookType){
         self.isLoading = false
-        if self.refreshControl.refreshing {
+        if self.refreshControl.isRefreshing {
             self.refreshControl.endRefreshing()
         }
         DialogUtils.hideProgresing(self)
@@ -302,10 +302,10 @@ public class YKMainViewController: UIViewController, UITableViewDelegate, UITabl
     //MARK:没有网络
     func onNetUnable(){
         self.isLoading = false
-        if self.refreshControl.refreshing {
+        if self.refreshControl.isRefreshing {
             self.refreshControl.endRefreshing()
         }
-        let message = NSLocalizedString("Network not available", tableName: nil, bundle: NSBundle.myResourceBundleInstance!, value: "", comment: "")
+        let message = NSLocalizedString("Network not available", tableName: nil, bundle: Bundle.myResourceBundleInstance!, value: "", comment: "")
         self.view.makeToast(message: message)
         self.emptyLabel.text = message
         DialogUtils.hideProgresing(self)
@@ -315,7 +315,7 @@ public class YKMainViewController: UIViewController, UITableViewDelegate, UITabl
     let actionSheetTagAddFile = 1
     let actionSheetTagFileOpration = 2
     
-    public func actionSheet(actionSheet: UIActionSheet, didDismissWithButtonIndex buttonIndex: Int) {
+    open func actionSheet(_ actionSheet: UIActionSheet, didDismissWithButtonIndex buttonIndex: Int) {
 
         if actionSheet.tag == actionSheetTagAddFile {
             switch buttonIndex {
@@ -325,41 +325,41 @@ public class YKMainViewController: UIViewController, UITableViewDelegate, UITabl
                 newFolderC.upFullPath = self.fullPath
                 newFolderC.delegate = self
                 let navC = UINavigationController(rootViewController: newFolderC)
-                self.presentViewController(navC, animated: true, completion: nil)
+                self.present(navC, animated: true, completion: nil)
                 
             case 2://Gallery
                 
                 if(!Utils.canAccessPhotos()){
-                    let message = NSBundle.getLocalStringFromBundle("Need the prermission of Photos , please access the Setting -> Private -> Photos", comment: "")
-                    let alert = UIAlertView(title: nil, message: message, delegate: self, cancelButtonTitle: NSBundle.getLocalStringFromBundle("I Know", comment: ""))
+                    let message = Bundle.getLocalStringFromBundle("Need the prermission of Photos , please access the Setting -> Private -> Photos", comment: "")
+                    let alert = UIAlertView(title: nil, message: message, delegate: self, cancelButtonTitle: Bundle.getLocalStringFromBundle("I Know", comment: ""))
                     alert.show()
                     return
                     
                 }
                 
-                if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.PhotoLibrary){
+                if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.photoLibrary){
                     
                     let picker = UIImagePickerController()
                     picker.delegate = self
-                    picker.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
-                    self.presentViewController(picker, animated: true, completion: nil)
+                    picker.sourceType = UIImagePickerControllerSourceType.photoLibrary
+                    self.present(picker, animated: true, completion: nil)
                     
                 }
                 
             case 3://Photos
                 if(!Utils.canAcessCamera()){
-                    let message = NSBundle.getLocalStringFromBundle("Need the prermission of Photos , please access the Setting -> Private -> Camera", comment: "")
-                    let alert = UIAlertView(title: nil, message: message, delegate: self, cancelButtonTitle: NSBundle.getLocalStringFromBundle("I Know", comment: ""))
+                    let message = Bundle.getLocalStringFromBundle("Need the prermission of Photos , please access the Setting -> Private -> Camera", comment: "")
+                    let alert = UIAlertView(title: nil, message: message, delegate: self, cancelButtonTitle: Bundle.getLocalStringFromBundle("I Know", comment: ""))
                     alert.show()
                     return
                     
                 }
                 
-                if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera){
+                if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.camera){
                     let picker = UIImagePickerController()
                     picker.delegate = self
-                    picker.sourceType = UIImagePickerControllerSourceType.Camera
-                    self.presentViewController(picker, animated: true, completion: nil)
+                    picker.sourceType = UIImagePickerControllerSourceType.camera
+                    self.present(picker, animated: true, completion: nil)
                 }
                 
             case 4://gknote
@@ -370,7 +370,7 @@ public class YKMainViewController: UIViewController, UITableViewDelegate, UITabl
                 control.delegate = self
                 let navC = UINavigationController(rootViewController: control)
                 
-                self.presentViewController(navC, animated: true, completion: nil)
+                self.present(navC, animated: true, completion: nil)
                 
             default:
                 ()
@@ -392,12 +392,12 @@ public class YKMainViewController: UIViewController, UITableViewDelegate, UITabl
                 renameC.delegate = self
                 renameC.fileIndex = self.operatingIndex
                 let navC = UINavigationController(rootViewController: renameC)
-                self.presentViewController(navC, animated: true, completion: nil)
+                self.present(navC, animated: true, completion: nil)
                 
             case deleteIndex:
                 
-                let message = NSBundle.getLocalStringFromBundle("Are you sure to delete this file?", comment: "")
-                DialogUtils.showTipDialog(message, okBtnString: NSBundle.getLocalStringFromBundle("Delete", comment: ""), delegate: self, tag: alertTagDelete)
+                let message = Bundle.getLocalStringFromBundle("Are you sure to delete this file?", comment: "")
+                DialogUtils.showTipDialog(message, okBtnString: Bundle.getLocalStringFromBundle("Delete", comment: ""), delegate: self, tag: alertTagDelete)
                 
             default:
                 ()
@@ -409,44 +409,44 @@ public class YKMainViewController: UIViewController, UITableViewDelegate, UITabl
     }
     
     
-    public func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage, editingInfo: [String : AnyObject]?) {
+    open func imagePickerController(_ picker: UIImagePickerController, didFinishPickingImage image: UIImage, editingInfo: [String : AnyObject]?) {
         var filename:String?
         var image: UIImage?
         
-        if picker.sourceType == UIImagePickerControllerSourceType.Camera{
+        if picker.sourceType == UIImagePickerControllerSourceType.camera{
             image = editingInfo![UIImagePickerControllerOriginalImage] as? UIImage
             
             //根据当前时间生成照片的名字
-            filename =  Utils.formatImageNameFromAssetLibrary(NSDate().timeIntervalSince1970)
+            filename =  Utils.formatImageNameFromAssetLibrary(Date().timeIntervalSince1970)
             
             self.uploadImage(filename!, image: image!, picker: picker)
             
-        }else if picker.sourceType == UIImagePickerControllerSourceType.PhotoLibrary{
+        }else if picker.sourceType == UIImagePickerControllerSourceType.photoLibrary{
             //获取照片在asset library的url
-            let localUrl = editingInfo![UIImagePickerControllerReferenceURL] as? NSURL
+            let localUrl = editingInfo![UIImagePickerControllerReferenceURL] as? URL
             var loadError: NSError?
             
             let assetsLibrary = ALAssetsLibrary()
-            assetsLibrary.assetForURL(localUrl, resultBlock: { (asset) -> Void in
+            assetsLibrary.asset(for: localUrl, resultBlock: { (asset) -> Void in
                 
-                let imageRep:ALAssetRepresentation = asset.defaultRepresentation() as ALAssetRepresentation
+                let imageRep:ALAssetRepresentation = asset!.defaultRepresentation() as ALAssetRepresentation
                 
                 //获取照片的时间
-                let date:NSDate = (asset?.valueForProperty(ALAssetPropertyDate) as! NSDate?)!
+                let date:Date = (asset?.value(forProperty: ALAssetPropertyDate) as! Date?)!
                 
                 //设置照片的名字
                 filename =  Utils.formatImageNameFromAssetLibrary(date.timeIntervalSince1970)
                 
                 //获取照片的数据
                 let iref: Unmanaged<CGImage> = imageRep.fullResolutionImage()
-                image = UIImage( CGImage: iref.takeRetainedValue())
+                image = UIImage( cgImage: iref.takeRetainedValue())
                 
                 self.uploadImage(filename!, image: image!, picker: picker)
                 iref.retain()//避免被释放
                 
                 }, failureBlock: { (error) -> Void in
                     loadError = error;
-            })
+            } as! ALAssetsLibraryAccessFailureBlock)
             
             
             if (loadError != nil) {
@@ -459,7 +459,7 @@ public class YKMainViewController: UIViewController, UITableViewDelegate, UITabl
 
    
     //MARK:上传图片
-    func uploadImage(filename:String,image:UIImage,picker:UIImagePickerController){
+    func uploadImage(_ filename:String,image:UIImage,picker:UIImagePickerController){
         
         var localPath:String?
         let upFullPath = self.fullPath
@@ -473,7 +473,7 @@ public class YKMainViewController: UIViewController, UITableViewDelegate, UITabl
         LogPrint.info("fileName:\(filename)")
         LogPrint.info("localPath:\(localPath)")
         
-        picker.dismissViewControllerAnimated(true, completion: {()-> Void in
+        picker.dismiss(animated: true, completion: {()-> Void in
             
             FileUploadManager.sharedInstance?.upload(fullPath, data: LocalFileData(fileName: filename, localPath: localPath!),view:self.view)
             FileUploadManager.sharedInstance?.delegate = self
@@ -482,16 +482,16 @@ public class YKMainViewController: UIViewController, UITableViewDelegate, UITabl
         
     }
   
-    public func imagePickerControllerDidCancel(picker: UIImagePickerController) {
-        picker.dismissViewControllerAnimated(true, completion: nil)
+    open func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        picker.dismiss(animated: true, completion: nil)
     }
     
     //MARK:接受需要高亮显示的文件名
-    func hightLightName(hightLightName: String) {
+    func hightLightName(_ hightLightName: String) {
         
-        for (index,data) in self.fileList.enumerate() {
+        for (index,data) in self.fileList.enumerated() {
             if data.fileName == hightLightName{
-                self.tableView.selectRowAtIndexPath(NSIndexPath(forRow: index, inSection: 0), animated: false, scrollPosition: UITableViewScrollPosition.Top)
+                self.tableView.selectRow(at: IndexPath(row: index, section: 0), animated: false, scrollPosition: UITableViewScrollPosition.top)
                 
                 self.hightLightFileName = ""
             }
@@ -500,7 +500,7 @@ public class YKMainViewController: UIViewController, UITableViewDelegate, UITabl
     }
     
     //MARK:重命名操作完成
-    func didRenamed(newName: String, index: Int) {
+    func didRenamed(_ newName: String, index: Int) {
         let data = self.fileList[index]
         data.fileName = newName
         let parentPath = data.fullPath.stringByDeletingLastPathComponent
@@ -508,23 +508,23 @@ public class YKMainViewController: UIViewController, UITableViewDelegate, UITabl
         let newPath = "\(parentPath)\(appendingString)\(newName)"
         data.fullPath = newPath
         self.tableView.reloadData()
-        self.tableView.selectRowAtIndexPath(NSIndexPath(forRow: index, inSection: 0), animated: false, scrollPosition: UITableViewScrollPosition.Top)
+        self.tableView.selectRow(at: IndexPath(row: index, section: 0), animated: false, scrollPosition: UITableViewScrollPosition.top)
     }
     
     //MARK:文件夹创建完成
-    func didCreateFolder(fileName: String) {
+    func didCreateFolder(_ fileName: String) {
         let data  = FileData()
         let appendingString = self.fullPath.isEmpty ? "":"/"
         data.fullPath = "\(self.fullPath)\(appendingString)\(fileName)"
         data.fileName = fileName
         data.dir = FileData.dirs
-        data.lastDateline = Int(NSDate().timeIntervalSince1970)
-        self.fileList.insert(data, atIndex: 0)
+        data.lastDateline = Int(Date().timeIntervalSince1970)
+        self.fileList.insert(data, at: 0)
         self.tableView.reloadData()
-        self.tableView.selectRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 0), animated: false, scrollPosition: UITableViewScrollPosition.Top)
+        self.tableView.selectRow(at: IndexPath(row: 0, section: 0), animated: false, scrollPosition: UITableViewScrollPosition.top)
     }
     
-    func onFileDidCreate(fileName: String) {
+    func onFileDidCreate(_ fileName: String) {
         self.hightLightFileName = fileName
         self.onRefresh(nil)
         DialogUtils.showProgresing(self)
@@ -534,30 +534,30 @@ public class YKMainViewController: UIViewController, UITableViewDelegate, UITabl
     var operatingIndex:Int!
     
     //MARK:cell 单项操作
-    func onItemOperte(index: Int) {
+    func onItemOperte(_ index: Int) {
         
         self.operatingIndex = index
         
         let isSepecial = option != nil && ((option.canRename && !option.canDel) || (!option.canRename && option.canDel))
         
-        let butonName =  isSepecial && option.canRename ? NSBundle.getLocalStringFromBundle("Rename", comment: "") : NSBundle.getLocalStringFromBundle("Delete", comment: "")
+        let butonName =  isSepecial && option.canRename ? Bundle.getLocalStringFromBundle("Rename", comment: "") : Bundle.getLocalStringFromBundle("Delete", comment: "")
         
-        let sheet = !isSepecial ? UIActionSheet(title: NSBundle.getLocalStringFromBundle("File Oprations...", comment: ""), delegate: self, cancelButtonTitle: NSBundle.getLocalStringFromBundle("Cancel", comment: ""),
-            destructiveButtonTitle: nil, otherButtonTitles:  NSBundle.getLocalStringFromBundle("Rename", comment: ""),
-            NSBundle.getLocalStringFromBundle("Delete", comment: ""))
-            : UIActionSheet(title: NSBundle.getLocalStringFromBundle("File Oprations...", comment: ""), delegate: self, cancelButtonTitle: NSBundle.getLocalStringFromBundle("Cancel", comment: ""),
+        let sheet = !isSepecial ? UIActionSheet(title: Bundle.getLocalStringFromBundle("File Oprations...", comment: ""), delegate: self, cancelButtonTitle: Bundle.getLocalStringFromBundle("Cancel", comment: ""),
+            destructiveButtonTitle: nil, otherButtonTitles:  Bundle.getLocalStringFromBundle("Rename", comment: ""),
+            Bundle.getLocalStringFromBundle("Delete", comment: ""))
+            : UIActionSheet(title: Bundle.getLocalStringFromBundle("File Oprations...", comment: ""), delegate: self, cancelButtonTitle: Bundle.getLocalStringFromBundle("Cancel", comment: ""),
                 destructiveButtonTitle: nil, otherButtonTitles: butonName)
 
         sheet.delegate = self
         sheet.tag = actionSheetTagFileOpration
-        sheet.showInView(self.view)
+        sheet.show(in: self.view)
 
     }
     
     //MARK:删除tag
     let alertTagDelete = 0
     
-    public func alertView(alertView: UIAlertView, clickedButtonAtIndex buttonIndex: Int) {
+    open func alertView(_ alertView: UIAlertView, clickedButtonAt buttonIndex: Int) {
         
         if alertView.tag == alertTagDelete {
             if buttonIndex == 1 {
@@ -573,22 +573,22 @@ public class YKMainViewController: UIViewController, UITableViewDelegate, UITabl
     
 
     //MARK:兼容iPad bug
-    public override func presentViewController(viewControllerToPresent: UIViewController, animated flag: Bool, completion: (() -> Void)?) {
+    open override func present(_ viewControllerToPresent: UIViewController, animated flag: Bool, completion: (() -> Void)?) {
         
-        if UIDevice.currentDevice().userInterfaceIdiom == .Pad {
+        if UIDevice.current.userInterfaceIdiom == .pad {
             
-            NSOperationQueue.mainQueue().addOperationWithBlock{
-                super.presentViewController(viewControllerToPresent, animated: flag, completion: completion)
+            OperationQueue.main.addOperation{
+                super.present(viewControllerToPresent, animated: flag, completion: completion)
             }
         
         }else{
-            super.presentViewController(viewControllerToPresent, animated: flag, completion: completion)
+            super.present(viewControllerToPresent, animated: flag, completion: completion)
         
         }
     }
     
-    func onClose(sender:AnyObject){
-        self.dismissViewControllerAnimated(true, completion: nil)
+    func onClose(_ sender:AnyObject){
+        self.dismiss(animated: true, completion: nil)
     }
 }
 
